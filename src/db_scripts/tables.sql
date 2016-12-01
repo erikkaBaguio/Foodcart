@@ -5,3 +5,11 @@ CREATE TABLE Food
 	unit_cost		FLOAT,
 	is_active		BOOLEAN DEFAULT TRUE
 );
+
+
+CREATE TABLE Category
+(
+	id           	SERIAL8 PRIMARY KEY,
+	category_name	TEXT NOT NULL,
+	is_active       BOOLEAN DEFAULT TRUE
+);
