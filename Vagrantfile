@@ -13,11 +13,20 @@ Vagrant.configure("2") do |config|
 
     # Port forwarding
     config.vm.network :forwarded_port, guest: 80, host: 8085
-    config.vm.network :forwarded_port, guest: 5000, host: 8080
+    config.vm.network :forwarded_port, guest: 5000, host: 8081
+    config.vm.network :forwarded_port, guest: 5432, host: 5433
 
     # Host-only access private network
     config.vm.network :private_network, ip: "192.168.33.10"
 
+    # Shared folders
+    config.vm.synced_folder "src/", "/var/www/src"
 
+    # Puppet config
+    config.vm.provision :puppet do |puppet|
+        puppet.manifests_path = "puppet/manifests"
+        puppet.manifest_file  = "init.pp"
+        puppet.module_path = "puppet/modules"
+    end
 
 end
