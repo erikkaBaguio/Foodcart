@@ -28,3 +28,14 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 		END;
 	$$
 		language 'plpgsql';
+
+
+--[GET] Retrieve specific restaurant
+--select show_all_restaurant();
+create or replace function show_all_restaurant(out bigint, out varchar, out float, out float, out varchar, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Restaurant
+	$$
+	language 'sql';
