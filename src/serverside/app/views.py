@@ -10,25 +10,43 @@ from app import app
 spcalls = SPcalls()
 
 
-@app.route('/api/foodcart/restaurants/', methods = ['POST'])
+@app.route('/api/foodcart/restaurants/', methods=['POST'])
 def store_restaurant():
-	data = json.loads(request.data)
+    data = json.loads(request.data)
 
-	resto_name = data['resto_name']
-	min_order = data['min_order']
-	delivery_fee = data['delivery_fee']
-	location = data['location']
+    resto_name = data['resto_name']
+    min_order = data['min_order']
+    delivery_fee = data['delivery_fee']
+    location = data['location']
 
-	if ( resto_name == '' or not min_order or not delivery_fee or location == '' ):
-	
-		return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-	
-	else:
-	
-		restaurant = spcalls.spcall('store_restaurant',(resto_name, min_order, delivery_fee, location),True)
-		
-		if 'Error' in str(restaurant[0][0]):
-			return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+    if (resto_name == '' or not min_order or not delivery_fee or location == ''):
 
-		else:
-			return jsonify({"status": "OK", "message": restaurant[0][0]})
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+
+    else:
+
+        restaurant = spcalls.spcall('store_restaurant', (resto_name, min_order, delivery_fee, location), True)
+
+        if 'Error' in str(restaurant[0][0]):
+            return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+        else:
+            return jsonify({"status": "OK", "message": restaurant[0][0]})
+
+
+# Users
+
+@app.route('/api/foodcart/users/signup/', methods=['POST'])
+def store_new_user():
+    data = json.loads(request.data)
+
+    user = spcalls.spcall('store_user', (
+        data['fname'], data['mname'], data['lname'], data['address'], data['email'], data['mobile_number'],
+        data['user_password'],
+        data['role_id'], data['earned_points']
+    ))
+
+    if 'Error' in str(user[0][0]):
+        return jsonify({"status": "error", "message": user[0][0]})
+
+    return jsonify({"status": "OK", "message": user[0][0]})
