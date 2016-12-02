@@ -19,7 +19,7 @@ def store_restaurant():
 	delivery_fee = data['delivery_fee']
 	location = data['location']
 
-	if ( resto_name == '' or not min_order or not delivery_fee ):
+	if ( resto_name == '' or not min_order or not delivery_fee or location == '' ):
 	
 		return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 	

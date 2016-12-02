@@ -20,6 +20,7 @@ create table Restaurant
 	resto_name 		VARCHAR(100) NOT NULL,
 	min_order		FLOAT,
 	delivery_fee	FLOAT,
+	location		VARCHAR(200) NOT NULL,
   	is_active       BOOLEAN DEFAULT TRUE
 );
 
