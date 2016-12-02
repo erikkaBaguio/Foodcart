@@ -10,6 +10,9 @@ import json
 def before_all():
     world.app = app.test_client()
 
+
+"""Add new restaurant"""
+
 @step(u'Given the system administrator have the following restaurant details:')
 def given_the_system_administrator_have_the_following_restaurant_details(step):
     world.restaurant = step.hashes[0]
@@ -25,21 +28,6 @@ def when_the_system_administrator_clicks_the_send_button(step):
 @step(u'Given I have the following user details:')
 def user_details(step):
     world.user = step.hashes[0]
-
-@step(u'When I click the register button')
-def click_register_button(step):
-    world.browser = TestApp(app)
-    world.user_url = '/api/foodcart/users/signup/'
-    world.response = world.app.post(world.user_url, data = json.dumps(world.user))
-
-@step(u'And it should have a field "message" containing "OK"')
-def message_success(step):
-    world.resp = json.loads(world.response.data)
-    assert_equals(world.resp['message'], "OK")
-
-@step(u'Then i will get a \'([^\']*)\' response')
-def then_i_should_get_response(step, expected_status_code):
-    assert_equals(world.response.status_code, int(expected_status_code))
 
 @step(u'When  the user clicks the send button')
 def when_the_user_clicks_the_send_button(step):
