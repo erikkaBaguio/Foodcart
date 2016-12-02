@@ -33,3 +33,10 @@ create table Orders
 	order_foods_id		INT REFERENCES Order_foods(id),
 	subtotal			FLOAT
 );
+
+
+create table Roles
+(
+	id 				SERIAL8 PRIMARY KEY,
+	role_name		VARCHAR(30) NOT NULL
+);
