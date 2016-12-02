@@ -40,3 +40,18 @@ create table Roles
 	id 				SERIAL8 PRIMARY KEY,
 	role_name		VARCHAR(30) NOT NULL
 );
+
+
+create table Userinfo
+(
+	id				SERIAL8 PRIMARY KEY,
+	fname			TEXT,
+	mname			TEXT,
+	lname			TEXT,
+	address			TEXT NOT NULL,
+	email			TEXT,
+	mobile_number	TEXT,
+	user_password		TEXT,
+	role_id			INT REFERENCES Roles(id),
+	earned_points	TEXT
+);
