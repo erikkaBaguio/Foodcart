@@ -1,6 +1,6 @@
 --[POST] Add new restaurant details
 --select store_restaurant('Cozy Cup', 10, 0, 'San Miguel, Iligan City')
-create or replace function store_restaurant(par_restoName text, par_minOrder float, par_deliveryFee float, par_location text)
+create or replace function store_restaurant(par_restoName varchar, par_minOrder float, par_deliveryFee float, par_location varchar)
 	returns text as
 	$$
 		DECLARE
