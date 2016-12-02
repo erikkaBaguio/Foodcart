@@ -27,54 +27,86 @@
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show()" role="button" style="margin-top:10px">Add Restaurant</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show()" role="button" style="margin-top:10px">View All Restaurants</a>
           </p>
 
-          <!-- ASSESSMENT FORM -->
+          <!-- RESTAURANT FORM -->
           <hr class="my-2">
-                    <section class="content" id="add-resto-form" style="display:none">                    
-                        <div class="box box-primary">
-                        <div id="add-resto-alert">
-                        </div>
-                        <div class="box-header with-border">
-                            <h3 class="box-title" style="padding: 5px">Restaurant</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form id="restaurant-form" class="bootstrap-form-with-validation">
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Restaurant Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="resto_name" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Minimum Order</label>
-                                            <input class="form-control" type="number" name="text-input" id="min_order" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Delivery Fee</label>
-                                            <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Location</label>
-                                            <input class="form-control" type="text" name="text-input" id="location" required>
-                                        </div>
-                                    </form>
+            <section class="content" id="add-resto-form" style="display:none">                    
+                <div class="box box-primary">
+                <div id="add-resto-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="restaurant-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Restaurant Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="resto_name" required>
                                 </div>
-                            </div>
-                            <!-- /.row -->
-                        </div>                   
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
-                            <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeRestaurant();">Submit</button>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Minimum Order</label>
+                                    <input class="form-control" type="number" name="text-input" id="min_order" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Delivery Fee</label>
+                                    <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Location</label>
+                                    <input class="form-control" type="text" name="text-input" id="location" required>
+                                </div>
+                            </form>
                         </div>
-                        <!-- /.box-footer -->
                     </div>
-                    <!-- /.box -->
-                    </section>
+                    <!-- /.row -->
+                </div>                   
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeRestaurant();">Submit</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+            <!-- END OF RESTAURANT FORM -->
 
-            <!-- END OF ASSESSMENT FORM -->
+
+            <!-- VIEW ALL RESTAURANT -->
+            <hr class="my-2">
+            <section class="content" id="view-all-resto" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Restaurant Name</th>
+                                        <th>Minimum Order</th>
+                                        <th>Delivery Fee</th>
+                                        <th>Location</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="view-user-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </section>
+            <!-- END VIEW ALL RESTAURANT -->
+
         </div>
 
     </div>
