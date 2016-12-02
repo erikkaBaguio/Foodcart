@@ -41,6 +41,12 @@ def message_success(step):
 def then_i_should_get_response(step, expected_status_code):
     assert_equals(world.response.status_code, int(expected_status_code))
 
+@step(u'When  the user clicks the send button')
+def when_the_user_clicks_the_send_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/signup/', data = json.dumps(world.user))
+
+
 
 """ Common steps for jsonify response """
 
