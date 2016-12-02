@@ -63,3 +63,22 @@ create table Order_food
 	food_id				INT REFERENCES Food(id),
 	quantity			INT
 );
+
+
+create table Transaction
+(
+	id 						SERIAL8 PRIMARY KEY,
+	transaction_number		VARCHAR(20),
+	transaction_date		DATE,
+	payer_id				INT REFERENCES Userinfo(id),
+	payment_id				INT,
+	paypal_token			VARCHAR(255) NULL,
+	name 					VARCHAR(50),
+	contact_number			INT,
+	email_address			VARCHAR(50),
+	delivery_fee			FLOAT,
+	order_id 				INT REFERENCES Orders(id),
+	total					FLOAT,
+	confirmed				BOOLEAN DEFAULT FALSE,
+	is_active				BOOLEAN DEFAULT FALSE
+);
