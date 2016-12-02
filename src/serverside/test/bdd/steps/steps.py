@@ -20,6 +20,28 @@ def when_the_system_administrator_clicks_the_send_button(step):
     world.response = world.app.post('/api/foodcart/restaurants/', data=json.dumps(world.restaurant))
 
 
+"""Add new user"""
+
+@step(u'Given I have the following user details:')
+def user_details(step):
+    world.user = step.hashes[0]
+
+@step(u'When I click the register button')
+def click_register_button(step):
+    world.browser = TestApp(app)
+    world.user_url = '/api/foodcart/users/signup/'
+    world.response = world.app.post(world.user_url, data = json.dumps(world.user))
+
+@step(u'And it should have a field "message" containing "OK"')
+def message_success(step):
+    world.resp = json.loads(world.response.data)
+    assert_equals(world.resp['message'], "OK")
+
+@step(u'Then i will get a \'([^\']*)\' response')
+def then_i_should_get_response(step, expected_status_code):
+    assert_equals(world.response.status_code, int(expected_status_code))
+
+
 """ Common steps for jsonify response """
 
 
