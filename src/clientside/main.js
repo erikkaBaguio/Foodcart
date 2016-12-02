@@ -34,9 +34,11 @@ function storeRestaurant(){
 						'<div class="alert alert-success"><strong>Success ' +
 						 '!</strong>' + results.message +'</div>');
 
-					$("#welcome-alert-nurse").fadeTo(2000, 500).slideUp(500);
+					$("#add-resto-alert").fadeTo(2000, 500).slideUp(500);
 
-					clearAssessmentForm();
+					$("#add-resto-form").hide();
+
+					clearRestaurantForm();
 
 				}
 

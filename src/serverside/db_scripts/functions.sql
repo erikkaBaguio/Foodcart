@@ -53,3 +53,14 @@ create or replace function store_user(par_fname TEXT, par_mname TEXT, par_lname 
 		language 'plpgsql';
 
 --select store_user('ahlaine', 'gem', 'pabs', 'iligan', 'gem@gmail.com', '0123', 'asas', 1, '0');
+
+
+--[GET] Retrieve specific restaurant
+--select show_all_restaurant();
+create or replace function show_all_restaurant(out bigint, out varchar, out float, out float, out varchar, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Restaurant
+	$$
+	language 'sql';

@@ -59,6 +59,29 @@ def store_new_user():
         return jsonify({"status": "OK", "message": user[0][0]})
 
 
+@app.route('/api/foodcart/restaurants/', methods = ['GET'])
+def get_restaurants():
+    restaurant = spcalls.spcall('show_all_restaurant', ())
+    entries = []
+    
+    if 'Error' in str(restaurant[0][0]):
+        return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+    elif len(restaurant) != 0:
+        for r in restaurant:
+            entries.append({"restaurant_id": r[0],
+                            "restaurant_name": r[1],
+                            "minimum_order": r[2],
+                            "delivery_fee": r[3],
+                            "is_active": r[4],
+                            "location": r[5]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    else:
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})  
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
