@@ -48,8 +48,8 @@ def get_restaurants():
                             "restaurant_name": r[1],
                             "minimum_order": r[2],
                             "delivery_fee": r[3],
-                            "is_active": r[4],
-                            "location": r[5]})
+                            "location": r[4],
+                            "is_active": r[5]})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
