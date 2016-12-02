@@ -40,13 +40,20 @@ def store_restaurant():
 def store_new_user():
     data = json.loads(request.data)
 
-    user = spcalls.spcall('store_user', (
-        data['fname'], data['mname'], data['lname'], data['address'], data['email'], data['mobile_number'],
-        data['user_password'],
-        data['role_id'], data['earned_points']
-    ))
+    if (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['address'] == '' or data[
+        'email'] == '' or
+                data['mobile_number'] == '' or data['user_password'] == '' or not data['role_id'] or not data['address']):
 
-    if 'Error' in str(user[0][0]):
-        return jsonify({"status": "error", "message": user[0][0]})
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 
-    return jsonify({"status": "OK", "message": user[0][0]})
+    else:
+        user = spcalls.spcall('store_user', (
+            data['fname'], data['mname'], data['lname'], data['address'], data['email'], data['mobile_number'],
+            data['user_password'],
+            data['role_id'], data['earned_points']
+        ))
+
+        if 'Error' in str(user[0][0]):
+            return jsonify({"status": "error", "message": user[0][0]})
+
+        return jsonify({"status": "OK", "message": user[0][0]})
