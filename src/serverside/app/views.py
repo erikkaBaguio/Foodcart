@@ -82,6 +82,30 @@ def get_restaurant(resto_id):
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
 
+@app.route('/api/foodcart/restaurants/', methods = ['PUT'])
+def update_restaurant():
+    data = json.loads(request.data)
+
+    restaurant_id = data['restaurant_id']
+    resto_name = data['resto_name']
+    min_order = data['min_order']
+    delivery_fee = data['delivery_fee']
+    location = data['location']
+
+    if ( resto_name == '' or not min_order or not delivery_fee or location == '' ):
+    
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+    
+    else:
+    
+        restaurant = spcalls.spcall('update_restaurant',(restaurant_id, resto_name, min_order, delivery_fee, location),True)
+        
+        if 'Error' in str(restaurant[0][0]):
+            return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+        else:
+            return jsonify({"status": "OK", "message": restaurant[0][0]})
+
 
 @app.after_request
 def add_cors(resp):
