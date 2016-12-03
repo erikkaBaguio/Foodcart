@@ -39,19 +39,18 @@ def store_restaurant():
 @app.route('/api/foodcart/users/signup/', methods=['POST'])
 def store_new_user():
     data = json.loads(request.data)
+    print data
 
     if (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['address'] == '' or data[
-        'email'] == '' or
-                data['mobile_number'] == '' or data['user_password'] == '' or not data['role_id'] or not data['address']):
+        'email'] == '' or data['mobile_number'] == '' or data['user_password'] == '' or not data['role_id'] or not data['earned_points']):
 
         return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 
     else:
         user = spcalls.spcall('store_user', (
-            data['fname'], data['mname'], data['lname'], data['address'], data['email'], data['mobile_number'],
-            data['user_password'],
+            data['fname'], data['mname'], data['lname'], data['address'], data['email'], data['mobile_number'], data['user_password'],
             data['role_id'], data['earned_points']
-        ))
+        ), True)
 
         if 'Error' in str(user[0][0]):
             return jsonify({"status": "error", "message": user[0][0]})
