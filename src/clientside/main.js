@@ -66,7 +66,59 @@ function storeRestaurant(){
 
 function clearRestaurantForm(){
 	var restaurant_form = document.getElementById("restaurant-form");
-	var restaurant_form_2 = document.getElementById("restaurant-form-2");
 	restaurant_form.reset();
-	restaurant_form_2.reset();
+}
+
+
+function viewAllRestaurant(){
+
+	$.ajax({
+		type:"GET",
+		url: "http://localhost:5000/api/foodcart/restaurants/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			console.log(results)
+			if(results.status == 'OK'){
+				$('#view-resto-table-body').html(function(){
+					var restaurant_row = '';
+					var restaurant;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						restaurant = '<tr>' +
+										'<td>' + results.entries[i].restaurant_name + '</td>' +
+										'<td>' + results.entries[i].minimum_order + '</td>' +
+										'<td>' + results.entries[i].delivery_fee + '</td>' +
+										'<td>' + results.entries[i].location + '</td>' +
+									 '</tr>';
+
+						restaurant_row  += restaurant
+					}
+
+					return restaurant_row;
+				})
+
+				$('#add-resto-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#message-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#message-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
 }

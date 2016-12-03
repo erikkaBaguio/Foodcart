@@ -26,8 +26,9 @@
           <h1 class="display-3">Simple CRUD</h1>
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show()" role="button" style="margin-top:10px">Add Restaurant</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show()" role="button" style="margin-top:10px">View All Restaurants</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Restaurant</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-resto').show();" role="button" style="margin-top:10px">View Restaurant</a>
           </p>
 
           <!-- RESTAURANT FORM -->
@@ -84,6 +85,8 @@
                     <h3 class="box-title" style="padding: 5px">Restaurant</h3>
                 </div>
                 <!-- /.box-header -->
+                <div id="message-alert">
+                </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -97,7 +100,7 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="view-user-table-body">
+                                <tbody id="view-resto-table-body">
                                 </tbody>
                             </table>
                         </div>
@@ -106,6 +109,19 @@
                 </div>
             </section>
             <!-- END VIEW ALL RESTAURANT -->
+
+            <!-- VIEW RESTAURANT -->
+            <hr class="my-2">
+            <section class="content" id="view-resto" style="display:none">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="view-restaurant-info" class="box box-default" style="margin-top:10px;display:none">
+
+                        </div> 
+                    </div>                                            
+                </div> 
+            </section>
+            <!-- END VIEW RESTAURANT -->
 
         </div>
 
