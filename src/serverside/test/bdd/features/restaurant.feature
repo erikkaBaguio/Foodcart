@@ -55,7 +55,6 @@ Scenario: View restaurant's information
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
 
-
  Scenario: Add restaurant - location field is empty
   Given the system administrator have the following restaurant details:
 		| resto_name | min_order | delivery_fee | location 			   |
@@ -66,3 +65,10 @@ Scenario: View restaurant's information
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
+
+ Scenario: View Speccific Restaurant - id does not exist
+  Given the restaurant with an id '1000'
+  When  the view button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'FAILED'
+  And   it should have a field 'message' containing 'No Restaurant Found'
