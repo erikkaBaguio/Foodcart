@@ -1,5 +1,8 @@
 Feature: Store User
 
+As a business manager/customer,  I want to sign up.
+As a system administrator, I want to view all users.
+
 ###############
 # Sunny Cases #
 ###############
@@ -12,6 +15,16 @@ Feature: Store User
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
 			And   it should have a field 'message' containing 'OK'
+
+    Scenario: View user's information
+            Given the user with an id '3'
+            When  view button is clicked
+            Then  it should have a '200' response
+            And   it should have a field 'status' containing 'OK'
+            And   it should have a field 'message' containing 'OK'
+            And   the following details will be returned:
+            | id | fname   | mname | lname | address |     email     | mobile_number | role_id | earned_points |
+			| 3  | ahlaine | gem   |  pabs |  iligan | gem@gmail.com |     0123      |    1    |       0       |
 
 
 ###############
@@ -86,3 +99,9 @@ Feature: Store User
             Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
             And   it should have a field 'message' containing 'Please fill the required fields'
+
+
+       Scenario: View Specific User - id does not exist
+            Given the restaurant with an id '1'
+            When  view button is clicked
+            Then  it should have a '200' response
