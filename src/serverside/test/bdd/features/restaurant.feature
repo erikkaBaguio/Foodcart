@@ -2,6 +2,7 @@ Feature: Store Restaurant
 
 As a system administrator, I want to add new restaurant information.
 As a business manager or a customer, I want to view restaurant's information.
+As a business manager, I want to update the restaurant’s information.
 
 ###############
 # Sunny Cases #
@@ -27,6 +28,23 @@ Scenario: View restaurant's information
   And   the following details will be returned
     | resto_name | min_order | delivery_fee | location             |
     | Jollibee   | 5         | 2            | Tibanga, Iligan City |
+
+Scenario: Update restaurant
+  Given the details of restaurant
+    | resto_name | min_order | delivery_fee | location             |
+    | Jollibee   | 5         | 2            | Tibanga, Iligan City |
+
+  And the new details of retaurant
+    | resto_name | min_order | delivery_fee | location             |
+    | Jollibee   | 20        | 10           | Tibanga, Iligan City |
+
+  When  the update button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+
+
+
 
 
  ###############
