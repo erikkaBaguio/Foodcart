@@ -67,6 +67,16 @@ create or replace function get_all_user(OUT BIGINT, OUT VARCHAR, OUT VARCHAR, OU
 		language 'sql';
 
 
+--[GET] Retrieve specific user
+--select * from show_user(12);
+create or replace function show_user(in par_id BIGINT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT INT, OUT VARCHAR)
+	returns setof record as
+	$$
+		SELECT fname, mname, lname, address, email, mobile_number, user_password, role_id, earned_points FROM Userinfo WHERE id = par_id;
+	$$
+	language 'sql';
+
+
 --[GET] Retrieve specific restaurant
 --select show_all_restaurant();
 create or replace function show_all_restaurant(out bigint, out varchar, out float, out float, out varchar, out boolean)
