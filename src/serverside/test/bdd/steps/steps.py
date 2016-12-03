@@ -41,7 +41,7 @@ def and_the_following_details_will_be_returned(step):
     
 
 
-"""Add new user"""
+"""User"""
 
 @step(u'Given I have the following user details:')
 def user_details(step):
@@ -51,6 +51,16 @@ def user_details(step):
 def when_the_user_clicks_the_send_button(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/users/signup/', data = json.dumps(world.user))
+
+@step(u'Given the user with an id \'([^\']*)\'')
+def given_the_user_with_an_id_group1(step, id):
+    world.user_id = id
+    world.user = world.app.get('/api/foodcart/users/{}/'.format(id))
+    world.response_json = json.loads(world.user.data)
+
+@step(u'When  view button is clicked')
+def when_the_view_button_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/users/{}/'.format(world.user_id))
 
 
 
