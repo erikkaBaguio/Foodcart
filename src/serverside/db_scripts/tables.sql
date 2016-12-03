@@ -1,3 +1,10 @@
+create table Roles
+(
+	id 				SERIAL8 PRIMARY KEY,
+	role_name		VARCHAR(30) NOT NULL
+);
+
+
 create table Food
 (	id				SERIAL8 PRIMARY KEY,
 	food_name		VARCHAR(200) NOT NULL,
@@ -14,6 +21,7 @@ create table Category
 	is_active       BOOLEAN DEFAULT TRUE
 );
 
+
 create table Restaurant
 (
 	id           	SERIAL8 PRIMARY KEY,
@@ -25,43 +33,36 @@ create table Restaurant
 );
 
 
-create table Orders
-(
-	id 					SERIAL8 PRIMARY KEY,
-	role_id				INT REFERENCES Roles(id),
-	payment_id			INT,
-	order_foods_id		INT REFERENCES Order_foods(id),
-	subtotal			FLOAT
-);
-
-
-create table Roles
-(
-	id 				SERIAL8 PRIMARY KEY,
-	role_name		VARCHAR(30) NOT NULL
-);
-
-
-create table Userinfo
-(
-	id				SERIAL8 PRIMARY KEY,
-	fname			TEXT,
-	mname			TEXT,
-	lname			TEXT,
-	address			TEXT NOT NULL,
-	email			TEXT,
-	mobile_number	TEXT,
-	user_password		TEXT,
-	role_id			INT REFERENCES Roles(id),
-	earned_points	TEXT
-);
-
-
 create table Order_food
 (
 	id 					SERIAL8 PRIMARY KEY,
 	food_id				INT REFERENCES Food(id),
 	quantity			INT
+);
+
+
+create table Orders
+(
+	id 					SERIAL8 PRIMARY KEY,
+	role_id				INT REFERENCES Roles(id),
+	payment_id			INT,
+	order_foods_id		INT REFERENCES Order_food(id),
+	subtotal			FLOAT
+);
+
+
+create table Userinfo
+(
+	id				      SERIAL8 PRIMARY KEY,
+	fname			      VARCHAR(100),
+	mname			      VARCHAR(100),
+	lname			      VARCHAR(100),
+	address			    VARCHAR(100) NOT NULL,
+	email			      VARCHAR(100),
+	mobile_number	  VARCHAR(100),
+	user_password		VARCHAR(100),
+	role_id			    INT REFERENCES Roles(id),
+	earned_points	  VARCHAR(100)
 );
 
 
