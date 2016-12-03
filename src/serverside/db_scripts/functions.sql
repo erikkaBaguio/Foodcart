@@ -53,3 +53,25 @@ create or replace function show_restaurant(in par_restoID bigint, out bigint, ou
 	language 'sql';
 
 
+--[PUT] Update resaturant
+--select update_restaurant('Jollibee', 20, 2, 'Tibanga, Iligan City')
+create or replace function update_restaurant(in par_restoID bigint, in par_restoName varchar, in par_minOrder float, in par_deliveryFee float, in par_location varchar)
+	returns text as
+	$$
+		declare
+			local_response text;
+		begin
+			update Restaurant
+			set resto_name = par_restoName,
+				min_order = par_minOrder,
+				delivery_fee = par_deliveryFee,
+				location = par_location
+			where id = par_restoID;
+			
+			local_response = 'OK';			
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
+
+
