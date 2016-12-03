@@ -31,12 +31,12 @@ Scenario: View restaurant's information
 
 Scenario: Update restaurant
   Given the details of restaurant
-    | resto_name | min_order | delivery_fee | location             |
-    | Jollibee   | 5         | 2            | Tibanga, Iligan City |
+    |restaurant_id| resto_name | min_order | delivery_fee | location             |
+    |1            | Jollibee   | 5         | 2            | Tibanga, Iligan City |
 
   And the new details of retaurant
-    | resto_name | min_order | delivery_fee | location             |
-    | Jollibee   | 20        | 10           | Tibanga, Iligan City |
+    |restaurant_id|| resto_name | min_order | delivery_fee | location             |
+    |1            | Jollibee   | 20        | 10           | Tibanga, Iligan City |
 
   When  the update button is clicked
   Then  it should have a '200' response

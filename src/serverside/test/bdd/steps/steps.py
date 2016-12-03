@@ -35,6 +35,23 @@ def when_the_view_button_is_clicked(step):
 def and_the_following_details_will_be_returned(step):
 	response_json = json.loads(world.response.data)
 	assert_equals(world.response_json['entries'], response_json['entries'])
+
+
+@step(u'Given the details of restaurant')
+def given_the_details_of_restaurant(step):
+    world.restaurant_oldInfo = step.hashes[0]
+
+
+@step(u'And the new details of retaurant')
+def and_the_new_details_of_retaurant(step):
+    world.restaurant_updatedInfo = step.hashes[0]
+
+
+@step(u'When  the update button is clicked')
+def when_the_update_button_is_clicked(step):
+    world.response = world.app.put('/api/foodcart/restaurants/', data=json.dumps(world.restaurant_updatedInfo))
+    
+
     
 
 
