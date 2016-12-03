@@ -4,30 +4,30 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 	returns text as
 	$$
 		DECLARE
+			local_name	varchar;
 			local_response text;
 		BEGIN
 
-			if  par_restoName = '' or
-				par_minOrder is NULL or
-				par_deliveryFee is NULL or
-				par_location = '' 
+			select into local_name resto_name
+			from Restaurant
+			where resto_name = par_restoName;
 			
-			THEN
-
-				local_response = 'ERROR';
-			ELSE	
-
-			insert into Restaurant(resto_name, min_order, delivery_fee, location)
-			values (par_restoName, par_minOrder, par_deliveryFee, par_location);
+			if local_name isnull
+			then
+				insert into Restaurant(resto_name, min_order, delivery_fee, location)
+				values (par_restoName, par_minOrder, par_deliveryFee, par_location);
 			
-			local_response = 'OK';
+				local_response = 'OK';
+			else	
+				local_response = 'EXISTED';
 			
-			END IF;
-
+			end if;
+			
 			return local_response;
 		END;
 	$$
 		language 'plpgsql';
+
 
 
 --[GET] Retrieve specific restaurant
@@ -39,3 +39,17 @@ create or replace function show_all_restaurant(out bigint, out varchar, out floa
 		from Restaurant
 	$$
 	language 'sql';
+
+
+--[GET] Retrieve specific restaurant
+--select show_restaurant(1);
+create or replace function show_restaurant(in par_restoID bigint, out bigint, out varchar, out float, out float, out varchar, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Restaurant
+		where Restaurant.id = par_restoID
+	$$
+	language 'sql';
+
+
