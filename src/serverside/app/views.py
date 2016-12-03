@@ -58,23 +58,41 @@ def store_new_user():
         return jsonify({"status": "OK", "message": user[0][0]})
 
 
+@app.route('/api/foodcart/users/', methods=['GET'])
+def get_users():
+    user = spcalls.spcall('get_all_user', ())
+    entries = []
+
+    if 'Error' in str(user[0][0]):
+        return jsonify({"status": "FAILED", "message": user[0][0]})
+
+    elif len(user) != 0:
+        for r in user:
+            entries.append(
+                {'id': str(r[0]), 'fname': str(r[1]), 'mname': str(r[2]), 'lname': str(r[3]), 'address': str(r[4]),
+                 'email': str(r[5]), 'mobile_number': str(r[6]), 'role_id': str(r[8]), 'earned_points': str(r[9])})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    else:
+        return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
+
+
 @app.route('/api/foodcart/users/<int:id>/', methods=['GET'])
-def get_users(id):
-    user = spcalls.spcall('get_all_users', (id,))
+def get_user(id):
+    user = spcalls.spcall('show_user', (id,))
     entries = []
 
     if len(user) == 0:
-        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+        return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
 
     elif 'Error' in str(user[0][0]):
         return jsonify({"status": "FAILED", "message": user[0][0]})
 
     else:
-
         r = user[0]
-        entries.append(
-            {'id': str(r[0]), 'fname': str(r[1]), 'mname': str(r[2]), 'lname': str(r[3]), 'address': str(r[4]),
-             'email': str(r[5]), 'mobile_number': str(r[6]), 'role_id': str(r[8]), 'earned_points': str(r[9])})
+        entries.append({'id': str(id), 'fname': str(r[0]), 'mname': str(r[1]), 'lname': str(r[2]), 'address': str(r[3]),
+             'email': str(r[4]), 'mobile_number': str(r[5]), 'role_id': str(r[7]), 'earned_points': str(r[8])})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
 
@@ -99,7 +117,7 @@ def get_restaurants():
         return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
     else:
-        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
 
 
 @app.route('/api/foodcart/restaurants/<int:resto_id>', methods = ['GET'])
