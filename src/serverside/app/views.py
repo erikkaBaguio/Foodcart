@@ -58,6 +58,27 @@ def store_new_user():
         return jsonify({"status": "OK", "message": user[0][0]})
 
 
+@app.route('/api/foodcart/users/<int:id>/', methods=['GET'])
+def get_users(id):
+    user = spcalls.spcall('get_all_users', (id,))
+    entries = []
+
+    if len(user) == 0:
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+
+    elif 'Error' in str(user[0][0]):
+        return jsonify({"status": "FAILED", "message": user[0][0]})
+
+    else:
+
+        r = user[0]
+        entries.append(
+            {'id': str(r[0]), 'fname': str(r[1]), 'mname': str(r[2]), 'lname': str(r[3]), 'address': str(r[4]),
+             'email': str(r[5]), 'mobile_number': str(r[6]), 'role_id': str(r[8]), 'earned_points': str(r[9])})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries})
+
+
 @app.route('/api/foodcart/restaurants/', methods = ['GET'])
 def get_restaurants():
     restaurant = spcalls.spcall('show_all_restaurant', ())
@@ -72,13 +93,39 @@ def get_restaurants():
                             "restaurant_name": r[1],
                             "minimum_order": r[2],
                             "delivery_fee": r[3],
-                            "is_active": r[4],
-                            "location": r[5]})
+                            "location": r[4],
+                            "is_active": r[5]})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
     else:
-        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})  
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
+
+
+@app.route('/api/foodcart/restaurants/<int:resto_id>', methods = ['GET'])
+def get_restaurant(resto_id):
+    restaurant = spcalls.spcall('show_restaurant', (resto_id,))
+    entries = []
+    
+
+    if len(restaurant) == 0:
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+    
+    elif 'Error' in str(restaurant[0][0]):
+        return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+    else:
+
+        r = restaurant[0]
+
+        entries.append({"restaurant_id": r[0],
+                        "restaurant_name": r[1],
+                        "minimum_order": r[2],
+                        "delivery_fee": r[3],
+                        "location": r[4],
+                        "is_active": r[5]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries})
 
 
 @app.after_request

@@ -4,47 +4,51 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 	returns text as
 	$$
 		DECLARE
+			local_name	varchar;
 			local_response text;
 		BEGIN
 
-			if  par_restoName = '' or
-				par_minOrder is NULL or
-				par_deliveryFee is NULL or
-				par_location = '' 
+			select into local_name resto_name
+			from Restaurant
+			where resto_name = par_restoName;
 			
-			THEN
-
-				local_response = 'ERROR';
-			ELSE	
-
-			insert into Restaurant(resto_name, min_order, delivery_fee, location)
-			values (par_restoName, par_minOrder, par_deliveryFee, par_location);
+			if local_name isnull
+			then
+				insert into Restaurant(resto_name, min_order, delivery_fee, location)
+				values (par_restoName, par_minOrder, par_deliveryFee, par_location);
 			
-			local_response = 'OK';
+				local_response = 'OK';
+			else	
+				local_response = 'EXISTED';
 			
-			END IF;
-
+			end if;
+			
 			return local_response;
 		END;
 	$$
 		language 'plpgsql';
 
 
-create or replace function store_user(par_fname TEXT, par_mname TEXT, par_lname TEXT, par_address TEXT, par_email TEXT,
-									 par_mobileNum TEXT, par_password TEXT, par_roleID INT, par_points INT)
+--[POST] Add new user
+--select store_user('ahlaine', 'gem', 'pabs', 'iligan', 'gem@gmail.com', '0123', 'asas', 1, '0');
+create or replace function store_user(par_fname VARCHAR, par_mname VARCHAR, par_lname VARCHAR, par_address VARCHAR, par_email VARCHAR,
+									 par_mobileNum VARCHAR, par_password VARCHAR, par_roleID INT, par_points VARCHAR)
 	returns text as
 	$$
 		DECLARE
+		  loc_name TEXT;
 			loc_res TEXT;
 		BEGIN
-			if par_fname = '' or par_mname = '' or par_lname = '' or par_address = '' or par_email = '' or par_mobileNum = NULL or par_password = ''
-							or par_roleID = NULL or par_points = NULL THEN
-				loc_res = 'Error';
-			ELSE
-				INSERT INTO Userinfo(fname, mname, lname, address, email, mobile_number, user_password, role_id, earned_points) VALUES (par_fname, par_mname,
-								par_lname, par_address, par_email, par_mobileNum, par_password, par_roleID, par_points);
+			select into loc_name email from Userinfo where email = par_email;
 
-				loc_res = 'OK';
+			if loc_name isnull then
+        insert into Userinfo(fname, mname, lname, address, email, mobile_number, user_password, role_id, earned_points)
+        values(par_fname, par_mname, par_lname, par_address, par_email, par_mobileNum, par_password, par_roleID, par_points);
+
+			  loc_res = 'OK';
+			else
+			  loc_res = 'EXISTED';
+
 			END IF;
 
 			RETURN loc_res;
@@ -52,7 +56,15 @@ create or replace function store_user(par_fname TEXT, par_mname TEXT, par_lname 
 	$$
 		language 'plpgsql';
 
---select store_user('ahlaine', 'gem', 'pabs', 'iligan', 'gem@gmail.com', '0123', 'asas', 1, '0');
+
+--[GET] Retrieve all users
+-- select * from get_all_user();
+create or replace function get_all_user(OUT BIGINT, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT VARCHAR, OUT INT, OUT VARCHAR)
+	RETURNS SETOF RECORD as
+	$$
+		SELECT id, fname, mname, lname, address, email, mobile_number, user_password, role_id, earned_points FROM Userinfo;
+	$$
+		language 'sql';
 
 
 --[GET] Retrieve specific restaurant
@@ -62,5 +74,17 @@ create or replace function show_all_restaurant(out bigint, out varchar, out floa
 	$$
 		select *
 		from Restaurant
+	$$
+	language 'sql';
+
+
+--[GET] Retrieve specific restaurant
+--select show_restaurant(1);
+create or replace function show_restaurant(in par_restoID bigint, out bigint, out varchar, out float, out float, out varchar, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Restaurant
+		where Restaurant.id = par_restoID
 	$$
 	language 'sql';
