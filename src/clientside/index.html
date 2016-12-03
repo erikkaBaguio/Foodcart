@@ -30,7 +30,7 @@
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a>
           </p>
 
-          <!-- RESTAURANT FORM -->
+          <!-- ADD RESTAURANT FORM -->
           <hr class="my-2">
             <section class="content" id="add-resto-form" style="display:none">                    
                 <div class="box box-primary">
@@ -74,7 +74,7 @@
             </div>
             <!-- /.box -->
             </section>
-            <!-- END OF RESTAURANT FORM -->
+            <!-- END OF ADD RESTAURANT FORM -->
 
 
             <!-- VIEW ALL RESTAURANT -->
@@ -122,6 +122,52 @@
                 </div> 
             </section>
             <!-- END VIEW RESTAURANT -->
+
+        <!-- UPDATE RESTAURANT FORM -->
+          <hr class="my-2">
+            <section class="content" id="update-resto-form" style="display:none">                    
+                <div class="box box-primary">
+                <div id="update-resto-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Update Restaurant</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="restaurant-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Restaurant Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="resto_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Minimum Order</label>
+                                    <input class="form-control" type="number" name="text-input" id="min_order" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Delivery Fee</label>
+                                    <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Location</label>
+                                    <input class="form-control" type="text" name="text-input" id="location" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>                   
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateRestaurant();">Update</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+            <!-- END OF UPDATE RESTAURANT FORM -->
 
         </div>
 
