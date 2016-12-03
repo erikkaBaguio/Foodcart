@@ -26,7 +26,8 @@
           <h1 class="display-3">Simple CRUD</h1>
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show()" role="button" style="margin-top:10px">Add Restaurant</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show(); $('#add-user-form').hide()" role="button" style="margin-top:10px">Add Restaurant</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-user-form').show(); $('#add-resto-form').hide()" role="button" style="margin-top:10px">Sign Up</a>
           </p>
 
           <!-- ASSESSMENT FORM -->
@@ -75,6 +76,78 @@
                     </section>
 
             <!-- END OF ASSESSMENT FORM -->
+
+            <!-- SIGNUP FORM -->
+                    <section class="content" id="add-user-form" style="display:none">
+                        <div class="box box-primary">
+                        <div id="add-user-alert">
+                        </div>
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="padding: 5px">Sign Up</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form id="user-form" class="bootstrap-form-with-validation">
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">First Name</label>
+                                            <input class="form-control" type="text" name="text-input" id="fname" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Middle Name</label>
+                                            <input class="form-control" type="text" name="text-input" id="mname" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Last Name</label>
+                                            <input class="form-control" type="text" name="text-input" id="lname" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Address</label>
+                                            <input class="form-control" type="text" name="text-input" id="address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Email Address</label>
+                                            <input class="form-control" type="text" name="text-input" id="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Mobile Number</label>
+                                            <input class="form-control" type="text" name="text-input" id="mobile_number" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Password</label>
+                                            <input class="form-control" type="password" name="text-input" id="user_password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="dropdown-input-field">User Role</label>
+                                            <select id="role_id" name="role_id">
+                                                <option value="1">System Administrator</option>
+                                                <option value="2">Business Owner</option>
+                                                <option value="3">Customer</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <!--<label class="control-label" for="text-input" type="hidden">Earned Points</label>-->
+                                            <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearSignupForm();">Clear</button>
+                            <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="signup();">Submit</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
+                    </section>
+
+            <!-- END SIGNUP FORM -->
+
+
         </div>
 
     </div>
