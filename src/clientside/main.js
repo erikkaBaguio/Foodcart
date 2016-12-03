@@ -213,7 +213,7 @@ function viewRestaurantById(restaurant_id){
 				$('#view-resto-info').html(function(){
 					var restaurant_row = '';
 					var restaurant;
-					'Minimum Order' + results.entries.minimum_order 
+					'Minimum Order' + results.entries.minimum_order
 					for (var i = 0; i < results.entries.length; i++) {
 						restaurant = '<div class="box-body">' +
 										'<div class="container">' +
@@ -247,6 +247,118 @@ function viewRestaurantById(restaurant_id){
 
 						 '!</strong>'+ results.message +' </div>');
 				$("#view-resto-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
+
+
+function viewAllUser(){
+
+	$.ajax({
+		type:"GET",
+		url: "http://localhost:5000/api/foodcart/users/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			if(results.status == 'OK'){
+				$('#view-user-table-body').html(function(){
+					var user_row = '';
+					var user;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						user = '<tr>' +
+										'<td>' + results.entries[i].fname + ' ' + results.entries[i].lname+ '</td>' +
+										'<td>'+'<button onclick="viewUserById('+ results.entries[i].id +'); $(\'#view-user\').show();$(\'#view-all-user\').hide()" class="btn btn-info">View</button>'+'</td>'+
+									 '</tr>';
+
+						user_row  = user_row + user
+					}
+
+					return user_row;
+				})
+
+				$('#add-user-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#message-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#message-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
+
+
+function viewUserById(id){
+	$.ajax({
+		type:"GET",
+		url: "http://localhost:5000/api/foodcart/users/" + id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{
+			console.log(results.entries);
+			if(results.status == 'OK'){
+				$('#view-user-info').html(function(){
+					var user_row = '';
+					var user;
+					for (var i = 0; i < results.entries.length; i++) {
+						user = '<div class="box-body">' +
+										'<div class="container">' +
+			                                '<div class="row">' +
+			                                	'<h4 class="box-title"><b>'+ 'Name: ' + results.entries[i].fname + ' ' + results.entries[i].mname + ' ' + results.entries[i].lname +'</b></h3></div>' +
+			                                    '<div class="col-md-4">' +
+			                                        '<p style="margin-left: 5px">' +
+														 'Address: ' + results.entries[i].address + '<br><br>' +
+														 'Mobile Number: ' + results.entries[i].mobile_number + '<br><br>' +
+														 'Role ID: ' + results.entries[i].role_id + '<br><br>' +
+								  						 'Points: ' + results.entries[i].earned_points + '<br><br>' +
+			                                        '</p>' +
+			                                    '</div>'
+			                                '</div>' +
+			                            '</div>' +
+			                        '</div>'
+
+						user_row  += user
+					}
+
+					return user_row;
+				})
+
+				$('#add-user-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#view-user-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#view-user-alert").fadeTo(2000, 500).slideUp(500);
 
 			}
 		},
