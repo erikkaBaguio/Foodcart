@@ -19,6 +19,24 @@ def when_the_system_administrator_clicks_the_send_button(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/restaurants/', data=json.dumps(world.restaurant))
 
+@step(u'Given the restaurant with an id \'([^\']*)\'')
+def given_the_restaurant_with_an_id_group1(step, resto_id):
+    world.resto_id = resto_id
+    world.restaurant = world.app.get('/api/foodcart/restaurants/{}'.format(resto_id))
+    world.response_json = json.loads(world.restaurant.data)
+    
+
+@step(u'When  the view button is clicked')
+def when_the_view_button_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/restaurants/{}'.format(world.resto_id))
+    
+
+@step(u'And   the following details will be returned')
+def and_the_following_details_will_be_returned(step):
+	response_json = json.loads(world.response.data)
+	assert_equals(world.response_json['entries'], response_json['entries'])
+    
+
 
 """ Common steps for jsonify response """
 
