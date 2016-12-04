@@ -52,11 +52,7 @@ def get_restaurants():
                                 "location": r[4],
                                 "is_active": r[5]})
 
-                return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
-
-            else:
-                return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
-
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
     else:
         return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 

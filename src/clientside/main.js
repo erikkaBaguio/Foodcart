@@ -92,7 +92,8 @@ function viewAllRestaurant(){
 										// '<td>' + results.entries[i].delivery_fee + '</td>' +
 										// '<td>' + results.entries[i].location + '</td>' +
 										'<td>'+'<button onclick="viewRestaurantById('+ results.entries[i].restaurant_id +'); $(\'#view-resto\').show();$(\'#view-all-resto\').hide()" class="btn btn-info">View</button>'+'</td>'+
-										'<td>'+'<button onclick="updateRestaurant('+ results.entries[i].restaurant_id +'); $(\'#update-resto-form\').show();$(\'#view-all-resto\').hide()" class="btn btn-danger">Update</button>'+'</td>'+
+										'<td>'+'<button onclick="updateRestaurant('+ results.entries[i].restaurant_id +'); $(\'#update-resto-form\').show();$(\'#view-all-resto\').hide()" class="btn btn-info">Update</button>'+'</td>'+
+										'<td>'+'<button onclick="deactivateRestaurant('+ results.entries[i].restaurant_id +'); $(\'#update-resto-form\').hide();" class="btn btn-danger">Deactivate</button>'+'</td>'+
 									 '</tr>';
 
 						restaurant_row  += restaurant
@@ -203,7 +204,7 @@ function updateRestaurant(restaurant_id){
 	
 	$.ajax({
 		type:"PUT",
-    	url: "http://localhost:5000/api/foodcart/restaurants/",
+    	url: "http://localhost:5000/api/foodcart/restaurants/" + restaurant_id,
     	contentType:"application/json; charset=utf-8",
 		data:data,
 		dataType:"json",
@@ -240,4 +241,33 @@ function updateRestaurant(restaurant_id){
 
 	        }
 	    });
+}
+
+function deactivateRestaurant(restaurant_id){
+	$.ajax({
+		type: "PUT",
+		url: "http://localhost:5000/api/foodcart/restaurants/deactivate/" + restaurant_id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-alert').html(
+						'<div class="view-resto-alert"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	});
 }
