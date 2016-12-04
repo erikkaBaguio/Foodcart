@@ -12,26 +12,26 @@ spcalls = SPcalls()
 
 @app.route('/api/foodcart/restaurants/', methods = ['POST'])
 def store_restaurant():
-	data = json.loads(request.data)
+    data = json.loads(request.data)
 
-	resto_name = data['resto_name']
-	min_order = data['min_order']
-	delivery_fee = data['delivery_fee']
-	location = data['location']
+    resto_name = data['resto_name']
+    min_order = data['min_order']
+    delivery_fee = data['delivery_fee']
+    location = data['location']
 
-	if ( resto_name == '' or not min_order or not delivery_fee or location == '' ):
-	
-		return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-	
-	else:
-	
-		restaurant = spcalls.spcall('store_restaurant',(resto_name, min_order, delivery_fee, location),True)
-		
-		if 'Error' in str(restaurant[0][0]):
-			return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+    if ( resto_name == '' or not min_order or not delivery_fee or location == '' ):
+    
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+    
+    else:
+    
+        restaurant = spcalls.spcall('store_restaurant',(resto_name, min_order, delivery_fee, location),True)
+        
+        if 'Error' in str(restaurant[0][0]):
+            return jsonify({"status": "FAILED", "message": restaurant[0][0]})
 
-		else:
-			return jsonify({"status": "OK", "message": restaurant[0][0]})
+        else:
+            return jsonify({"status": "OK", "message": restaurant[0][0]})
 
 
 @app.route('/api/foodcart/restaurants/', methods = ['GET'])
@@ -44,20 +44,25 @@ def get_restaurants():
 
     elif len(restaurant) != 0:
         for r in restaurant:
-            entries.append({"restaurant_id": r[0],
-                            "restaurant_name": r[1],
-                            "minimum_order": r[2],
-                            "delivery_fee": r[3],
-                            "location": r[4],
-                            "is_active": r[5]})
+            if r[5] == True:            
+                entries.append({"restaurant_id": r[0],
+                                "restaurant_name": r[1],
+                                "minimum_order": r[2],
+                                "delivery_fee": r[3],
+                                "location": r[4],
+                                "is_active": r[5]})
 
-        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+                return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+            else:
+                return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
+
 
     else:
         return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
 
 
-@app.route('/api/foodcart/restaurants/<int:resto_id>', methods = ['GET'])
+@app.route('/api/foodcart/restaurants/<resto_id>', methods = ['GET'])
 def get_restaurant(resto_id):
     restaurant = spcalls.spcall('show_restaurant', (resto_id,))
     entries = []
@@ -82,11 +87,11 @@ def get_restaurant(resto_id):
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
 
-@app.route('/api/foodcart/restaurants/', methods = ['PUT'])
-def update_restaurant():
+
+@app.route('/api/foodcart/restaurants/<restaurant_id>', methods = ['PUT'])
+def update_restaurant(restaurant_id):
     data = json.loads(request.data)
 
-    restaurant_id = data['restaurant_id']
     resto_name = data['resto_name']
     min_order = data['min_order']
     delivery_fee = data['delivery_fee']
@@ -105,6 +110,13 @@ def update_restaurant():
 
         else:
             return jsonify({"status": "OK", "message": restaurant[0][0]})
+
+
+@app.route('/api/foodcart/restaurants/deactivate/<resto_id>', methods = ['PUT'])
+def deactivate_restaurant(resto_id):
+    restaurant = spcalls.spcall('delete_restaurant', (resto_id,), True)
+
+    return jsonify({"status": "OK", "message": restaurant[0][0]})
 
 
 @app.after_request
