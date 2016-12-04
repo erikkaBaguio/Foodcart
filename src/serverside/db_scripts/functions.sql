@@ -75,3 +75,20 @@ create or replace function update_restaurant(in par_restoID bigint, in par_resto
 	language 'plpgsql';
 
 
+--[DELETE] Deactivates restaurant
+--select delete_restaurant(1);
+create or replace function delete_restaurant(in par_restoID bigint) 
+	returns text as
+	$$
+		declare
+			local_response text;
+		begin
+			update Restaurant
+			set is_active = False
+			where id = par_restoID;
+
+			local_response = 'SUCCESS';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
