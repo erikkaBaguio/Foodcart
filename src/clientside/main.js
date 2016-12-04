@@ -278,7 +278,7 @@ function viewAllUser(){
 
 					for (var i = 0; i < results.entries.length; i++) {
 						user = '<tr>' +
-										'<td>' + results.entries[i].fname + ' ' + results.entries[i].lname+ '</td>' +
+										'<td>' + results.entries[i].fname + ' ' + results.entries[i].lname + '</td>' +
 										'<td>'+'<button onclick="viewUserById('+ results.entries[i].id +'); $(\'#view-user\').show();$(\'#view-all-user\').hide()" class="btn btn-info">View</button>'+'</td>'+
 									 '</tr>';
 
@@ -315,7 +315,7 @@ function viewAllUser(){
 function viewUserById(id){
 	$.ajax({
 		type:"GET",
-		url: "http://localhost:5000/api/foodcart/users/" + id,
+		url: "http://localhost:5000/api/foodcart/users/" + id + "/",
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
 
@@ -330,7 +330,7 @@ function viewUserById(id){
 						user = '<div class="box-body">' +
 										'<div class="container">' +
 			                                '<div class="row">' +
-			                                	'<h4 class="box-title"><b>'+ 'Name: ' + results.entries[i].fname + ' ' + results.entries[i].mname + ' ' + results.entries[i].lname +'</b></h3></div>' +
+			                                	'<h4 class="box-title"><b>'+ 'Name: ' + results.entries[i].fname + ' ' + results.entries[i].mname + '. ' + results.entries[i].lname +'</b></h3></div>' +
 			                                    '<div class="col-md-4">' +
 			                                        '<p style="margin-left: 5px">' +
 														 'Address: ' + results.entries[i].address + '<br><br>' +
