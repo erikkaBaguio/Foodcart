@@ -77,6 +77,33 @@ create or replace function show_user(in par_id BIGINT, OUT VARCHAR, OUT VARCHAR,
 	language 'sql';
 
 
+--[PUT] Update User
+create or replace function update_user(in par_id BIGINT, par_fname VARCHAR, par_mname VARCHAR, par_lname VARCHAR, par_address VARCHAR, par_email VARCHAR,
+									 par_mobileNum VARCHAR, par_password VARCHAR, par_roleID INT, par_points VARCHAR)
+	returns text as
+	$$
+		declare
+			loc_res text;
+
+		begin
+			update Userinfo
+			set fname = par_fname,
+				mname = par_mname,
+				lname = par_lname,
+				address = par_address,
+				email = par_email,
+				mobile_number = par_mobileNum,
+				user_password = par_password,
+				role_id = par_roleID,
+				earned_points = par_points
+			where id = par_id;
+
+			loc_res = 'OK';
+			return loc_res;
+		end;
+	$$
+		language 'plpgsql';
+
 --[GET] Retrieve specific restaurant
 --select show_all_restaurant();
 create or replace function show_all_restaurant(out bigint, out varchar, out float, out float, out varchar, out boolean)
