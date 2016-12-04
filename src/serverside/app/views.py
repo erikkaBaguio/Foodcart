@@ -115,6 +115,31 @@ def deactivate_restaurant(resto_id):
     return jsonify({"status": "OK", "message": restaurant[0][0]})
 
 
+@app.route('/api/foodcart/restaurants/search/', methods = ['POST'])
+def search_restaurant():
+    data = json.loads(request.data)
+
+    search_keyword = data['search']
+
+    restaurants = spcalls.spcall('search_restaurant', (search_keyword,), True)
+    entries = []
+
+
+    if restaurants:
+        for r in restaurants:
+            if r[5] == True:
+                entries.append({"restaurant_id": r[0],
+                                "restaurant_name": r[1],
+                                "minimum_order": r[2],
+                                "delivery_fee": r[3],
+                                "location": r[4],
+                                "is_active": r[5]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+    
+    return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
