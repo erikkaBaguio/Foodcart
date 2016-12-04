@@ -84,3 +84,16 @@ def given_the_restaurant_id_group1_is_in_the_database(step, resto_id):
 def when_the_deactivate_button_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.put('/api/foodcart/restaurants/deactivate/{}'.format(world.resto_id))
+
+
+""" Search Restaurant """
+
+@step(u'Given the entered keyword')
+def given_the_entered_keyword(step):
+    world.restaurant_keyword = step.hashes[0]
+
+
+@step(u'When  the search button is clicked')
+def when_the_search_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/restaurants/search/', data=json.dumps(world.restaurant_keyword))
