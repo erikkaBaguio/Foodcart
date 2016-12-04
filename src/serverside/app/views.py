@@ -97,6 +97,37 @@ def get_user(id):
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
 
 
+@app.route('/api/foodcart/users/update/', methods=['PUT'])
+def update():
+    jsn = json.loads(request.data)
+
+    id_personnel = jsn.get('id', '')
+    fname = jsn.get('fname', '')
+    mname = jsn.get('mname', '')
+    lname = jsn.get('lname', '')
+    address = jsn.get('address', '')
+    email = jsn.get('email', '')
+    mobile_number = jsn.get('mobile_number', '')
+    user_password = jsn.get('user_password', '')
+    role_id = jsn.get('role_id', '')
+    earned_points = jsn.get('earned_points', '')
+
+    spcalls.spcall('update_user', (
+        id_personnel,
+        fname,
+        mname,
+        lname,
+        address,
+        email,
+        mobile_number,
+        user_password,
+        role_id,
+        earned_points
+    ), True)
+
+    return jsonify({'status': 'OK'})
+
+
 @app.route('/api/foodcart/restaurants/', methods = ['GET'])
 def get_restaurants():
     restaurant = spcalls.spcall('show_all_restaurant', ())
