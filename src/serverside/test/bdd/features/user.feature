@@ -105,3 +105,16 @@ As a system administrator, I want to view all users.
             Given the restaurant with an id '1'
             When  view button is clicked
             Then  it should have a '200' response
+
+
+       Scenario: Update user
+             Given the details of user
+             | id | fname   | mname |    lname   |  address |            email            | mobile_number | user_password | role_id | earned_points |
+             | 12 | Kristel |   D   | Pabillaran | Dalipuga | kristelahlainegem@gmail.com |  09123456789  |      asd      |    1    |       0       |
+             And the new details of user
+             | id | fname   | mname |    lname   |  address |            email            | mobile_number | user_password | role_id | earned_points |
+             | 12 | Kristel |   P   | Reid | Dalipuga | kristelahlainegem@gmail.com |  09123456789  |      asd      |    1    |       0       |
+
+             When  the update button is clicked
+             Then  it should have a '200' response
+             And   it should have a field 'status' containing 'OK'
