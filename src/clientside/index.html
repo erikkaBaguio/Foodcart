@@ -171,6 +171,56 @@
             </section>
             <!-- END OF UPDATE RESTAURANT FORM -->
 
+            <!--RESTAURANT SEARCH BOX-->
+            <section id="resto-search-box" class="content" style="margin-top: 10px;">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" id="resto-search-box">
+                    <!-- search form -->
+                    <form method="get" class="sidebar-form" onsubmit="return false">
+                        <div class="input-group">
+                            <input id="resto-search" type="text" name="q" class="form-control" placeholder="Enter restaurant">
+                            <span class="input-group-btn">
+                                <button name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search">Search</i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                </div>
+                <div class="col-md-3"></div> <br>
+                
+
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Search Results</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="search-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Restaurant Name</th>
+                                        <th>Minimum Order</th>
+                                        <th>Delivery Fee</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-resto-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>     
+
+
+            </section>
+            <!--END RESTAURANT SEARCH BOX-->
+
+
         </div>
 
     </div>
