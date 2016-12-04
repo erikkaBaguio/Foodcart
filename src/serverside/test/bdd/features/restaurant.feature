@@ -55,6 +55,18 @@ Scenario: Deactivate restaurant
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'SUCCESS'
 
+Scenario: Search restaurant
+  Given the entered keyword
+        |search                      |
+        |Flamoo Flame Grilled Burgers|
+  When  the search button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+  And   the following details will be returned
+        | resto_name                  | min_order   | delivery_fee | location                             |
+        | Flamoo Flame Grilled Burgers| 100         | 2            | Quezon Avenue Extension, Iligan City |
+
 
 ###############
  # Rainy Cases #
