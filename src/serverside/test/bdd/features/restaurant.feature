@@ -171,3 +171,12 @@ Scenario: Update restaurant - location field is empty
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
+
+Scenario: Search restaurant - the keyword do not match to any rastaurant
+  Given the entered keyword
+        |search  |
+        |q       |
+  When  the search button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'FAILED'
+  And   it should have a field 'message' containing 'No Restaurant Found'
