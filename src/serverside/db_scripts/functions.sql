@@ -107,7 +107,7 @@ create or replace function update_user(in par_id BIGINT, par_fname VARCHAR, par_
 
 --Search User
 create or replace function search_user(in par_search text, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar, out int, out varchar)
-  returns setof records as
+  returns setof record as
   $$
     select fname, mname, lname, address, email, mobile_number, role_id, earned_points from Userinfo where fname like '%' || par_search || '%'
         or mname like '%' || par_search || '%'
