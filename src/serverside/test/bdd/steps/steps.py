@@ -104,6 +104,19 @@ def when_the_search_button_is_clicked(step):
     world.response = world.app.post('/api/foodcart/users/search/', data=json.dumps(world.user_keyword))
 
 
+"""Deactivating User"""
+
+@step(u'Given the user id \'([^\']*)\' is in the database')
+def given_the_user_id_group1_is_in_the_database(step, id):
+    world.user_id = id
+
+
+@step(u'When  the deactivate button is clicked')
+def when_the_deactivate_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.put('/api/foodcart/users/deactivate/{}/'.format(world.user_id))
+
+
 
 """ Common steps for jsonify response """
 
