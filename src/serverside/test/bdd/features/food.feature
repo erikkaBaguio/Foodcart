@@ -69,4 +69,11 @@ Scenario: Add food - unit cost field is empty
   When  add button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
-  And   it should have a field 'message' containing 'Please fill the required fields'       
+  And   it should have a field 'message' containing 'Please fill the required fields'     
+
+Scenario: View food
+  Given the food with an id '1000'
+  When  the view button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'FAILED'
+  And   it should have a field 'message' containing 'No food found'  
