@@ -142,7 +142,7 @@ create or replace function store_food(par_food_name varchar, par_description tex
 		end;
 	$$
 	language 'plpgsql';
-	
+
 
 --[GET] View all food
 --select show_all_food();
@@ -151,5 +151,17 @@ create or replace function show_all_food(out bigint, out varchar, out text, out 
 	$$
 		select *
 		from Food;
+	$$
+	language 'sql';
+
+
+--[GET] View food
+--select show_food(1);
+create or replace function show_food(in par_foodID bigint, out bigint, out varchar, out text, out float, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Food
+		where id = par_foodID;
 	$$
 	language 'sql';
