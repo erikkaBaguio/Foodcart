@@ -140,6 +140,32 @@ def search_restaurant():
     return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []}) 
 
 
+#############
+#   FOOD    #
+#############
+
+@app.route('/api/foodcart/foods/', methods = ['POST'])
+def store_food():
+    data = json.loads(request.data)
+
+    food_name = data['food_name']
+    description = data['description']
+    unit_cost = data['unit_cost']
+
+    if ( food_name == '' or description == '' or not unit_cost):
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+
+    else:
+
+        food = spcalls.spcall ('store_food', (food_name, description, unit_cost, ), True)
+
+        if 'Error' in str(food[0][0]):
+            return jsonify({"status": "FAILED", "message": food[0][0]})
+
+        else:
+            return jsonify({"status": "OK", "message": food[0][0]})
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
