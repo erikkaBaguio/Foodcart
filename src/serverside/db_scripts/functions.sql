@@ -117,6 +117,21 @@ create or replace function search_user(in par_search text, out varchar, out varc
     language 'sql';
 
 
+--Deactivate User
+create or replace function deactivate_user(in par_id bigint) returns text as
+  $$
+    declare
+      loc_res text;
+    begin
+      update Userinfo set is_active = False where id = par_id;
+
+      loc_res = 'SUCCESS';
+      return loc_res;
+    end;
+  $$
+    language 'plpgsql';
+
+
 --[GET] Retrieve specific restaurant
 --select show_all_restaurant();
 create or replace function show_all_restaurant(out bigint, out varchar, out float, out float, out varchar, out boolean)
