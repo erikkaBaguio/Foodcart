@@ -142,3 +142,14 @@ create or replace function store_food(par_food_name varchar, par_description tex
 		end;
 	$$
 	language 'plpgsql';
+	
+
+--[GET] View all food
+--select show_all_food();
+create or replace function show_all_food(out bigint, out varchar, out text, out float, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Food;
+	$$
+	language 'sql';
