@@ -62,7 +62,8 @@ create table Userinfo
 	mobile_number	  VARCHAR(100),
 	user_password		VARCHAR(100),
 	role_id			    INT REFERENCES Roles(id),
-	earned_points	  VARCHAR(100)
+	earned_points	  VARCHAR(100),
+	is_active       BOOLEAN DEFAULT TRUE
 );
 
 
