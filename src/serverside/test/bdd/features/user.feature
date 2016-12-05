@@ -51,6 +51,13 @@ As a system administrator, I want to update users' details.
             | fname   |  mname  |    lname   |  address |       email        | mobile_number | role_id | earned_points |
 			|   kur   |   dap   |     ya     |  tibanga | kurdapya@gmail.com |  09090090909  |    1    |       0       |
 
+    Scenario: Deactivate user
+             Given the user id '11' is in the database
+             When  the deactivate button is clicked
+             Then  it should have a '200' response
+             And   it should have a field 'status' containing 'OK'
+             And   it should have a field 'message' containing 'SUCCESS'
+
 
 
 ###############
