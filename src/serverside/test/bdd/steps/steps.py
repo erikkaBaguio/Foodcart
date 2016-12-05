@@ -91,6 +91,20 @@ def when_the_update_button_is_clicked(step):
     world.response = world.app.put('/api/foodcart/users/update/', data=json.dumps(world.user_updatedInfo))
 
 
+"""Search User"""
+
+@step(u'Given the entered keyword')
+def given_the_entered_keyword(step):
+    world.user_keyword = step.hashes[0]
+
+
+@step(u'When  the search button is clicked')
+def when_the_search_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/search/', data=json.dumps(world.user_keyword))
+
+
+
 """ Common steps for jsonify response """
 
 
