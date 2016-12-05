@@ -16,6 +16,16 @@ Scenario: Add food successfully.
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
 
+Scenario: View food
+  Given the food with an id '1'
+  When  the view button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+  And   the following details will be returned
+    | food_name	  | description 										| unit_cost  |
+    | Madcow   	  | The original hot and spicy pizza in the world.		|     299    |
+
 
 ###############
 # Rainy Cases #
