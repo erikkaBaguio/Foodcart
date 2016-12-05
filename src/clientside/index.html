@@ -27,8 +27,9 @@
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Restaurant</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a><br><br>
              <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').show();$('#view-all-resto').hide();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Food</a>
+             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').hide();$('#view-all-resto').hide();$('#view-all-resto').hide();$('#view-all-food').show();" role="button" style="margin-top:10px">View All Food</a>
           </p>
 
           <!-- ADD RESTAURANT FORM -->
@@ -241,7 +242,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="text-input">Description</label>
-                                    <textarea class="form-control" type="text" name="text-input" id="decription" rows="5"></textarea>
+                                    <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="text-input">Unit Cost</label>
@@ -262,6 +263,38 @@
             <!-- /.box -->
             </section>
             <!-- END OF ADD FOOD FORM -->
+
+
+            <!-- VIEW ALL FOOD -->
+            <hr class="my-2">
+            <section class="content" id="view-all-food" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Foods</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="view-food-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Food Name</th>
+                                       <!--  <th>Description</th>
+                                        <th>Unit Cost</th> -->
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="view-food-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </section>
+            <!-- END VIEW ALL FOOD -->
 
 
         </div>
