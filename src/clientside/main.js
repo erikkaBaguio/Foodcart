@@ -134,13 +134,11 @@ function viewRestaurantById(restaurant_id){
 		dataType:"json",
 
 		success: function(results)
-		{
-			console.log(results.entries);
+		{;
 			if(results.status == 'OK'){
 				$('#view-resto-info').html(function(){
 					var restaurant_row = '';
 					var restaurant;
-					'Minimum Order' + results.entries.minimum_order 
 					for (var i = 0; i < results.entries.length; i++) {
 						restaurant = '<div class="box-body">' +
 										'<div class="container">' +
