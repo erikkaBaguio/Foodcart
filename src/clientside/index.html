@@ -30,7 +30,6 @@
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-user-form').show(); $('#add-resto-form').hide()" role="button" style="margin-top:10px">Sign Up</a>
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant(); $('#view-all-user').hide()" role="button" style="margin-top:10px">View All Restaurants</a>
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-user').show();viewAllUser(); $('#view-all-resto').hide()" role="button" style="margin-top:10px">View All Users</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#update-user-form').show()" role="button" style="margin-top:10px">Update User</a>
           </p>
 
           <!-- RESTAURANT FORM -->
@@ -239,7 +238,7 @@
                     </section>
             <!-- END VIEW SPECIFIC USER -->
 
-            <!-- UPDATE RESTAURANT FORM -->
+            <!-- UPDATE USER FORM -->
             <section class="content" id="update-user-form" style="display:none">
                 <div class="box box-primary">
                 <div id="update-user-alert">
@@ -251,38 +250,38 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form id="user-form" class="bootstrap-form-with-validation">
+                            <form id="update-form" class="bootstrap-form-with-validation">
                                 <div class="form-group">
                                             <label class="control-label" for="text-input">First Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="fname" required>
+                                            <input class="form-control" type="text" name="text-input" id="update_fname" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="text-input">Middle Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="mname" required>
+                                            <input class="form-control" type="text" name="text-input" id="update_mname" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="text-input">Last Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="lname" required>
+                                            <input class="form-control" type="text" name="text-input" id="update_lname" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="text-input">Address</label>
-                                            <input class="form-control" type="text" name="text-input" id="address" required>
+                                            <input class="form-control" type="text" name="text-input" id="update_address" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="text-input">Email Address</label>
-                                            <input class="form-control" type="text" name="text-input" id="email" required>
+                                            <input class="form-control" type="text" name="text-input" id="update_email" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="text-input">Mobile Number</label>
-                                            <input class="form-control" type="text" name="text-input" id="mobile_number" required>
+                                            <input class="form-control" type="text" name="text-input" id="update_mobile_number" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="text-input">Password</label>
-                                            <input class="form-control" type="password" name="text-input" id="user_password" required>
+                                            <input class="form-control" type="password" name="text-input" id="update_user_password" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="dropdown-input-field">User Role</label>
-                                            <select id="role_id" name="role_id">
+                                            <select id="update_role_id" name="role_id">
                                                 <option value="1">System Administrator</option>
                                                 <option value="2">Business Owner</option>
                                                 <option value="3">Customer</option>
@@ -290,7 +289,7 @@
                                         </div>
                                         <div class="form-group">
                                             <!--<label class="control-label" for="text-input" type="hidden">Earned Points</label>-->
-                                            <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
+                                            <input class="form-control" type="hidden" name="text-input" id="update_earned_points" value="0" required>
                                         </div>
                             </form>
                         </div>
@@ -299,14 +298,14 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
-                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateRestaurant();">Update</button>
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearSignupForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateUser();">Update</button>
                 </div>
                 <!-- /.box-footer -->
             </div>
             <!-- /.box -->
             </section>
-            <!-- END OF UPDATE RESTAURANT FORM -->
+            <!-- END OF UPDATE USER FORM -->
 
         </div>
 

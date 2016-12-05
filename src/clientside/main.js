@@ -280,6 +280,7 @@ function viewAllUser(){
 						user = '<tr>' +
 										'<td>' + results.entries[i].fname + ' ' + results.entries[i].lname + '</td>' +
 										'<td>'+'<button onclick="viewUserById('+ results.entries[i].id +'); $(\'#view-user\').show();$(\'#view-all-user\').hide()" class="btn btn-info">View</button>'+'</td>'+
+										'<td>' + '<button onclick="updateUser('+ results.entries[i].id +'); $(\'#update-user-form\').show(); $(\'#view-all-user\').hide()" class="btn btn-info">Update</button>'+'</td>'
 									 '</tr>';
 
 						user_row  = user_row + user
@@ -370,4 +371,70 @@ function viewUserById(id){
 		}
 
 	});
+}
+
+
+function updateUser(id){
+	var fname = $('#fname').val();
+	var mname = $('#mname').val();
+	var lname = $('#lname').val();
+	var address = $('#address').val();
+	var email = $('#email').val();
+	var mobile_number = $('#mobile_number').val();
+	var user_password = $('#user_password').val();
+	var role_id = $('#role_id').val();
+	var earned_points = $('#earned_points').val();
+	var id = id;
+
+	var data = JSON.stringify({ 'id' : id,
+								'fname' : fname,
+								'mname' : mname,
+								'lname' : lname,
+								'address' : address,
+								'email' : email,
+								'mobile_number' : mobile_number,
+								'user_password' : user_password,
+								'role_id' : role_id,
+								'earned_points' : earned_points
+							});
+
+ 	$.ajax({
+ 		type:"PUT",
+     	url: "http://localhost:5000/api/foodcart/users/update/",
+     	contentType:"application/json; charset=utf-8",
+ 		data:data,
+ 		dataType:"json",
+
+ 		success: function(results){
+ 				if (results.status == 'OK'){
+
+ 					$('#update-user-alert').html(
+ 						'<div class="alert alert-success"><strong>Success ' +
+ 						 '!</strong>' + results.message +'</div>');
+
+ 					$("#update-user-alert").fadeTo(2000, 500).slideUp(500);
+
+ 					clearSignupForm();
+
+ 				}
+
+ 				if(results.status == 'FAILED'){
+
+ 					$('#update-user-alert').html(
+ 						'<div class="alert alert-danger"><strong>Failed ' +
+ 						 '!</strong>' + results.message +'</div>');
+
+ 					$("#update-user-alert").fadeTo(2000, 500).slideUp(500);
+
+ 				}
+ 			},
+ 			error: function(e){
+ 				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+ 			},
+ 			beforeSend: function (xhrObj){
+
+ 	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+ 	        }
+ 	    });
 }
