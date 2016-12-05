@@ -128,6 +128,29 @@ def update():
     return jsonify({'status': 'OK'})
 
 
+@app.route('/api/foodcart/users/search/', methods=['POST'])
+def search_user():
+    data = json.loads(request.data)
+
+    keyword = data['search']
+
+    users = spcalls.spcall('search_user', (keyword), True)
+    entries = []
+
+
+    if users:
+        for r in users:
+            if r[9] == True:
+                entries.append({"id": r[0], "fname": r[1], "mname": r[2], "lname": r[3], "address": r[4],
+                                "email": r[5], "mobile_number": r[6], "user_password": r[7], "role_id": r[8], "earned_points": r[9]})
+
+        return jsonify({'status': 'OK', 'message': 'This are all the user(s) that matched your search', 'entries': entries})
+
+    return jsonify({'status': 'FAILED', 'message': 'No data matched your search'})
+
+
+
+
 @app.route('/api/foodcart/restaurants/', methods = ['GET'])
 def get_restaurants():
     restaurant = spcalls.spcall('show_all_restaurant', ())
