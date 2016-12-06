@@ -87,7 +87,7 @@ function viewAllFood(){
 										// '<td>' + results.entries[i].description + '</td>' +
 										// '<td>' + results.entries[i].unit_cost + '</td>' +
 										'<td>'+'<button onclick="viewFoodById('+ results.entries[i].food_id +'); $(\'#view-food\').show();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-info">Details</button>'+'</td>'+
-
+										'<td>'+'<button onclick="updateFood('+ results.entries[i].food_id +'); $(\'#update-food-form\').show();$(\'#view-food\').hide();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-info">Update</button>'+'</td>'+
 										'</tr>';
 
 						food_row  += food
@@ -176,4 +176,55 @@ function viewFoodById(food_id){
 		}
 
 	});
+}
+
+
+function updateFood(food_id){
+	var food_name = $('#food_name').val();
+	var description = $('#description').val();
+	var unit_cost = $('#unit_cost').val();
+
+	var data = JSON.stringify({ 'food_name' : food_name,
+								'description' : description,
+								'unit_cost' : unit_cost,
+							});
+	$.ajax({
+		type:"PUT",
+    	url: "http://localhost:5000/api/foodcart/foods/" + food_id,
+    	contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-food-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-food-alert").fadeTo(2000, 500).slideUp(500);
+
+					clearFoodForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#update-food-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-food-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
 }
