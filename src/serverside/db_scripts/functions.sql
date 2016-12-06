@@ -153,3 +153,22 @@ create or replace function show_restaurant(in par_restoID bigint, out bigint, ou
 		where Restaurant.id = par_restoID
 	$$
 	language 'sql';
+
+
+--[POST] Add new order
+--select store_order();
+create or replace function store_order(par_roleID INT, par_paymentID FLOAT, par_orderfoodsID INT)
+	returns text as
+	$$
+		DECLARE
+			loc_res TEXT;
+		BEGIN
+        insert into Orders(role_id, payment_id, order_foods_id)
+        values(par_roleID, par_paymentID, par_orderfoodsID);
+
+			  loc_res = 'OK';
+			  
+			RETURN loc_res;
+		END;
+	$$
+		language 'plpgsql';
