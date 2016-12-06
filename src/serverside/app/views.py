@@ -220,7 +220,7 @@ def update_food(food_id):
     description = data['description']
     unit_cost = data['unit_cost']
 
-    if ( food_name == '' or description == '' or unit_cost < 0):
+    if ( food_name == '' or description == '' or not unit_cost):
         return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 
     else:
@@ -232,7 +232,7 @@ def update_food(food_id):
 
         else:
             return jsonify({"status": "OK", "message": food[0][0]})
-            
+
 
 @app.after_request
 def add_cors(resp):

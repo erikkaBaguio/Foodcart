@@ -126,3 +126,18 @@ def given_the_food_with_an_id_group1(step, food_id):
 @step(u'When  the view button is clicked')
 def when_the_view_button_is_clicked(step):
     world.response = world.app.get('/api/foodcart/foods/{}'.format(world.food_id)) 
+
+
+""" Update Food """
+
+@step(u'And the old details of the food')
+def and_the_old_details_of_the_food(step):
+    world.food_oldInfo = step.hashes[0]
+
+@step(u'And the new details of food')
+def and_the_new_details_of_food(step):
+    world.food_updatedInfo = step.hashes[0]
+
+@step(u'When  the update button is clicked')
+def when_the_update_button_is_clicked(step):
+    world.response = world.app.put('/api/foodcart/foods/1', data=json.dumps(world.food_updatedInfo))

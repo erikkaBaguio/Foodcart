@@ -68,7 +68,7 @@ Scenario: Add food - food name field is empty
 
 Scenario: Add food - unit cost field is empty
   Given following food details:
-    | food_name	  | description 										| unit_cost  |
+    | food_name	  | description 										                    | unit_cost  |
     | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |            | 
 
   When  add button is clicked
@@ -88,13 +88,14 @@ Scenario: Update restaurant - unit cost field is empty
   Given the food with an id '1'
   And the old details of the food
     | food_name   | description                                       | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |     299    |
+    | Madcow      | The original hot and spicy pizza in the world.    |     300    |
 
   And the new details of food
-    | food_name   | description                     | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |     300    |
+    | food_name   | description                                       | unit_cost  |
+    | Madcow      | The original hot and spicy pizza in the world.    |            |
 
   When  the update button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
-  And   it should have a field 'message' containing 'Please fill the required fields'
+  And   it should have a field 'message' containing 'Please fill the required fields'     
+  
