@@ -88,6 +88,7 @@ function viewAllFood(){
 										// '<td>' + results.entries[i].unit_cost + '</td>' +
 										'<td>'+'<button onclick="viewFoodById('+ results.entries[i].food_id +'); $(\'#view-food\').show();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-info">Details</button>'+'</td>'+
 										'<td>'+'<button onclick="updateFood('+ results.entries[i].food_id +'); $(\'#update-food-form\').show();$(\'#view-food\').hide();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-info">Update</button>'+'</td>'+
+										'<td>'+'<button onclick="deactivateFood('+ results.entries[i].food_id +'); $(\'#update-food-form\').hide();$(\'#view-food\').hide();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-danger">Delete</button>'+'</td>'+
 										'</tr>';
 
 						food_row  += food
