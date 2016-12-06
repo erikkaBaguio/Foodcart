@@ -172,3 +172,26 @@ create or replace function store_order(par_roleID INT, par_paymentID FLOAT, par_
 		END;
 	$$
 		language 'plpgsql';
+
+
+--[POST] Login
+create or replace function loginauth(in par_email varchar, in par_password varchar) returns text as
+$$
+  DECLARE
+    loc_email text;
+    loc_password text;
+    loc_res text;
+  BEGIN
+    select into loc_email email from Userinfo where email = par_email;
+    select into loc_password user_password from Userinfo where user_password = par_password;
+
+    if loc_email isnull or loc_password isnull or loc_email = '' or loc_password = '' then
+      loc_res = 'Invalid Email or Password';
+    else
+      loc_res = 'Successfully Logged In';
+    end if;
+    return loc_res;
+
+  END;
+$$
+  LANGUAGE 'plpgsql';
