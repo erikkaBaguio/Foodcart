@@ -141,3 +141,15 @@ def and_the_new_details_of_food(step):
 @step(u'When  the update button is clicked')
 def when_the_update_button_is_clicked(step):
     world.response = world.app.put('/api/foodcart/foods/1', data=json.dumps(world.food_updatedInfo))
+
+
+""" Deactivate Food """
+
+@step(u'Given the food id \'([^\']*)\' is in the database')
+def given_the_food_id_group1_is_in_the_database(step, food_id):
+    world.food_id = food_id
+
+@step(u'When  the deactivate button is clicked')
+def when_the_deactivate_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.put('/api/foodcart/foods/deactivate/{}'.format(world.food_id))
