@@ -45,9 +45,8 @@ create table Orders
 (
 	id 					SERIAL8 PRIMARY KEY,
 	role_id				INT REFERENCES Roles(id),
-	payment_id			INT,
-	order_foods_id		INT REFERENCES Order_food(id),
-	subtotal			FLOAT
+	payment_id			FLOAT,
+	order_foods_id		INT REFERENCES Order_food(id)
 );
 
 

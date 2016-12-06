@@ -156,7 +156,7 @@ create or replace function show_restaurant(in par_restoID bigint, out bigint, ou
 
 
 --[POST] Add new order
---select store_order();
+--select store_order(3, 1, 1);
 create or replace function store_order(par_roleID INT, par_paymentID FLOAT, par_orderfoodsID INT)
 	returns text as
 	$$
@@ -167,7 +167,7 @@ create or replace function store_order(par_roleID INT, par_paymentID FLOAT, par_
         values(par_roleID, par_paymentID, par_orderfoodsID);
 
 			  loc_res = 'OK';
-			  
+
 			RETURN loc_res;
 		END;
 	$$
