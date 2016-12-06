@@ -28,8 +28,6 @@
           <p class="lead" style="margin-top:10px">
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Restaurant</a>
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a><br><br>
-             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').show();$('#view-all-resto').hide();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Food</a>
-             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').hide();$('#view-all-resto').hide();$('#view-all-resto').hide();$('#view-all-food').show();viewAllFood();" role="button" style="margin-top:10px">View All Food</a>
           </p>
 
           <!-- ADD RESTAURANT FORM -->
@@ -220,6 +218,11 @@
             </section>
             <!--END RESTAURANT SEARCH BOX-->
 
+        <p class="lead" style="margin-top:10px">
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').show();$('#view-all-resto').hide();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Food</a>
+             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').hide();$('#view-all-resto').hide();$('#view-all-resto').hide();$('#view-all-food').show();viewAllFood();" role="button" style="margin-top:10px">View All Food</a>
+          </p>
+
           <!-- ADD FOOD FORM -->
           <hr class="my-2">
             <section class="content" id="add-food-form" style="display:none">                    
@@ -349,6 +352,54 @@
             <!-- /.box -->
             </section>
         <!-- END OF UPDATE FOOD FORM -->
+
+        <!--FOOD SEARCH BOX-->
+            <section id="food-search-box" class="content" style="margin-top: 10px;">
+                <div class="col-md-3" id="food-search-alert"></div>
+                <div class="col-md-6" id="food-search-box">
+                    <!-- search form -->
+                    <form method="get" class="sidebar-form" onsubmit="return false">
+                        <div class="input-group">
+                            <input id="food-search" type="text" name="q" class="form-control" placeholder="Enter food">
+                            <span class="input-group-btn">
+                                <button name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search">Search</i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                </div>
+                <div class="col-md-3"></div> <br>
+                
+
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Search Results</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="search-food-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Food Name</th>
+                                        <th>Description</th>
+                                        <th>Unit Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-food-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>     
+
+
+            </section>
+            <!--END FOOD SEARCH BOX-->
 
 
         </div>
