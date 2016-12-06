@@ -234,6 +234,13 @@ def update_food(food_id):
             return jsonify({"status": "OK", "message": food[0][0]})
 
 
+@app.route('/api/foodcart/foods/deactivate/<food_id>', methods = ['PUT'])
+def deactivate_food(food_id):
+    food = spcalls.spcall('delete_food', (food_id, ), True)
+
+    return jsonify({"status": "OK","message": food[0][0]})
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
