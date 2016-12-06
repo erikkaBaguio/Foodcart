@@ -165,7 +165,7 @@ create or replace function show_food(in par_foodID bigint, out bigint, out varch
 		where id = par_foodID;
 	$$
 	language 'sql';
-	
+
 
 --[PUT] Update food
 --select update_food(1,'Madcow', 'The original hot and spicy pizza in the world.',299);
@@ -183,6 +183,26 @@ create or replace function update_food(in par_foodID bigint, in par_food_name va
 			where id = par_foodID;
 
 			local_response = 'OK';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
+
+
+--[DELETE] Deactivate food
+--select delete_food(1);
+create or replace function delete_food(in par_foodID bigint)
+	returns text as 
+	$$
+		declare
+			local_response text;
+
+		begin
+			update Food
+				set is_active = False
+			where id = par_foodID;
+
+			local_response = 'SUCCESS';
 			return local_response;
 		end;
 	$$
