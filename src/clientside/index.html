@@ -26,6 +26,7 @@
           <h1 class="display-3">Simple CRUD</h1>
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#login-form').show(); $('#view-all-resto').hide(); $('#add-resto-form').hide(); $('#add-user-form').hide(); $('#view-all-user').hide();" role="button" style="margin-top:10px">Log In</a>
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show(); $('#add-user-form').hide()" role="button" style="margin-top:10px">Add Restaurant</a>
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-user-form').show(); $('#add-resto-form').hide()" role="button" style="margin-top:10px">Sign Up</a>
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant(); $('#view-all-user').hide()" role="button" style="margin-top:10px">View All Restaurants</a>
@@ -194,6 +195,22 @@
                     </section>
 
             <!-- END SIGNUP FORM -->
+
+            <!-- LOGIN FORM -->
+                <form id="login-form" class="login-card" method="post" style="display:none" onsubmit="return false">
+                    <h3>Please Log in</h3><br>
+                    <div id="log-in-alert"></div>
+                    <div class="form-group">
+                        <input id="email_add" name="email" type="text" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <button onclick="login();" class="btn btn-primary btn-block btn-lg btn-signin">Log In</button>
+                    </div>
+                </form>
+            <!-- END LOGIN FORM -->
 
             <!-- VIEW ALL USERS -->
                     <!--<hr class="my-2">-->
