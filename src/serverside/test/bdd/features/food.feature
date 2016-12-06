@@ -83,7 +83,6 @@ Scenario: View food
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'No food found'  
 
-
 Scenario: Update restaurant - unit cost field is empty
   Given the food with an id '1'
   And the old details of the food
@@ -97,5 +96,12 @@ Scenario: Update restaurant - unit cost field is empty
   When  the update button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
-  And   it should have a field 'message' containing 'Please fill the required fields'     
-  
+  And   it should have a field 'message' containing 'Please fill the required fields'   
+
+Scenario: Deactivate food
+  Given the food id '1' is in the database
+  When  the deactivate button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'SUCCESS'  
+
