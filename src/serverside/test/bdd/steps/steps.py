@@ -117,6 +117,29 @@ def when_the_deactivate_button_is_clicked(step):
     world.response = world.app.put('/api/foodcart/users/deactivate/{}/'.format(world.user_id))
 
 
+"""Log In"""
+
+@step(u'Given I have the following login details:')
+def given_login_details(step):
+    world.login = step.hashes[0]
+
+
+@step(u'When I click login button')
+def when_i_click_login_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/login/', data = json.dumps(world.login))
+
+@step(u'Then I get a \'(.*)\' response')
+def then_i_should_get_a_200_response(step, expected_status_code):
+    assert_equals(world.response.status_code, int(expected_status_code))
+
+
+@step(u'And a message "Successfully Logged In" is returned')
+def message_res(step):
+    world.respn = json.loads(world.response.data)
+    assert_equals(world.respn['message'], "Successfully Logged In")
+
+
 """Order"""
 """Adding Order"""
 
