@@ -117,6 +117,21 @@ def when_the_deactivate_button_is_clicked(step):
     world.response = world.app.put('/api/foodcart/users/deactivate/{}/'.format(world.user_id))
 
 
+"""Order"""
+"""Adding Order"""
+
+@step(u'Given I have the following order details:')
+def order_details(step):
+    world.order = step.hashes[0]
+
+
+@step(u'When the user clicks the add button')
+def when_the_user_clicks_the_add_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/orders/add/', data=json.dumps(world.order))
+
+
+
 
 """ Common steps for jsonify response """
 
