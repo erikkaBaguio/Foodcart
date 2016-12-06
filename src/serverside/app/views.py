@@ -39,7 +39,6 @@ def store_restaurant():
 @app.route('/api/foodcart/users/signup/', methods=['POST'])
 def store_new_user():
     data = json.loads(request.data)
-    print data
 
     if (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['address'] == '' or data[
         'email'] == '' or data['mobile_number'] == '' or data['user_password'] == '' or not data['role_id'] or not data['earned_points']):
@@ -56,6 +55,20 @@ def store_new_user():
             return jsonify({"status": "error", "message": user[0][0]})
 
         return jsonify({"status": "OK", "message": user[0][0]})
+
+
+@app.route('/api/foodcart/users/login/', methods=['POST'])
+def user_login():
+    data = json.loads(request.data)
+
+    login = spcalls.spcall("loginauth", (data['email'], data['user_password']))
+
+    if login[0][0] == 'ERROR':
+        status = False
+        return jsonify({'status': status, 'message': 'error'})
+    else:
+        status = True
+        return jsonify({'status': status, 'message': 'Successfully Logged In'})
 
 
 @app.route('/api/foodcart/users/', methods=['GET'])
