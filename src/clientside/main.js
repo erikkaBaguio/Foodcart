@@ -136,6 +136,51 @@ function signup(){
 	    });
 }
 
+function login(){
+	var email = $('#email_add').val();
+	var password = $('#password').val();
+
+	var data = JSON.stringify({'email_add':email, 'password':password});
+
+	$.ajax({
+
+		type:"POST",
+		url:"http://localhost:5000/api/foodcart/users/login/",
+		contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+			console.log(results);
+			if(results.status == 'OK'){
+				var token = results.token;
+				//user_tk is abbrev of user_token
+				document.cookie = "user_tk=" + token;
+				$('#login-alert').html(
+						'<div class="alert alert-success"><strong>Welcome ' +
+						results.data[0].fname +
+						 '!</strong> Successfully logged in.</div>');
+
+					$("#login-alert").fadeTo(2000, 500).slideUp(500);
+
+					$("#login-form").hide();
+				}
+
+			if(results.status == 'FAILED'){
+				$('#log-in-alert').html(
+					'<div class="alert alert-danger"><strong>FAILED ' +
+					 '!</strong> Invalid username or password.</div>');
+			}
+
+
+		},
+		error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+		}
+
+	});
+}
+
 
 function clearSignupForm(){
 	var user_form = document.getElementById("user-form");
