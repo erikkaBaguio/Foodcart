@@ -33,13 +33,26 @@ Scenario: Update restaurant
     | Madcow      | The original hot and spicy pizza in the world.    |     299    |
 
   And the new details of food
-    | food_name   | description                     | unit_cost  |
+    | food_name   | description                                       | unit_cost  |
     | Madcow      | The original hot and spicy pizza in the world.    |     300    |
 
   When  the update button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
+
+Scenario: Search food
+  Given the entered keyword
+    |search                      |
+    |Madcow                      |
+
+  When  the search button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+  And   the following details will be returned
+    | food_name   | description                                       | unit_cost  |
+    | Madcow      | The original hot and spicy pizza in the world.    |     299    |
 
 
 ###############
@@ -104,4 +117,3 @@ Scenario: Deactivate food
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'SUCCESS'  
-
