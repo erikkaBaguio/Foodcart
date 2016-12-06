@@ -27,7 +27,9 @@
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Restaurant</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a><br><br>
+             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').show();$('#view-all-resto').hide();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Food</a>
+             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').hide();$('#view-all-resto').hide();$('#view-all-resto').hide();$('#view-all-food').show();viewAllFood();" role="button" style="margin-top:10px">View All Food</a>
           </p>
 
           <!-- ADD RESTAURANT FORM -->
@@ -115,8 +117,6 @@
             <hr class="my-2">
             <section class="content" id="view-resto" style="display:none">
                 <div class="row">
-                    <div id="view-resto-alert">
-                    </div>
                     <div class="col-md-12">
                         <div id="view-resto-info" class="box box-default" style="margin-top:10px">
                         </div> 
@@ -220,6 +220,92 @@
             </section>
             <!--END RESTAURANT SEARCH BOX-->
 
+          <!-- ADD FOOD FORM -->
+          <hr class="my-2">
+            <section class="content" id="add-food-form" style="display:none">                    
+                <div class="box box-primary">
+                <div id="add-food-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="food-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Food Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Description</label>
+                                    <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Unit Cost</label>
+                                    <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>                   
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeFood();">Submit</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+            <!-- END OF ADD FOOD FORM -->
+
+
+            <!-- VIEW ALL FOOD -->
+            <hr class="my-2">
+            <section class="content" id="view-all-food" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Foods</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="view-food-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Food Name</th>
+                                       <!--  <th>Description</th>
+                                        <th>Unit Cost</th> -->
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="view-food-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </section>
+            <!-- END VIEW ALL FOOD -->
+
+            <!-- VIEW FOOD -->
+            <hr class="my-2">
+            <section class="content" id="view-food" style="display:none">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="view-food-info" class="box box-default" style="margin-top:10px">
+                        </div> 
+                    </div>                                            
+                </div> 
+            </section>
+            <!-- END VIEW FOOD -->
+
 
         </div>
 
@@ -237,5 +323,6 @@
     <script src="assets/js/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="assets/js/jquery-jvectormap-world-mill-en.js"></script>
     <script src="main.js"></script>
+    <script src="food.js"></script>
 </head>
 </html>

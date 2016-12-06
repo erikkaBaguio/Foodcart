@@ -142,3 +142,48 @@ create or replace function store_food(par_food_name varchar, par_description tex
 		end;
 	$$
 	language 'plpgsql';
+
+
+--[GET] View all food
+--select show_all_food();
+create or replace function show_all_food(out bigint, out varchar, out text, out float, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Food;
+	$$
+	language 'sql';
+
+
+--[GET] View food
+--select show_food(1);
+create or replace function show_food(in par_foodID bigint, out bigint, out varchar, out text, out float, out boolean)
+	returns setof record as
+	$$
+		select *
+		from Food
+		where id = par_foodID;
+	$$
+	language 'sql';
+	
+
+--[PUT] Update food
+--select update_food(1,'Madcow', 'The original hot and spicy pizza in the world.',299);
+create or replace function update_food(in par_foodID bigint, in par_food_name varchar, in par_description text, in par_unit_cost float)
+	returns text as
+	$$
+		declare
+			local_response text;
+
+		begin
+			update Food
+				set food_name = par_food_name,
+					description = par_description,
+					unit_cost =  par_unit_cost
+			where id = par_foodID;
+
+			local_response = 'OK';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';

@@ -97,3 +97,32 @@ def given_the_entered_keyword(step):
 def when_the_search_button_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/restaurants/search/', data=json.dumps(world.restaurant_keyword))
+
+
+
+
+""" Steps for Food feature """
+
+""" Add Food """
+
+@step(u'Given following food details:')
+def given_following_food_details(step):
+    world.restaurant = step.hashes[0]
+
+@step(u'When  add button is clicked')
+def when_add_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/foods/', data=json.dumps(world.restaurant))
+
+
+""" View Food """
+
+@step(u'Given the food with an id \'([^\']*)\'')
+def given_the_food_with_an_id_group1(step, food_id):
+    world.food_id = food_id
+    world.food = world.app.get('/api/foodcart/foods/{}'.format(food_id))
+    world.response_json = json.loads(world.food.data)
+
+@step(u'When  the view button is clicked')
+def when_the_view_button_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/foods/{}'.format(world.food_id)) 
