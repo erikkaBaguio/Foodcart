@@ -61,7 +61,7 @@ def store_new_user():
 def user_login():
     data = json.loads(request.data)
 
-    login = spcalls.spcall("loginauth", (data['email'], data['user_password']))
+    login = spcalls.spcall("loginauth", (data['email_add'], data['password']))
 
     if login[0][0] == 'ERROR':
         status = False
