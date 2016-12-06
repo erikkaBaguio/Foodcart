@@ -262,7 +262,7 @@ def search_food():
             return jsonify({ "status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
     
-    return jsonify({ "status": "FAILED", "message": "No food found", "entries":[]})
+    return jsonify({ "status": "FAILED", "message": "No results found", "entries":[]})
 
 
 @app.after_request
