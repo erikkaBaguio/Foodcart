@@ -229,3 +229,33 @@ function updateFood(food_id){
 	        }
 	    });
 }
+
+
+function deactivateFood(food_id){
+	$.ajax({
+		type:"PUT",
+    	url: "http://localhost:5000/api/foodcart/foods/deactivate/" + food_id,
+    	contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results){
+			if (results.status == 'OK'){
+
+				$('#view-food-alert').html(
+					'<div class="alert alert-success"><strong>Success' +
+					 '!</strong>' + results.message +'</div>');
+
+				$("#view-food-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+		error: function(e){
+			alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+		},
+		beforeSend: function (xhrObj){
+
+      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+        }
+	});
+}
