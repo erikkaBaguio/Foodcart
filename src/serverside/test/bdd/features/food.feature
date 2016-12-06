@@ -32,6 +32,15 @@ Scenario: Update restaurant
     | food_name   | description                                       | unit_cost  |
     | Madcow      | The original hot and spicy pizza in the world.    |     299    |
 
+  And the new details of food
+    | food_name   | description                     | unit_cost  |
+    | Madcow      | The original hot and spicy pizza in the world.    |     300    |
+
+  When  the update button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+
 
 ###############
 # Rainy Cases #
@@ -57,16 +66,6 @@ Scenario: Add food - food name field is empty
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'  
 
-Scenario: Add food - description field is empty
-  Given following food details:
-    | food_name	  | description 										| unit_cost  |
-    | Tacorella   |														|     299    | 
-
-  When  add button is clicked
-  Then  it should have a '200' response
-  And   it should have a field 'status' containing 'FAILED'
-  And   it should have a field 'message' containing 'Please fill the required fields' 
-
 Scenario: Add food - unit cost field is empty
   Given following food details:
     | food_name	  | description 										| unit_cost  |
@@ -83,3 +82,19 @@ Scenario: View food
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'No food found'  
+
+
+Scenario: Update restaurant - unit cost field is empty
+  Given the food with an id '1'
+  And the old details of the food
+    | food_name   | description                                       | unit_cost  |
+    | Madcow      | The original hot and spicy pizza in the world.    |     299    |
+
+  And the new details of food
+    | food_name   | description                     | unit_cost  |
+    | Madcow      | The original hot and spicy pizza in the world.    |     300    |
+
+  When  the update button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'FAILED'
+  And   it should have a field 'message' containing 'Please fill the required fields'
