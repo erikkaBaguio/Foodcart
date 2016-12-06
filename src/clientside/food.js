@@ -259,3 +259,59 @@ function deactivateFood(food_id){
         }
 	});
 }
+
+function searchFood(){
+	var search = $('#food-search').val();
+
+	var data = JSON.stringify({ 'search' : search });
+
+	$.ajax({
+	    	type:"POST",
+	    	url: "http://localhost:5000/api/foodcart/foods/search/",
+	    	contentType:"application/json; charset=utf-8",
+			data:data,
+			dataType:"json",
+
+			success: function(results){
+				console.log(results);
+				if (results.status == 'OK'){
+
+					$('#search-food-table-body').html(function(){
+					var food_row = '';
+					var food;
+
+					for (var i = 0; i < results.entries.length; i++) {
+						food = '<tr>' +
+										'<td>' + results.entries[i].food_name + '</td>' +
+										'<td>' + results.entries[i].description + '</td>' +
+										'<td>' + results.entries[i].unit_cost + '</td>' +
+								'</tr>';
+
+						food_row  += food
+					}
+
+					return food_row;
+				})
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#food-search-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#food-search-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
