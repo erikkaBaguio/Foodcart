@@ -105,3 +105,40 @@ create or replace function search_restaurant(in par_search text, out bigint, out
       where resto_name like '%'|| par_search || '%' or location like '%'|| par_search || '%';
   $$
   language 'sql';
+
+
+
+
+------------
+--  FOOD  --
+------------
+
+--[POST] Add food
+--select store_food('test food', 'test description', 1);
+create or replace function store_food(par_food_name varchar, par_description text, par_unit_cost float)
+	returns text as
+	$$
+		declare
+			local_food_name	varchar;
+			local_response text;
+
+		begin
+			select into local_food_name food_name
+			from Food
+			where food_name = par_food_name;
+
+			if local_food_name isnull
+			then
+				insert into Food(food_name, description, unit_cost)
+					values (par_food_name, par_description, par_unit_cost);
+
+				local_response = 'OK';
+			else
+				local_response = 'EXISTED';
+			
+			end if;
+			return local_response;
+
+		end;
+	$$
+	language 'plpgsql';
