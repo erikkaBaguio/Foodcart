@@ -212,6 +212,28 @@ def get_food(food_id):
         return jsonify({ "status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
 
+@app.route('/api/foodcart/foods/<food_id>', methods = ['PUT'])
+def update_food(food_id):
+    data = json.loads(request.data)
+
+    food_name = data['food_name']
+    description = data['description']
+    unit_cost = data['unit_cost']
+
+    if ( food_name == '' or description == '' or unit_cost < 0):
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+
+    else:
+
+        food = spcalls.spcall ('update_food', (food_id, food_name, description, unit_cost, ), True)
+
+        if 'Error' in str(food[0][0]):
+            return jsonify({"status": "FAILED", "message": food[0][0]})
+
+        else:
+            return jsonify({"status": "OK", "message": food[0][0]})
+            
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
