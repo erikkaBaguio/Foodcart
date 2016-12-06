@@ -169,7 +169,7 @@
             </div>
             <!-- /.box -->
             </section>
-            <!-- END OF UPDATE RESTAURANT FORM -->
+        <!-- END OF UPDATE RESTAURANT FORM -->
 
             <!--RESTAURANT SEARCH BOX-->
             <section id="resto-search-box" class="content" style="margin-top: 10px;">
@@ -305,6 +305,50 @@
                 </div> 
             </section>
             <!-- END VIEW FOOD -->
+
+
+        <!-- UPDATE FOOD FORM -->
+          <hr class="my-2">
+            <section class="content" id="update-food-form" style="display:none">                    
+                <div class="box box-primary">
+                <div id="update-food-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Update Food</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box-body">
+                            <form id="update-food-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Food Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Description</label>
+                                    <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Unit Cost</label>
+                                    <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>                   
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearFoodForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" >Update</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+        <!-- END OF UPDATE FOOD FORM -->
 
 
         </div>
