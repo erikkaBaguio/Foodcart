@@ -1,6 +1,6 @@
 create table Contact
 (
-  contact_id      SERIAL8 PRIMARY KEY,
+  id              SERIAL8 PRIMARY KEY,
   email           VARCHAR(50),
   tel_number      VARCHAR(50),
   mobile_number   VARCHAR(50)
@@ -9,7 +9,7 @@ create table Contact
 
 create table Address
 (
-  address_id      SERIAL8 PRIMARY KEY,
+  id              SERIAL8 PRIMARY KEY,
   bldg_number     VARCHAR(15),
   street          VARCHAR(50),
   room_number     INT
@@ -18,7 +18,7 @@ create table Address
 
 create table Image
 (
-  image_id        SERIAL8 PRIMARY KEY,
+  id        SERIAL8 PRIMARY KEY,
   url             VARCHAR(50)
 );
 
@@ -26,14 +26,14 @@ create table Image
 create type Role AS ENUM ('customer', 'system admin', 'manager');
 create table Users
 (
-  user_id            SERIAL8 PRIMARY KEY,
+  id                 SERIAL8 PRIMARY KEY,
   fname              VARCHAR(50),
   mname              VARCHAR(50),
   lname              VARCHAR(50),
   user_password      VARCHAR(50),
   earned_points      FLOAT,
-  contact_id         INT REFERENCES Contact(contact_id),
-  address_id         INT REFERENCES Address(address_id),
+  contact_id         INT REFERENCES Contact(id),
+  address_id         INT REFERENCES Address(id),
   rolename           Role,
   is_active          BOOLEAN DEFAULT TRUE
 );
@@ -41,8 +41,20 @@ create table Users
 
 create table Order_foods
 (
-  order_food_id         SERIAL8 PRIMARY KEY,
+  id                    SERIAL8 PRIMARY KEY,
   quantity              INT,
-  food_id               INT REFERENCES Food(food_id),
-  resto_branch_id          INT REFERENCES Restaurant_branch(id)
+  food_id               INT REFERENCES Food(id),
+  resto_branch_id       INT REFERENCES Restaurant_branch(id)
+);
+
+
+create table Transaction
+(
+  id                    SERIAL8 PRIMARY KEY,
+  transaction_number    INT,
+  transaction_date      DATE,
+  order_id              INT REFERENCES Orders(id),
+  total                 FLOAT,
+  is_paid               BOOLEAN DEFAULT FALSE,
+  address_id            INT REFERENCES Address(id)
 );
