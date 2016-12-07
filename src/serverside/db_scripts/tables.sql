@@ -14,3 +14,10 @@ create table Address
   street          VARCHAR(50),
   room_number     INT
 );
+
+
+create table Image
+(
+  image_id        SERIAL8 PRIMARY KEY,
+  url             VARCHAR(50)
+);
