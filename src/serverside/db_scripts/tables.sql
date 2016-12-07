@@ -43,3 +43,11 @@ create table Restaurant_branch
 	address_id		INT REFERENCES Address(id),
 	is_active		BOOLEAN DEFAULT TRUE
 );
+
+
+create table Category_Foods
+(
+	id				SERIAL8 PRIMARY KEY,
+	foods_id		INT REFERENCES Foods(id),
+	category_id		INT REFERENCES Categories(id),
+);
