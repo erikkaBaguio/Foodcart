@@ -3,6 +3,8 @@ create table Food
 	food_name		VARCHAR(200) NOT NULL,
 	description		TEXT NOT NULL,
 	unit_cost		FLOAT,
+	resto_branch_id	INT REFERENCES Restaurant_branch(id),
+	image_id		INT REFERENCES Images(id),
 	is_active		BOOLEAN DEFAULT TRUE
 );
 
