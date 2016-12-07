@@ -37,3 +37,12 @@ create table Users
   rolename           Role,
   is_active          BOOLEAN DEFAULT TRUE
 );
+
+
+create table Order_foods
+(
+  order_food_id         SERIAL8 PRIMARY KEY,
+  quantity              INT,
+  food_id               INT REFERENCES Food(food_id),
+  resto_branch_id          INT REFERENCES Restaurant_branch(id)
+);
