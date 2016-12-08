@@ -1,3 +1,4 @@
 .vagrant
 *.pyo
 *.pyc
+*.xml
