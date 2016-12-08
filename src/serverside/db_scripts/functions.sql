@@ -221,3 +221,34 @@ create or replace function search_food(in par_search varchar, out bigint, out va
 		where food_name like '%' || par_search || '%' or description like '%' || par_search || '%' ;
 	$$
 	language 'sql';
+
+
+--[POST] Add new category details
+--select store_category('Appetizer')
+create or replace function store_category(par_categoryName varchar)
+	returns text as
+	$$
+		DECLARE
+			local_name	varchar;
+			local_response text;
+		BEGIN
+
+			select into local_name category_name
+			from Categories
+			where category_name = par_categoryName;
+
+			if local_name isnull
+			then
+				insert into Categories(category_name, is_active)
+				values (par_categoryName, TRUE);
+
+				local_response = 'OK';
+			else
+				local_response = 'EXISTED';
+
+			end if;
+
+			return local_response;
+		END;
+	$$
+		language 'plpgsql';
