@@ -6,6 +6,7 @@ create table Foods
 	unit_cost		FLOAT,
 	resto_branch_id	INT REFERENCES Restaurant_branch(id),
 	image_id		INT REFERENCES Images(id),
+	is_available BOOLEAN DEFAULT TRUE,
 	is_active		BOOLEAN DEFAULT TRUE
 );
 
