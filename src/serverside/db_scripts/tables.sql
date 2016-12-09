@@ -31,7 +31,13 @@ create table Address
 );
 
 
-create type Role AS ENUM ('customer', 'system admin', 'manager');
+create table Roles
+(
+  id                 SERIAL8 PRIMARY KEY,
+  rolename           VARCHAR
+);
+
+
 create table Users
 (
   id                 SERIAL8 PRIMARY KEY,
@@ -39,10 +45,10 @@ create table Users
   mname              VARCHAR(50),
   lname              VARCHAR(50),
   user_password      VARCHAR(50),
-  earned_points      FLOAT,
+  earned_points      FLOAT DEFAULT 0,
   contact_id         INT REFERENCES Contacts(id),
   address_id         INT REFERENCES Address(id),
-  rolename           Role,
+  role_id            INT REFERENCES Roles(id),
   is_active          BOOLEAN DEFAULT TRUE
 );
 
