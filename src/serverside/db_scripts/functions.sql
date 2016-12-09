@@ -16,3 +16,24 @@ create or replace function create_contact_address() returns trigger as
 
 create trigger create_contacts_trigger AFTER insert on Users FOR each ROW
 EXECUTE PROCEDURE create_contact();
+
+
+--select store_role('Ma.', 'Erikka', 'Baguio', 'asdasd', 1);
+create or replace function store_user(in par_fname varchar, in par_mname varchar, in par_lname varchar, in par_password varchar,
+									  in par_rolename int)
+  returns bigint as
+  $$
+    declare
+      local_response bigint;
+    begin
+
+      insert into Users (fname, mname, lname, user_password, role_id)
+      values (par_fname, par_mname, par_lname, par_password, par_rolename);
+
+      SELECT INTO local_response currval(pg_get_serial_sequence('Users','id'));
+
+      return local_response;
+
+    end;
+  $$
+    language 'plpgsql';
