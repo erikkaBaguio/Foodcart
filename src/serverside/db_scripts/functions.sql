@@ -77,6 +77,27 @@ create or replace function check_restaurant(par_restoName varchar)
 	$$
 		language 'plpgsql';
 
+
+create or replace function update_contact(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum int)
+	 returns text as
+	$$
+
+		declare
+			local_response text;
+
+		begin
+			Update Contacts
+			set bldg_number = par_bldgNum,
+				street = par_street,
+				room_number = par_roomNum
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
 --//---------------------------------------
 
 
