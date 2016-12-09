@@ -25,8 +25,36 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 		language 'plpgsql';
 
 
+--Checks if restuarant exists. If not, add new restaurant.
+create or replace function check_restaurant(par_restoName varchar)
+	returns bigint as
+	$$
+		declare
+			local_name varchar;
+			local_id bigint;
 
---//---------------------------------------
+		begin
+			select into local_name resto_name
+			from Restaurants
+			where resto_name = par_restoName;
+
+			if local_name isnull
+			then
+				local_id = 0;
+			else
+				select into local_id id
+				from Restaurants
+				where resto_name = par_restoName;
+
+			end if;
+
+			return local_id;
+
+		end;
+
+	$$
+		language 'plpgsql';
+
 --//---------------------------------------
 
 
