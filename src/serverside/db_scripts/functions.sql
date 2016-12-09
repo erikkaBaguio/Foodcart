@@ -78,7 +78,32 @@ create or replace function check_restaurant(par_restoName varchar)
 		language 'plpgsql';
 
 
-create or replace function update_contact(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum int)
+--[PUT] Update contact
+--select update_contact(1, 'e.b@gmail.com', '283-29-34', '0912345789');
+create or replace function update_contact(par_id int, in par_email varchar, in par_telNum varchar, in par_mobNum varchar)
+	returns text as
+	$$
+		declare
+			local_response text;
+
+		begin
+			Update Contacts
+			set email = par_email,
+				tel_number = par_telNum,
+				mobile_number = par_mobNum
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
+
+
+--[PUT] Update address
+--select update_address(1, '20','Straight St', 10)
+create or replace function update_address(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum int)
 	 returns text as
 	$$
 
@@ -86,7 +111,7 @@ create or replace function update_contact(par_id int, in par_bldgNum varchar, in
 			local_response text;
 
 		begin
-			Update Contacts
+			Update Address
 			set bldg_number = par_bldgNum,
 				street = par_street,
 				room_number = par_roomNum
