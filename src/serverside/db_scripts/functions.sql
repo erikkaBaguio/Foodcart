@@ -123,6 +123,28 @@ create or replace function update_address(par_id int, in par_bldgNum varchar, in
 		end;
 	$$
 		language 'plpgsql';
+
+
+--[PUT] Update image
+--select update_image(1, 'sample.jpg')
+create or replace function update_image(par_id int, in par_url varchar)
+	returns text as
+	$$
+		declare
+			local_response text;
+
+		begin
+			Update Images
+			set url = par_url
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
+
 --//---------------------------------------
 
 
