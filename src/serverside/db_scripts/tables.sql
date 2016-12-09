@@ -59,7 +59,7 @@ create table Restaurants
 create table Restaurant_branch
 (
   id        SERIAL8 PRIMARY KEY,
-  del_fee     FLOAT,
+  delivery_fee     FLOAT,
   contact_id    INT REFERENCES Contacts(id),
   resto_id    INT REFERENCES Restaurants(id),
   address_id    INT REFERENCES Address(id),

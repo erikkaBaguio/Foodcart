@@ -1,33 +1,33 @@
 --[POST] Add new restaurant details
---select store_restaurant('Cozy Cup', 10, 0, 'San Miguel, Iligan City')
-create or replace function store_restaurant(par_restoName varchar, par_minOrder float, par_deliveryFee float, par_location varchar)
-	returns text as
+--select store_restaurant('Cozy Cup', 10)
+create or replace function store_restaurant(par_restoName varchar, par_minOrder float)
+	returns bigint as
 	$$
 		DECLARE
 			local_name	varchar;
-			local_response text;
+			local_response int;
 		BEGIN
-
-			select into local_name resto_name
-			from Restaurant
-			where resto_name = par_restoName;
-			
-			if local_name isnull
+			if (check_restaurant(par_restoName) = 0)
 			then
-				insert into Restaurant(resto_name, min_order, delivery_fee, location)
-				values (par_restoName, par_minOrder, par_deliveryFee, par_location);
-			
-				local_response = 'OK';
-			else	
-				local_response = 'EXISTED';
-			
+				insert into Restaurants(resto_name, min_order)
+				values (par_restoName, par_minOrder);
+
+				local_response = 0;
+
+			else
+				local_response = check_restaurant(par_restoName);
+
 			end if;
-			
+
 			return local_response;
 		END;
 	$$
 		language 'plpgsql';
 
+
+
+--//---------------------------------------
+--//---------------------------------------
 
 
 --[GET] Retrieve specific restaurant
