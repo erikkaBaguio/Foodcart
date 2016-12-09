@@ -34,7 +34,7 @@ create table Address
 create table Roles
 (
   id                 SERIAL8 PRIMARY KEY,
-  rolename           VARCHAR
+  rolename           VARCHAR(50)
 );
 
 
