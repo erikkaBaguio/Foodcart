@@ -12,7 +12,7 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 				insert into Restaurants(resto_name, min_order)
 				values (par_restoName, par_minOrder);
 
-				local_response = 0;
+				select into local_response currval(pg_get_serial_sequence('Restaurants','id'));
 
 			else
 				local_response = check_restaurant(par_restoName);
@@ -52,6 +52,28 @@ create or replace function check_restaurant(par_restoName varchar)
 
 		end;
 
+	$$
+		language 'plpgsql';
+
+
+	--[POST] Adds new restaurant branch
+	--select store_restaurant();
+	create or replace function store_restaurant_branch(par_restoID bigint, par_deliveryFee float, par_restoName varchar)
+	returns bigint as
+	$$
+		declare
+			local_name varchar;
+			local_id bigint;
+			local_response bigint;
+
+		begin
+
+			insert into Restaurant_branch(delivery_fee, resto_id)
+			  values (par_deliveryFee, par_restoID);
+
+			select into local_response currval(pg_get_serial_sequence('Restaurant_branch','id'));
+
+		end;
 	$$
 		language 'plpgsql';
 
