@@ -1,6 +1,6 @@
 --this trigger will create a contact and address where id == to the newly created user
 --but this will not store any other attribute of contact and address. only the id.
-create or replace function create_contact() returns trigger as
+create or replace function create_contact_address() returns trigger as
 	$$
 		begin
 			if tg_op = 'INSERT' then
@@ -13,3 +13,6 @@ create or replace function create_contact() returns trigger as
 		end;
 	$$
 		LANGUAGE 'plpgsql';
+
+create trigger create_contacts_trigger AFTER insert on Users FOR each ROW
+EXECUTE PROCEDURE create_contact();
