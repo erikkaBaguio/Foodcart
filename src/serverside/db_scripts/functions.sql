@@ -14,6 +14,10 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 
 				select into local_response currval(pg_get_serial_sequence('Restaurants','id'));
 
+        update Restaurants
+          set image_id = local_response
+        where id = local_response;
+
 			else
 				local_response = check_restaurant(par_restoName);
 
