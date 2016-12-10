@@ -72,10 +72,15 @@ create or replace function store_restaurant_branch(par_restoID bigint, par_deliv
 
 		begin
 
-			insert into Restaurant_branch(del_fee, resto_id)
+			insert into Restaurant_branch(delivery_fee, resto_id)
 			  values (par_deliveryFee, par_restoID);
 
 			select into local_response currval(pg_get_serial_sequence('Restaurant_branch','id'));
+
+      update Restaurant_branch
+        set contact_id = local_response,
+            address_id = local_response
+      where id = local_response;
 
 			return local_response;
 
