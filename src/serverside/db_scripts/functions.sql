@@ -32,6 +32,11 @@ create or replace function store_user(in par_fname varchar, in par_mname varchar
 
       SELECT INTO local_response currval(pg_get_serial_sequence('Users','id'));
 
+      update Users
+      set contact_id = local_response,
+          address_id = local_response
+      where id = local_response;
+
       return local_response;
 
     end;
