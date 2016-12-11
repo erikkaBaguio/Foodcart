@@ -59,6 +59,38 @@ create or replace function check_restaurant(par_restoName varchar)
 	$$
 		language 'plpgsql';
 
+--Checks if restaurant branch already exist or not
+--select restaurant_branch_exist('1','st',5,3);
+create or replace function restaurant_branch_exist(par_bldg varchar, par_street varchar, par_room int,  par_restoID int)
+  returns boolean as
+  $$
+    declare
+      local_id int;
+      local_response boolean;
+
+    begin
+      select into local_id id
+      from Address
+      where id in (select id
+		               from Restaurant_branch
+		               where resto_id = 3)
+		               and bldg_number = par_bldg and street = par_street and room_number = par_room;
+
+      if local_id isnull
+      then
+        local_response = false; --does not exist
+
+      else
+        local_response = true; --does exist
+
+      end if;
+
+      return local_response;
+
+    end;
+  $$
+    language 'plpgsql';
+
 
 --[POST] Adds new restaurant branch
 --select store_restaurant_branch(1, 10.5 );
