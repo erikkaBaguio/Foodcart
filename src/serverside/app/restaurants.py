@@ -17,6 +17,7 @@ def check_restaurant_branch(bldg_number, street, room_number, restoID):
 
 
 def store_restaurant(data):
+    print
     resto_name = data['resto_name']
     min_order = data['min_order']
     delivery_fee = data['delivery_fee']
@@ -28,8 +29,7 @@ def store_restaurant(data):
     street = data['street']
     room_number = data['room_number']
 
-    if (resto_name == '' or not min_order or not delivery_fee or image_url == '' or email == '' or tel_number == ''
-        or mobile_number == '' or street == ''):
+    if (resto_name == '' or image_url == '' or email == '' or tel_number == '' or mobile_number == '' or street == ''):
 
         return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 
@@ -70,4 +70,4 @@ def store_restaurant(data):
                         return jsonify({"status": "OK", "message": "OK"})
 
             else:
-                return jsonify({"status": "FAILED", "message": "Restaurant branch exists."})
+                return jsonify({"status": "FAILED", "message": "Restaurant branch already exists."})
