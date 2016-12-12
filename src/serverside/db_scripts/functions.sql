@@ -187,3 +187,19 @@ create or replace function update_resto_image(par_id int, in par_url varchar)
 		end;
 	$$
 		language 'plpgsql';
+
+
+--[GET] Retrieve specific restaurant
+--select show_restaurant_branch(1);
+create or replace function show_restaurant_branch(in par_restoID bigint, out varchar, out float, out float, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar, out boolean)
+	returns setof record as
+	$$
+    select resto_name, delivery_fee, min_order, email, tel_number, mobile_number, bldg_number, street, room_number, url, Restaurant_branch.is_active
+		from Restaurant_branch
+			inner join Restaurants on Restaurant_branch.resto_id = Restaurants.id
+			inner join Resto_branch_contacts on Restaurant_branch.contact_id = Resto_branch_contacts.id
+			inner join Resto_branch_address on Restaurant_branch.address_id = Resto_branch_address.id
+			inner join Resto_images on Restaurant_branch.resto_id = Resto_images.id
+		where Restaurant_branch.id = par_restoID;
+	$$
+	language 'sql';
