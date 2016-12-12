@@ -32,3 +32,26 @@ create or replace function store_user(in par_fname varchar, in par_mname varchar
     end;
   $$
     language 'plpgsql';
+
+
+--[PUT] Update User Contact
+--select update_user_contact(2, 'kristel@gmail.com', '225-1116', '0912345789');
+create or replace function update_user_contact(par_id int, in par_email varchar, in par_telNum varchar, in par_mobNum varchar)
+	returns text as
+	$$
+		declare
+			local_response text;
+
+		begin
+			Update User_contacts
+			set email = par_email,
+				tel_number = par_telNum,
+				mobile_number = par_mobNum
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
