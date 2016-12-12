@@ -6,14 +6,21 @@ create table Categories
 );
 
 
-create table Images
+create table Food_images
 (
   id        SERIAL8 PRIMARY KEY,
   url             VARCHAR(50)
 );
 
 
-create table Contacts
+create table Resto_images
+(
+  id        SERIAL8 PRIMARY KEY,
+  url             VARCHAR(50)
+);
+
+
+create table Resto_branch_contacts
 (
   id              SERIAL8 PRIMARY KEY,
   email           VARCHAR(50),
@@ -22,16 +29,49 @@ create table Contacts
 );
 
 
-create table Address
+create table Resto_branch_address
 (
   id              SERIAL8 PRIMARY KEY,
   bldg_number     VARCHAR(15),
   street          VARCHAR(50),
-  room_number     INT
+  room_number     VARCHAR(15)
 );
 
 
-create type Role AS ENUM ('customer', 'system admin', 'manager');
+create table Transaction_address
+(
+  id              SERIAL8 PRIMARY KEY,
+  bldg_number     VARCHAR(15),
+  street          VARCHAR(50),
+  room_number     VARCHAR(15)
+);
+
+
+create table User_contacts
+(
+  id              SERIAL8 PRIMARY KEY,
+  email           VARCHAR(50),
+  tel_number      VARCHAR(50),
+  mobile_number   VARCHAR(50)
+);
+
+
+create table User_address
+(
+  id              SERIAL8 PRIMARY KEY,
+  bldg_number     VARCHAR(15),
+  street          VARCHAR(50),
+  room_number     VARCHAR(15)
+);
+
+
+create table Roles
+(
+  id                 SERIAL8 PRIMARY KEY,
+  rolename           VARCHAR(50)
+);
+
+
 create table Users
 (
   id                 SERIAL8 PRIMARY KEY,
@@ -40,9 +80,9 @@ create table Users
   lname              VARCHAR(50),
   user_password      VARCHAR(50),
   earned_points      FLOAT,
-  contact_id         INT REFERENCES Contacts(id),
-  address_id         INT REFERENCES Address(id),
-  rolename           Role,
+  contact_id         INT REFERENCES User_contacts(id),
+  address_id         INT REFERENCES User_address(id),
+  role_id            INT REFERENCES Roles(id),
   is_active          BOOLEAN DEFAULT TRUE
 );
 
@@ -52,17 +92,17 @@ create table Restaurants
   id            SERIAL8 PRIMARY KEY,
   resto_name    VARCHAR(100) NOT NULL,
   min_order   FLOAT,
-  image_id    INT REFERENCES Images(id)
+  image_id    INT REFERENCES Resto_images(id)
 );
 
 
 create table Restaurant_branch
 (
   id        SERIAL8 PRIMARY KEY,
-  delivery_fee     FLOAT,
-  contact_id    INT REFERENCES Contacts(id),
+  del_fee     FLOAT,
+  contact_id    INT REFERENCES Resto_branch_contacts(id),
   resto_id    INT REFERENCES Restaurants(id),
-  address_id    INT REFERENCES Address(id),
+  address_id    INT REFERENCES Resto_branch_address(id),
   is_active   BOOLEAN DEFAULT TRUE
 );
 
@@ -74,7 +114,7 @@ create table Foods
   description   TEXT NOT NULL,
   unit_cost   FLOAT,
   resto_branch_id INT REFERENCES Restaurant_branch(id),
-  image_id    INT REFERENCES Images(id),
+  image_id    INT REFERENCES Food_images(id),
   is_available BOOLEAN DEFAULT TRUE,
   is_active   BOOLEAN DEFAULT TRUE
 );
@@ -113,5 +153,5 @@ create table Transaction
   order_id              INT REFERENCES Orders(id),
   total                 FLOAT,
   is_paid               BOOLEAN DEFAULT FALSE,
-  address_id            INT REFERENCES Address(id)
+  address_id            INT REFERENCES Transaction_address(id)
 );
