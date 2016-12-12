@@ -10,8 +10,8 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Adding user
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			| Kristel |   D   | Pabillaran |      asd      |    1    |
+			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
@@ -63,63 +63,62 @@ As a system administrator, I want to update users' details.
 ## Rainy Cases #
 ################
 
-    Scenario: Add user - fname field empty
-            Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			|         |   D   | Pabillaran |      asd      |    1    |
-			When  the user clicks the send button
-            Then  it should have a '200' response
-            And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
-
-
-    Scenario: Add user - mname field empty
-            Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			| Kristel |       | Pabillaran |      asd      |    1    |
-			When  the user clicks the send button
-            Then  it should have a '200' response
-            And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
-
-
-    Scenario: Add user - lname field empty
-            Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			| Kristel |   D   |            |      asd      |    1    |
-			When  the user clicks the send button
-            Then  it should have a '200' response
-            And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
-
-
-    Scenario: Add user - user_password field empty
-            Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			| Kristel |   D   | Pabillaran |               |    1    |
-			When  the user clicks the send button
-            Then  it should have a '200' response
-            And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
-
-    Scenario: Add user - role_id field empty
-            Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			| Kristel |   D   | Pabillaran |      asd      |         |
-			When  the user clicks the send button
-            Then  it should have a '200' response
-            And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
-
-    Scenario: Add existing user
-            Given I have the following user details:
-			| fname   | mname |    lname   | user_password | role_id |
-			| Kristel |   D   | Pabillaran |      asd      |    1    |
-			When  the user clicks the send button
-			Then  it should have a '200' response
-            And   it should have a field 'status' containing 'OK'
-            And   it should have a field 'message' containing '0'
-
+#    Scenario: Add user - fname field empty
+#            Given I have the following user details:
+#			| fname   | mname |    lname   | user_password | role_id |
+#			|         |   D   | Pabillaran |      asd      |    1    |
+#			When  the user clicks the send button
+#            Then  it should have a '200' response
+#            And   it should have a field 'status' containing 'FAILED'
+#            And   it should have a field 'message' containing 'Please fill the required fields'
+#
+#
+#    Scenario: Add user - mname field empty
+#            Given I have the following user details:
+#			| fname   | mname |    lname   | user_password | role_id |
+#			| Kristel |       | Pabillaran |      asd      |    1    |
+#			When  the user clicks the send button
+#            Then  it should have a '200' response
+#            And   it should have a field 'status' containing 'FAILED'
+#            And   it should have a field 'message' containing 'Please fill the required fields'
+#
+#
+#    Scenario: Add user - lname field empty
+#            Given I have the following user details:
+#			| fname   | mname |    lname   | user_password | role_id |
+#			| Kristel |   D   |            |      asd      |    1    |
+#			When  the user clicks the send button
+#            Then  it should have a '200' response
+#            And   it should have a field 'status' containing 'FAILED'
+#            And   it should have a field 'message' containing 'Please fill the required fields'
+#
+#
+#    Scenario: Add user - user_password field empty
+#            Given I have the following user details:
+#			| fname   | mname |    lname   | user_password | role_id |
+#			| Kristel |   D   | Pabillaran |               |    1    |
+#			When  the user clicks the send button
+#            Then  it should have a '200' response
+#            And   it should have a field 'status' containing 'FAILED'
+#            And   it should have a field 'message' containing 'Please fill the required fields'
+#
+#    Scenario: Add user - role_id field empty
+#            Given I have the following user details:
+#			| fname   | mname |    lname   | user_password | role_id |
+#			| Kristel |   D   | Pabillaran |      asd      |         |
+#			When  the user clicks the send button
+#            Then  it should have a '200' response
+#            And   it should have a field 'status' containing 'FAILED'
+#            And   it should have a field 'message' containing 'Please fill the required fields'
+#
+#    Scenario: Add existing user
+#            Given I have the following user details:
+#			| fname   | mname |    lname   | user_password | role_id |
+#			| Kristel |   D   | Pabillaran |      asd      |    1    |
+#			When  the user clicks the send button
+#			Then  it should have a '200' response
+#            And   it should have a field 'status' containing 'OK'
+#            And   it should have a field 'message' containing '0'
 
 
 #       Scenario: View Specific User - id does not exist
