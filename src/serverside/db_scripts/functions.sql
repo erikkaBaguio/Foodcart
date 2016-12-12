@@ -249,3 +249,22 @@ create or replace function get_restaurant_id(in par_resto_branch_id int)
 		where id = par_resto_branch_id;
 	$$
 	language 'sql';
+
+
+--[PUT] Update resaturant
+--select update_restaurant(1,20)
+create or replace function update_restaurant(in par_restoID int, par_minOrder float)
+	returns text as
+	$$
+		declare
+			local_response text;
+		begin
+			update Restaurant
+			set min_order = par_minOrder
+			where id = par_restoID;
+
+			local_response = 'OK';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
