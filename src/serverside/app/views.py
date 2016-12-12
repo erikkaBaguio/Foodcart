@@ -3,64 +3,20 @@ from flask import Flask, jsonify, request
 from os import sys
 from models import DBconn
 import json, flask
-
 from spcalls import SPcalls
+from restaurants import *
 from app import app
 
 spcalls = SPcalls()
 
 
 @app.route('/api/foodcart/restaurants/', methods=['POST'])
-def store_restaurant():
+def add_restaurant():
     data = json.loads(request.data)
 
-    resto_name = data['resto_name']
-    min_order = data['min_order']
-    delivery_fee = data['delivery_fee']
-    image_url = data['image_url']
-    email = data['email']
-    tel_number = data['tel_number']
-    mobile_number = data['mobile_number']
-    bldg_number = data['bldg_number']
-    street = data['street']
-    room_number = data['room_number']
+    response = store_restaurant(data)
 
-    if (resto_name == '' or not min_order or not delivery_fee or image_url == '' or email == '' or tel_number == ''
-        or mobile_number == '' or street == ''):
-
-        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-
-    else:
-
-        restaurant = spcalls.spcall('store_restaurant', (resto_name, min_order), True)
-
-        if 'Error' in str(restaurant[0][0]):
-            return jsonify({"status": "FAILED", "message": restaurant[0][0]})
-
-        else:
-            resto_id = restaurant[0][0]
-
-            restaurant_branch = spcalls.spcall('store_restaurant_branch', (resto_id, delivery_fee), True)
-            image = spcalls.spcall('update_image', (resto_id, image_url), True)
-
-            if 'Error' in str(restaurant_branch[0][0]):
-                return jsonify({"status": "FAILED", "message": restaurant_branch[0][0]})
-
-            elif 'Error' in str(image[0][0]):
-                return jsonify({"status": "FAILED", "message": image[0][0]})
-
-            else:
-                contact = spcalls.spcall('update_contact', (resto_id, email, tel_number, mobile_number), True)
-                address = spcalls.spcall('update_address', (resto_id, bldg_number, street, room_number), True)
-
-                if 'Error' in str(contact[0][0]):
-                    return jsonify({"status": "FAILED", "message": contact[0][0]})
-
-                elif 'Error' in str(address[0][0]):
-                    return jsonify({"status": "FAILED", "message": address[0][0]})
-
-                else:
-                    return jsonify({"status": "OK", "message": address[0][0]})
+    return response
 
 
 @app.route('/api/foodcart/restaurants/', methods=['GET'])

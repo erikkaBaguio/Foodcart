@@ -14,9 +14,9 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 
 				select into local_response currval(pg_get_serial_sequence('Restaurants','id'));
 
-        update Restaurants
-          set image_id = local_response
-        where id = local_response;
+		        update Restaurants
+		          set image_id = local_response
+		        where id = local_response;
 
 			else
 				local_response = check_restaurant(par_restoName);
@@ -60,8 +60,8 @@ create or replace function check_restaurant(par_restoName varchar)
 		language 'plpgsql';
 
 --Checks if restaurant branch already exist or not
---select restaurant_branch_exist('1','st','5',3);
-create or replace function restaurant_branch_exist(par_bldg varchar, par_street varchar, par_room varchar,  par_restoID int)
+--select check_restaurant_branch('1','st','5',3);
+create or replace function check_restaurant_branch(par_bldg varchar, par_street varchar, par_room varchar,  par_restoID bigint)
   returns boolean as
   $$
     declare
@@ -73,7 +73,7 @@ create or replace function restaurant_branch_exist(par_bldg varchar, par_street 
       from Resto_branch_address
       where id in (select id
 		               from Restaurant_branch
-		               where resto_id = 3)
+		               where resto_id = par_restoID)
 		               and bldg_number = par_bldg and street = par_street and room_number = par_room;
 
       if local_id isnull
@@ -109,10 +109,10 @@ create or replace function store_restaurant_branch(par_restoID bigint, par_deliv
 
 			select into local_response currval(pg_get_serial_sequence('Restaurant_branch','id'));
 
-      update Restaurant_branch
-        set contact_id = local_response,
-            address_id = local_response
-      where id = local_response;
+			update Restaurant_branch
+		        set contact_id = local_response,
+		            address_id = local_response
+		    where id = local_response;
 
 			return local_response;
 
@@ -169,8 +169,8 @@ create or replace function update_resto_branch_address(par_id int, in par_bldgNu
 
 
 --[PUT] Update image
---select update_image(1, 'sample.jpg')
-create or replace function update_image(par_id int, in par_url varchar)
+--select update_resto_image(1, 'sample.jpg')
+create or replace function update_resto_image(par_id int, in par_url varchar)
 	returns text as
 	$$
 		declare
