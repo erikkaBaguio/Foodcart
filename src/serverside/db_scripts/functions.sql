@@ -60,8 +60,8 @@ create or replace function check_restaurant(par_restoName varchar)
 		language 'plpgsql';
 
 --Checks if restaurant branch already exist or not
---select restaurant_branch_exist('1','st',5,3);
-create or replace function restaurant_branch_exist(par_bldg varchar, par_street varchar, par_room int,  par_restoID int)
+--select restaurant_branch_exist('1','st','5',3);
+create or replace function restaurant_branch_exist(par_bldg varchar, par_street varchar, par_room varchar,  par_restoID int)
   returns boolean as
   $$
     declare
@@ -70,7 +70,7 @@ create or replace function restaurant_branch_exist(par_bldg varchar, par_street 
 
     begin
       select into local_id id
-      from Address
+      from Resto_branch_address
       where id in (select id
 		               from Restaurant_branch
 		               where resto_id = 3)
@@ -122,15 +122,15 @@ create or replace function store_restaurant_branch(par_restoID bigint, par_deliv
 
 
 --[PUT] Update contact
---select update_contact(1, 'e.b@gmail.com', '283-29-34', '0912345789');
-create or replace function update_contact(par_id int, in par_email varchar, in par_telNum varchar, in par_mobNum varchar)
+--select update_resto_branch_contact(1, 'e.b@gmail.com', '283-29-34', '0912345789');
+create or replace function update_resto_branch_contact(par_id int, in par_email varchar, in par_telNum varchar, in par_mobNum varchar)
 	returns text as
 	$$
 		declare
 			local_response text;
 
 		begin
-			Update Contacts
+			Update Resto_branch_contacts
 			set email = par_email,
 				tel_number = par_telNum,
 				mobile_number = par_mobNum
@@ -145,8 +145,8 @@ create or replace function update_contact(par_id int, in par_email varchar, in p
 
 
 --[PUT] Update address
---select update_address(1, '20','Straight St', 10)
-create or replace function update_address(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum int)
+--select update_resto_branch_address(1, '20','Straight St', '10')
+create or replace function update_resto_branch_address(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum varchar)
 	 returns text as
 	$$
 
@@ -154,7 +154,7 @@ create or replace function update_address(par_id int, in par_bldgNum varchar, in
 			local_response text;
 
 		begin
-			Update Address
+			Update Resto_branch_address
 			set bldg_number = par_bldgNum,
 				street = par_street,
 				room_number = par_roomNum
@@ -177,7 +177,7 @@ create or replace function update_image(par_id int, in par_url varchar)
 			local_response text;
 
 		begin
-			Update Images
+			Update Resto_images
 			set url = par_url
 			where id = par_id;
 
