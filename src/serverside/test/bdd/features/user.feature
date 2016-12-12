@@ -111,6 +111,15 @@ As a system administrator, I want to update users' details.
             And   it should have a field 'status' containing 'FAILED'
             And   it should have a field 'message' containing 'Please fill the required fields'
 
+    Scenario: Add existing user
+            Given I have the following user details:
+			| fname   | mname |    lname   | user_password | role_id |
+			| Kristel |   D   | Pabillaran |      asd      |    1    |
+			When  the user clicks the send button
+			Then  it should have a '200' response
+            And   it should have a field 'status' containing 'OK'
+            And   it should have a field 'message' containing '0'
+
 
 
 #       Scenario: View Specific User - id does not exist
