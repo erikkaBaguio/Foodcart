@@ -54,8 +54,8 @@ def given_the_restaurant_with_an_id_group1(step, resto_id):
     world.restaurant = world.app.get('/api/foodcart/restaurants/{}'.format(resto_id))
     world.response_json = json.loads(world.restaurant.data)
 
-@step(u'When  the view button is clicked')
-def when_the_view_button_is_clicked(step):
+@step(u'When  the view button in restaurant feature is clicked')
+def when_the_view_button_in_restaurant_feature_is_clicked(step):
     world.response = world.app.get('/api/foodcart/restaurants/{}'.format(world.resto_id))    
 
 
@@ -125,7 +125,7 @@ def given_the_food_with_an_id_group1(step, food_id):
 
 @step(u'When  the view button is clicked')
 def when_the_view_button_is_clicked(step):
-    world.response = world.app.get('/api/foodcart/foods/{}'.format(world.food_id)) 
+    world.response = world.app.get('/api/foodcart/foods/{}'.format(world.food_id))
 
 
 """ Update Food """

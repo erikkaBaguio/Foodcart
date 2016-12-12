@@ -21,6 +21,16 @@ Scenario: Add restaurant successfully.
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
 
+Scenario: View restaurant's information
+  Given the restaurant with an id '1'
+  When  the view button in restaurant feature is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+  And   the following details will be returned
+        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
+        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+
 
 ###############
  # Rainy Cases #
