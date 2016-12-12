@@ -105,3 +105,10 @@ Scenario: View restaurant's information
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
+
+Scenario: View Specific Restaurant - id does not exist
+  Given the restaurant with an id '10000'
+  When  the view button in restaurant feature is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'FAILED'
+  And   it should have a field 'message' containing 'No Restaurant Found'
