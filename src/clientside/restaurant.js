@@ -84,3 +84,66 @@ function clearRestaurantForm(){
 	var restaurant_form = document.getElementById("restaurant-form");
 	restaurant_form.reset();
 }
+
+
+function viewRestaurantById(restaurant_id){
+	$.ajax({
+		type:"GET",
+		url: "http://localhost:5000/api/foodcart/restaurants/" + restaurant_id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results)
+		{;
+			if(results.status == 'OK'){
+				$('#view-resto-info').html(function(){
+					var restaurant_row = '';
+					var restaurant;
+					for (var i = 0; i < results.entries.length; i++) {
+						restaurant = '<div class="box-body">' +
+										'<div class="container">' +
+			                                '<div class="row">' +
+			                                	'<h4 class="box-title"><b>'+ 'Restaurant\'s Name: ' + results. entries[i].restaurant_name +'</b></h3></div>' +
+			                                    '<div class="col-md-4">' +
+			                                        '<p style="margin-left: 5px">' +
+                                                         'Delivery Fee: ' + results.entries[i].delivery_fee + '<br><br>' +
+														 'Minimum Order: ' + results.entries[i].minimum_order + '<br><br>' +
+														 'Email: ' + results.entries[i].email + '<br><br>' +
+                                                         'Telephone No.: ' + results.entries[i].tel_number + '<br><br>' +
+                                                         'Mobile No.: ' + results.entries[i].mobile_number + '<br><br>' +
+                                                         'Location: ' + results.entries[i].bldg_number + ' ' +  results.entries[i].street + ' ' + results.entries[i].room_number + '<br><br>' +
+                                                         'Image: ' + results.entries[i].image_url + '<br><br>' +
+			                                        '</p>' +
+			                                    '</div>'
+			                                '</div>' +
+			                            '</div>' +
+			                        '</div>'
+
+						restaurant_row  += restaurant
+					}
+
+					return restaurant_row;
+				})
+
+				$('#add-resto-form').hide();
+			}
+
+			if(results.status == 'FAILED'){
+
+				$('#view-resto-alert').html(
+						'<div class="alert alert-danger"><strong>FAILED ' +
+
+						 '!</strong>'+ results.message +' </div>');
+				$("#view-resto-alert").fadeTo(2000, 500).slideUp(500);
+
+			}
+		},
+
+		beforeSend: function (xhrObj){
+
+			xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+		}
+
+	});
+}
