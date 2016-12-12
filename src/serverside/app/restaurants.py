@@ -71,3 +71,33 @@ def store_restaurant(data):
 
             else:
                 return jsonify({"status": "FAILED", "message": "Restaurant branch already exists."})
+
+
+def show_rastaurant(resto_id):
+    restaurant = spcalls.spcall('show_restaurant_branch', (resto_id,))
+    entries = []
+
+    if len(restaurant) == 0:
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+
+    elif 'Error' in str(restaurant[0][0]):
+        return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+    else:
+
+        r = restaurant[0]
+
+        entries.append({"restaurant_id": resto_id,
+                        "restaurant_name": r[0],
+                        "delivery_fee": r[1],
+                        "minimum_order": r[2],
+                        "email": r[3],
+                        "tel_number": r[4],
+                        "mobile_number": r[5],
+                        "bldg_number": r[6],
+                        "street": r[7],
+                        "room_number": r[8],
+                        "image_url": r[9],
+                        "is_active": r[10]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries})
