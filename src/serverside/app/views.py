@@ -37,25 +37,9 @@ def get_restaurant(resto_id):
 def update_restaurant(restaurant_id):
     data = json.loads(request.data)
 
-    resto_name = data['resto_name']
-    min_order = data['min_order']
-    delivery_fee = data['delivery_fee']
-    location = data['location']
+    response = update_restaurant_branch(data, restaurant_id)
 
-    if (resto_name == '' or not min_order or not delivery_fee or location == ''):
-
-        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-
-    else:
-
-        restaurant = spcalls.spcall('update_restaurant', (restaurant_id, resto_name, min_order, delivery_fee, location),
-                                    True)
-
-        if 'Error' in str(restaurant[0][0]):
-            return jsonify({"status": "FAILED", "message": restaurant[0][0]})
-
-        else:
-            return jsonify({"status": "OK", "message": restaurant[0][0]})
+    return response
 
 
 @app.route('/api/foodcart/restaurants/deactivate/<resto_id>', methods=['PUT'])

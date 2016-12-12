@@ -16,8 +16,13 @@ def check_restaurant_branch(bldg_number, street, room_number, restoID):
     return check_response[0][0]
 
 
+def get_restaurant_id(resto_branch_id):
+    response = spcalls.spcall('get_restaurant_id', (resto_branch_id,))
+
+    return response[0][0]
+
+
 def store_restaurant(data):
-    print
     resto_name = data['resto_name']
     min_order = data['min_order']
     delivery_fee = data['delivery_fee']
@@ -113,19 +118,65 @@ def show_all_restaurants():
     elif len(restaurant) != 0:
         for r in restaurant:
             entries.append({"restaurant_id": r[0],
-                    "restaurant_name": r[1],
-                    "delivery_fee": r[2],
-                    "minimum_order": r[3],
-                    "email": r[4],
-                    "tel_number": r[5],
-                    "mobile_number": r[6],
-                    "bldg_number": r[7],
-                    "street": r[8],
-                    "room_number": r[9],
-                    "image_url": r[10],
-                    "is_active": r[11]})
+                            "restaurant_name": r[1],
+                            "delivery_fee": r[2],
+                            "minimum_order": r[3],
+                            "email": r[4],
+                            "tel_number": r[5],
+                            "mobile_number": r[6],
+                            "bldg_number": r[7],
+                            "street": r[8],
+                            "room_number": r[9],
+                            "image_url": r[10],
+                            "is_active": r[11]})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
     else:
         return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+
+
+def update_restaurant_branch(data, resto_branch_id):
+    resto_name = data['resto_name']
+    min_order = data['min_order']
+    delivery_fee = data['delivery_fee']
+    image_url = data['image_url']
+    email = data['email']
+    tel_number = data['tel_number']
+    mobile_number = data['mobile_number']
+    bldg_number = data['bldg_number']
+    street = data['street']
+    room_number = data['room_number']
+
+    if (resto_name == '' or image_url == '' or email == '' or tel_number == '' or mobile_number == '' or street == ''):
+
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+
+    else:
+
+        restaurant_branch = spcalls.spcall('update_restaurant_branch', (resto_branch_id, delivery_fee), True)
+        contact = spcalls.spcall('update_resto_branch_contact', (resto_branch_id, email, tel_number, mobile_number),
+                                 True)
+        resto_id = get_restaurant_id(resto_branch_id)
+
+        if 'Error' in str(restaurant_branch[0][0]):
+            return jsonify({"status": "FAILED", "message": restaurant_branch[0][0]})
+
+        elif 'Error' in str(contact[0][0]):
+            return jsonify({"status": "FAILED", "message": contact[0][0]})
+        else:
+
+            restaurant = spcalls.spcall('update_restaurant', (resto_id, min_order), True)
+            address = spcalls.spcall('update_resto_branch_address', (resto_branch_id, bldg_number, street, room_number),
+                                     True)
+
+            if 'Error' in str(restaurant[0][0]):
+                return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+            elif 'Error' in str(address[0][0]):
+                return jsonify({"status": "FAILED", "message": address[0][0]})
+
+            else:
+                return jsonify({"status": "OK", "message": "OK"})
+
+            return jsonify({"status": "OK", "message": "OK"})
