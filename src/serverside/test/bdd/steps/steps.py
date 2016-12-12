@@ -56,21 +56,21 @@ def given_the_restaurant_with_an_id_group1(step, resto_id):
 
 @step(u'When  the view button in restaurant feature is clicked')
 def when_the_view_button_in_restaurant_feature_is_clicked(step):
-    world.response = world.app.get('/api/foodcart/restaurants/{}'.format(world.resto_id))    
+    world.response = world.app.get('/api/foodcart/restaurants/{}'.format(world.resto_id))
 
 
 """ Update Restaurant """
 
-@step(u'And the old details of the restuarant')
+@step(u'And   the old details of the restuarant')
 def and_the_old_details_of_the_restuarant(step):
     world.restaurant_oldInfo = step.hashes[0]
 
-@step(u'And the new details of retaurant')
+@step(u'And   the new details of retaurant')
 def and_the_new_details_of_retaurant(step):
     world.restaurant_updatedInfo = step.hashes[0]
 
-@step(u'When  the update button is clicked')
-def when_the_update_button_is_clicked(step):
+@step(u'When  the update button of restaurant is clicked')
+def when_the_update_button_of_restaurant_is_clicked(step):
     world.response = world.app.put('/api/foodcart/restaurants/1', data=json.dumps(world.restaurant_updatedInfo))
 
 
@@ -130,17 +130,17 @@ def when_the_view_button_is_clicked(step):
 
 """ Update Food """
 
-@step(u'And the old details of the food')
-def and_the_old_details_of_the_food(step):
-    world.food_oldInfo = step.hashes[0]
-
-@step(u'And the new details of food')
-def and_the_new_details_of_food(step):
-    world.food_updatedInfo = step.hashes[0]
-
-@step(u'When  the update button is clicked')
-def when_the_update_button_is_clicked(step):
-    world.response = world.app.put('/api/foodcart/foods/1', data=json.dumps(world.food_updatedInfo))
+# @step(u'And the old details of the food')
+# def and_the_old_details_of_the_food(step):
+#     world.food_oldInfo = step.hashes[0]
+#
+# @step(u'And the new details of food')
+# def and_the_new_details_of_food(step):
+#     world.food_updatedInfo = step.hashes[0]
+#
+# @step(u'When  the update button is clicked')
+# def when_the_update_button_is_clicked(step):
+#     world.response = world.app.put('/api/foodcart/foods/1', data=json.dumps(world.food_updatedInfo))
 
 
 """ Deactivate Food """

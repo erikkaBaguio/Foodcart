@@ -34,14 +34,14 @@ Scenario: View restaurant's information
 Scenario: Update restaurant
   Given the restaurant with an id '1'
   And   the old details of the restuarant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
   And   the new details of retaurant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 20           | 2         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 20        | 5            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
-  When  the update button is clicked
+  When  the update button of restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
@@ -132,14 +132,14 @@ Scenario: View Specific Restaurant - id does not exist
 Scenario: Update restaurant - resto name field is empty
   Given the restaurant with an id '1'
   And   the old details of the restuarant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
   And   the new details of retaurant
         | resto_name | min_order | delivery_fee | image_url    | email              | tel_number | mobile_number | bldg_number | street                  | room_number |
         |            | 200       | 10           | frapella.jpg | frapella@gmail.com | 283-29-34  | 09123456789   |             | Pedro Permites Rd       |             |
 
-  When  the system administrator clicks the add button
+  When  the update button of restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
@@ -147,14 +147,14 @@ Scenario: Update restaurant - resto name field is empty
 Scenario: Update restaurant - street field is empty
   Given the restaurant with an id '1'
   And   the old details of the restuarant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
   And   the new details of retaurant
-        | resto_name | min_order | delivery_fee | image_url    | email              | tel_number | mobile_number | bldg_number | street                  | room_number |
-        | Frappella  | 200       | 10           | frapella.jpg | frapella@gmail.com | 283-29-34  | 09123456789   |             |                         |             |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |                        |             |
 
-  When  the system administrator clicks the add button
+  When  the update button of restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
@@ -162,14 +162,14 @@ Scenario: Update restaurant - street field is empty
 Scenario: Update restaurant - email field is empty
   Given the restaurant with an id '1'
   And   the old details of the restuarant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
   And   the new details of retaurant
-        | resto_name | min_order | delivery_fee | image_url    | email              | tel_number | mobile_number | bldg_number | street                  | room_number |
-        | Frappella  | 200       | 10           | frapella.jpg |                    | 283-29-34  | 09123456789   |             | Pedro Permites Rd       |             |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg|                  |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
-  When  the system administrator clicks the add button
+  When  the update button of restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
@@ -177,13 +177,14 @@ Scenario: Update restaurant - email field is empty
 Scenario: Update restaurant - telephone number field is empty
   Given the restaurant with an id '1'
   And   the old details of the restuarant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
-  And   the new details of retaurant        | resto_name | min_order | delivery_fee | image_url    | email              | tel_number | mobile_number | bldg_number | street                  | room_number |
-        | Frappella  | 200       | 10           | frapella.jpg | frapella@gmail.com |            | 09123456789   |             | Pedro Permites Rd       |             |
+  And   the new details of retaurant
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |            | 09123456789   |             |Quezon Avenue Extension |             |
 
-  When  the system administrator clicks the add button
+  When  the update button of restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
@@ -191,14 +192,14 @@ Scenario: Update restaurant - telephone number field is empty
 Scenario: Update restaurant - mobile number field is empty
   Given the restaurant with an id '1'
   And   the old details of the restuarant
-        | resto_name                  | delivery_fee | min_order | email            | tel_number | mobile_number | bldg_number | street                 | room_number | image_url  | is_active |
-        | Flamoo Flame Grilled Burgers| 2            | 5         | flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             | flamoo.jpg | t         |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 | 09123456789   |             |Quezon Avenue Extension |             |
 
   And   the new details of retaurant
-        | resto_name | min_order | delivery_fee | image_url    | email              | tel_number | mobile_number | bldg_number | street                  | room_number |
-        | Frappella  | 200       | 10           | frapella.jpg | frapella@gmail.com | 283-29-34  |               |             | Pedro Permites Rd       |             |
+        | resto_name                  | min_order | delivery_fee | image_url | email            | tel_number | mobile_number | bldg_number | street                 | room_number |
+        | Flamoo Flame Grilled Burgers| 5         | 2            | flamoo.jpg| flamoo@gmail.com |  283-29-34 |               |             |Quezon Avenue Extension |             |
 
-  When  the system administrator clicks the add button
+  When  the update button of restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
