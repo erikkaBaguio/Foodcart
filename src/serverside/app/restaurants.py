@@ -101,3 +101,31 @@ def show_rastaurant(resto_id):
                         "is_active": r[10]})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
+
+
+def show_all_restaurants():
+    restaurant = spcalls.spcall('show_all_restaurant_branch', ())
+    entries = []
+
+    if 'Error' in str(restaurant[0][0]):
+        return jsonify({"status": "FAILED", "message": restaurant[0][0]})
+
+    elif len(restaurant) != 0:
+        for r in restaurant:
+            entries.append({"restaurant_id": r[0],
+                    "restaurant_name": r[1],
+                    "delivery_fee": r[2],
+                    "minimum_order": r[3],
+                    "email": r[4],
+                    "tel_number": r[5],
+                    "mobile_number": r[6],
+                    "bldg_number": r[7],
+                    "street": r[8],
+                    "room_number": r[9],
+                    "image_url": r[10],
+                    "is_active": r[11]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    else:
+        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})

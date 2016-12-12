@@ -21,26 +21,9 @@ def add_restaurant():
 
 @app.route('/api/foodcart/restaurants/', methods=['GET'])
 def get_restaurants():
-    restaurant = spcalls.spcall('show_all_restaurant', ())
-    entries = []
+    response = show_all_restaurants()
 
-    if 'Error' in str(restaurant[0][0]):
-        return jsonify({"status": "FAILED", "message": restaurant[0][0]})
-
-    elif len(restaurant) != 0:
-        for r in restaurant:
-            if r[5] == True:
-                entries.append({"restaurant_id": r[0],
-                                "restaurant_name": r[1],
-                                "minimum_order": r[2],
-                                "delivery_fee": r[3],
-                                "location": r[4],
-                                "is_active": r[5]})
-
-        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
-
-    else:
-        return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+    return response
 
 
 @app.route('/api/foodcart/restaurants/<resto_id>', methods=['GET'])
