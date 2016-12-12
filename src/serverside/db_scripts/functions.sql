@@ -55,3 +55,28 @@ create or replace function update_user_contact(par_id int, in par_email varchar,
 		end;
 	$$
 		language 'plpgsql';
+
+
+--[PUT] Update User Address
+--select update_user_address(2, '5','Streetmark', '4A')
+create or replace function update_user_address(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum varchar)
+	 returns text as
+	$$
+
+		declare
+			local_response text;
+
+		begin
+			Update User_address
+			set bldg_number = par_bldgNum,
+				street = par_street,
+				room_number = par_roomNum
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
+
