@@ -218,3 +218,22 @@ create or replace function show_all_restaurant_branch(out bigint, out varchar, o
 			inner join Resto_images on Restaurant_branch.resto_id = Resto_images.id
 	$$
 	language 'sql';
+
+
+--[PUT] Update resaturant branch
+--select update_restaurant_branch(1,20)
+create or replace function update_restaurant_branch(in par_restoID int, par_deliveryFee float)
+	returns text as
+	$$
+		declare
+			local_response text;
+		begin
+			update Restaurant_branch
+			set delivery_fee = par_deliveryFee
+			where id = par_restoID;
+
+			local_response = 'OK';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
