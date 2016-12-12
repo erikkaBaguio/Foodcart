@@ -46,11 +46,25 @@ def store_new_user():
 
     else:
         user = spcalls.spcall('store_user', (
-            data['fname'], data['mname'], data['lname'], data['user_password'], data['role_id']
-        ), True)
+            data['fname'], data['mname'], data['lname'], data['user_password'], data['role_id']), True)
 
         if 'Error' in str(user[0][0]):
             return jsonify({"status": "error", "message": user[0][0]})
+
+        else:
+            user_id = user[0][0]
+
+            contact = spcalls.spcall('update_user_contact', (user_id, data['email'], data['tel_number'], data['mobile_number']), True)
+            address = spcalls.spcall('update_user_address', (user_id, data['bldg_number'], data['street'], data['room_number']), True)
+
+            if 'Error' in str(contact[0][0]):
+                return jsonify({"status": "FAILED", "message": contact[0][0]})
+
+            elif 'Error' in str(address[0][0]):
+                return jsonify({"status": "FAILED", "message": address[0][0]})
+
+            else:
+                return jsonify({"status": "OK", "message": address[0][0]})
 
         return jsonify({"status": "OK", "message": user[0][0]})
 
