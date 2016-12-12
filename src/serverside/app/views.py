@@ -40,7 +40,9 @@ def store_restaurant():
 def store_new_user():
     data = json.loads(request.data)
 
-    if (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['user_password'] == '' or not data['role_id']):
+    if (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['user_password'] == '' or not data['role_id'] or
+        data['email'] == '' or data['tel_number'] == '' or data['mobile_number'] == '' or data['bldg_number'] == '' or data['street'] == ''
+        or data['room_number'] == ''):
 
         return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 
