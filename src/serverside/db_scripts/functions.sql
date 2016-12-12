@@ -237,3 +237,15 @@ create or replace function update_restaurant_branch(in par_restoID int, par_deli
 		end;
 	$$
 	language 'plpgsql';
+
+
+--[GET] Retrieve restaurant id
+--select get_restaurant_id(1);
+create or replace function get_restaurant_id(in par_resto_branch_id int)
+	returns int as
+	$$
+		select resto_id
+		from Restaurant_branch
+		where id = par_resto_branch_id;
+	$$
+	language 'sql';
