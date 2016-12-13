@@ -1,57 +1,11 @@
-function updateRestaurant(restaurant_id){
-	var resto_name = $('#update_resto_name').val();
-	var min_order = $('#update_min_order').val();
-	var delivery_fee = $('#update_delivery_fee').val();
-	var location = $('#update_location').val();
-	var restaurant_id = restaurant_id;
+var auth_user = "";
+var user_role;
+var timer = 0;
 
-	var data = JSON.stringify({ 'restaurant_id': restaurant_id,
-									'resto_name' : resto_name,
-									'min_order' : min_order,
-									'delivery_fee' : delivery_fee,
-									'location' : location	
-								});
-	
-	$.ajax({
-		type:"PUT",
-    	url: "http://localhost:5000/api/foodcart/restaurants/" + restaurant_id,
-    	contentType:"application/json; charset=utf-8",
-		data:data,
-		dataType:"json",
+$(document).ready(function(){
 
-		success: function(results){
-				if (results.status == 'OK'){
 
-					$('#update-alert').html(
-						'<div class="alert alert-success"><strong>Success ' +
-						 '!</strong>' + results.message +'</div>');
-
-					$("#update-alert").fadeTo(2000, 500).slideUp(500);
-
-					clearRestaurantForm();
-
-				}
-
-				if(results.status == 'FAILED'){
-
-					$('#update-alert').html(
-						'<div class="alert alert-danger"><strong>Failed ' +
-						 '!</strong>' + results.message +'</div>');
-
-					$("#update-alert").fadeTo(2000, 500).slideUp(500);
-
-				}
-			},
-			error: function(e){
-				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
-			},
-			beforeSend: function (xhrObj){
-
-	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
-
-	        }
-	    });
-}
+});
 
 function deactivateRestaurant(restaurant_id){
 	$.ajax({

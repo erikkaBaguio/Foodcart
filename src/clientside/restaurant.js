@@ -204,3 +204,67 @@ function viewAllRestaurant(){
 
 	});
 }
+
+
+function updateRestaurant(restaurant_branch_id){
+	var resto_name = $('#update_resto_name').val();
+	var min_order = $('#update_min_order').val();
+	var delivery_fee = $('#update_delivery_fee').val();
+    var email = $('#update_email').val();
+    var tel_number = $('#update_tel_number').val();
+    var mobile_number = $('#update_mobile_number').val();
+    var bldg_number = $('#update_bldg_number').val();
+    var street = $('#update_street').val();
+    var room_number = $('#update_room_number').val();
+
+	var data = JSON.stringify({ 'resto_name' : resto_name,
+								'min_order' : min_order,
+								'delivery_fee' : delivery_fee,
+						        'email' : email,
+						        'tel_number' : tel_number,
+						        'mobile_number' : mobile_number,
+						        'bldg_number' : bldg_number,
+						        'street' : street,
+						        'room_number' : room_number
+							});
+
+	$.ajax({
+		type:"PUT",
+    	url: "http://localhost:5000/api/foodcart/restaurants/" + restaurant_branch_id,
+    	contentType:"application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-resto-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-resto-alert").fadeTo(2000, 500).slideUp(500);
+
+					clearRestaurantForm();
+
+				}
+
+				if(results.status == 'FAILED'){
+
+					$('#update-resto-alert').html(
+						'<div class="alert alert-danger"><strong>Failed ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-resto-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
