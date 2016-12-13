@@ -329,3 +329,24 @@ create or replace function store_food(par_food_name varchar, par_description tex
 		end;
 	$$
 	language 'plpgsql';
+
+
+--[PUT] Update food image
+--select update_food_image(1, 'sample.jpg')
+create or replace function update_food_image(par_id int, in par_url varchar)
+	returns text as
+	$$
+		declare
+			local_response text;
+
+		begin
+			Update Food_images
+			set url = par_url
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
