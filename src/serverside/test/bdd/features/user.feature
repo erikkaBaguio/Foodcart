@@ -185,3 +185,7 @@ As a system administrator, I want to update users' details.
 
 
 
+    Scenario: View Specific User - id does not exist
+            Given the user with an id '100'
+            When  view button is clicked
+            Then  it should have a '200' response
