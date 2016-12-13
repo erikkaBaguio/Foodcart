@@ -132,9 +132,9 @@ def search_user():
 
 @app.route('/api/foodcart/users/deactivate/<id>/', methods = ['PUT'])
 def deactivate_user(id):
-    restaurant = spcalls.spcall('deactivate_user', (id,), True)
+    user = spcalls.spcall('deactivate_user', (id,), True)
 
-    return jsonify({"status": "OK", "message": restaurant[0][0]})
+    return jsonify({"status": "OK", "message": user[0][0]})
 
 
 @app.route('/api/foodcart/restaurants/', methods = ['GET'])
