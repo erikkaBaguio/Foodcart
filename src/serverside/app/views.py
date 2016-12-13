@@ -65,6 +65,27 @@ def show_user_id(id):
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
 
+
+@app.route('/api/foodcart/users/', methods=['GET'])
+def show_user():
+    user = spcalls.spcall('show_user', ())
+    entries = []
+
+    if 'Error' in str(user[0][0]):
+        return jsonify({"status": "FAILED", "message": user[0][0]})
+
+    elif len(user) != 0:
+        for r in user:
+            entries.append({'id': str(r[0]), 'fname': str(r[1]), 'mname': str(r[2]), 'lname': str(r[3]), 'earned_points': str(r[5]),
+                        'email': str(r[9]), 'tel_number': str(r[10]), 'mobile_number': str(r[11]), 'bldg_number': str(r[12]),
+                        'street': str(r[13]), 'room_number': str(r[14]), 'role_id': str(r[8])})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    else:
+        return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
+
+
 @app.route('/api/foodcart/users/update/', methods=['PUT'])
 def update():
     jsn = json.loads(request.data)
