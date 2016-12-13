@@ -87,6 +87,29 @@ create or replace function show_user(out bigint, out varchar, out varchar, out v
     language 'sql';
 
 
+--[PUT] Update User
+--select update_user(3, 'Kristel', 'Ahlaine', 'Gem', 'asdasd');
+create or replace function update_user(in par_ID bigint, par_fname varchar, par_mname varchar, par_lname varchar, par_password varchar)
+returns text as
+  $$
+    declare
+      local_response text;
+    begin
+      update Users
+      set
+        fname = par_fname,
+        mname = par_mname,
+        lname = par_lname,
+        user_password = par_password
+      where id = par_ID;
+
+      local_response = 'OK';
+      return local_response;
+
+    end;
+  $$
+    language 'plpgsql';
+
 
 --[PUT] Update User Contact
 --select update_user_contact(2, 'kristel@gmail.com', '225-1116', '0912345789');
