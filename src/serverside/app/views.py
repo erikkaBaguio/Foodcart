@@ -122,8 +122,9 @@ def search_user():
     if users:
         for r in users:
             if r[7] == True:
-                entries.append({"fname": r[0], "mname": r[1], "lname": r[2], "address": r[3],
-                                "email": r[4], "mobile_number": r[5], "role_id": r[6], "earned_points": r[7]})
+                entries.append({"fname": r[0], "mname": r[1], "lname": r[2], "earned_points": r[3],
+                                "role_id": r[4], "email": r[5], "tel_number": r[6], "mobile_number": r[7], "bldg_number": r[8],
+                                "street": r[9], "room_number": r[10]})
 
         return jsonify({'status': 'OK', 'message': 'OK', 'entries': entries})
 
