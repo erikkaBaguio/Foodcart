@@ -87,30 +87,22 @@ def show_user():
 
 
 @app.route('/api/foodcart/users/update/', methods=['PUT'])
-def update():
+def update_user():
     jsn = json.loads(request.data)
 
-    id_personnel = jsn.get('id', '')
+    id = jsn.get('id', '')
     fname = jsn.get('fname', '')
     mname = jsn.get('mname', '')
     lname = jsn.get('lname', '')
-    address = jsn.get('address', '')
-    email = jsn.get('email', '')
-    mobile_number = jsn.get('mobile_number', '')
     user_password = jsn.get('user_password', '')
-    role_id = jsn.get('role_id', '')
     earned_points = jsn.get('earned_points', '')
 
     spcalls.spcall('update_user', (
-        id_personnel,
+        id,
         fname,
         mname,
         lname,
-        address,
-        email,
-        mobile_number,
         user_password,
-        role_id,
         earned_points
     ), True)
 
