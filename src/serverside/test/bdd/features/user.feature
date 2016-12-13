@@ -16,16 +16,17 @@ As a system administrator, I want to update users' details.
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
 
-#    Scenario: View user's information
-#            Given the user with an id '3'
-#            When  view button is clicked
-#            Then  it should have a '200' response
-#            And   it should have a field 'status' containing 'OK'
-#            And   it should have a field 'message' containing 'OK'
-#            And   the following details will be returned:
-#            | id | fname   | mname | lname | address |     email     | mobile_number | role_id | earned_points |
-#			| 3  | ahlaine | gem   |  pabs |  iligan | gem@gmail.com |     0123      |    1    |       0       |
-#
+    Scenario: View user's information
+            Given the user with an id '4'
+            When  view button is clicked
+            Then  it should have a '200' response
+            And   it should have a field 'status' containing 'OK'
+            And   it should have a field 'message' containing 'OK'
+            And   the following details will be returned:
+            | id | fname   | mname | lname | earned_points |      email      | tel_number | mobile_number | bldg_number |    street   | room_number | role_id |
+			| 4  |  James  |   M   | Reid  |       0       | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
+
+
 #    Scenario: Update user
 #             Given the details of user
 #             | id | fname   | mname |    lname   |  address |            email            | mobile_number | user_password | role_id | earned_points |
@@ -184,7 +185,3 @@ As a system administrator, I want to update users' details.
 
 
 
-#       Scenario: View Specific User - id does not exist
-#            Given the restaurant with an id '1'
-#            When  view button is clicked
-#            Then  it should have a '200' response
