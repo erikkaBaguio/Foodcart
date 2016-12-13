@@ -113,6 +113,7 @@ returns text as
 
 
 --Deactivate User
+--select deactivate_user(1);
 create or replace function deactivate_user(in par_id bigint) returns text as
   $$
     declare
@@ -125,6 +126,37 @@ create or replace function deactivate_user(in par_id bigint) returns text as
     end;
   $$
     language 'plpgsql';
+
+
+--Search User
+--select search_user('James');
+create or replace function search_user(in par_search text, out varchar, out varchar, out varchar, out float, out int,
+                                      out varchar, out varchar, out varchar, out varchar, out varchar, out varchar)
+  returns setof record as
+  $$
+    select Users.fname,
+      Users.mname,
+      Users.lname,
+      Users.earned_points,
+      Users.role_id,
+      User_contacts.email,
+      User_contacts.tel_number,
+      User_contacts.mobile_number,
+      User_address.bldg_number,
+      User_address.street,
+      User_address.room_number
+    from Users
+    inner join User_contacts on (
+      Users.contact_id = User_contacts.id
+    )
+    inner join User_address on (
+      Users.address_id = User_address.id
+    )
+    where fname like '%' || par_search || '%'
+        or mname like '%' || par_search || '%'
+        or lname like '%' || par_search || '%';
+  $$
+    language 'sql';
 
 
 --[PUT] Update User Contact
