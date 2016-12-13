@@ -39,17 +39,17 @@ As a system administrator, I want to update users' details.
              And   it should have a field 'status' containing 'OK'
 
 
-#    Scenario:  Search user
-#            Given the entered keyword
-#            | search |
-#            |   kur  |
-#            When  the search button is clicked
-#            Then  it should have a '200' response
-#            And   it should have a field 'status' containing 'OK'
-#            And   it should have a field 'message' containing 'OK'
-#            And   the following details will be returned
-#            | fname   |  mname  |    lname   |  address |       email        | mobile_number | role_id | earned_points |
-#			|   kur   |   dap   |     ya     |  tibanga | kurdapya@gmail.com |  09090090909  |    1    |       0       |
+    Scenario:  Search user
+            Given the entered keyword
+            | search |
+            | James  |
+            When  the search button is clicked
+            Then  it should have a '200' response
+            And   it should have a field 'status' containing 'OK'
+            And   it should have a field 'message' containing 'OK'
+            And   the following details will be returned
+            |  fname  |  mname  | lname  | earned_points | role_id |      email      | tel_number | mobile_number | bldg_number |    street   | room_number |
+			|  James  |    M    |  Reid  |       0       |    1    | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |
 
 
     Scenario: Deactivate user
