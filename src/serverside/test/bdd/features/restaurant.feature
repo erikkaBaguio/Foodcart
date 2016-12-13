@@ -46,6 +46,13 @@ Scenario: Update restaurant
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
 
+Scenario: Deactivate restaurant
+  Given the restaurant id '1' is in the database
+  When  the deactivate button for restaurant is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'SUCCESS'
+
 
 
 ###############
