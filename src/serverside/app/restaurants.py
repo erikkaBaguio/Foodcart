@@ -180,3 +180,9 @@ def update_restaurant_branch(data, resto_branch_id):
                 return jsonify({"status": "OK", "message": "OK"})
 
             return jsonify({"status": "OK", "message": "OK"})
+
+
+def delete_restaurant(resto_id):
+    restaurant = spcalls.spcall('delete_restaurant_branch', (resto_id,), True)
+
+    return jsonify({"status": "OK", "message": restaurant[0][0]})

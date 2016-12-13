@@ -44,9 +44,9 @@ def update_restaurant(restaurant_id):
 
 @app.route('/api/foodcart/restaurants/deactivate/<resto_id>', methods=['PUT'])
 def deactivate_restaurant(resto_id):
-    restaurant = spcalls.spcall('delete_restaurant', (resto_id,), True)
+    response = delete_restaurant(resto_id)
 
-    return jsonify({"status": "OK", "message": restaurant[0][0]})
+    return response
 
 
 @app.route('/api/foodcart/restaurants/search/', methods=['POST'])
