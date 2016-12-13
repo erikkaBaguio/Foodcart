@@ -34,6 +34,30 @@ create or replace function store_user(in par_fname varchar, in par_mname varchar
     language 'plpgsql';
 
 
+--[POST] Log In
+--select user_login('james@gmail.com', 'asdasd');
+create or replace function user_login(in par_email varchar, in par_password varchar) returns text as
+  $$
+    declare
+      local_response text;
+    begin
+      select into local_response User_contacts.email
+      from Users, User_contacts
+      where User_contacts.email = par_email
+      and Users.user_password = par_password;
+
+      if local_response isnull then
+        local_response = 'FAILED';
+      else
+        local_response = 'OK';
+      end if;
+
+      return local_response;
+    end;
+  $$
+  language 'plpgsql';
+
+
 --[GET] View user by ID
 --select * from show_user_id(4);
 create or replace function show_user_id(in par_ID bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
