@@ -10,32 +10,7 @@ from app import app
 spcalls = SPcalls()
 
 
-@app.route('/api/foodcart/restaurants/', methods=['POST'])
-def store_restaurant():
-    data = json.loads(request.data)
-
-    resto_name = data['resto_name']
-    min_order = data['min_order']
-    delivery_fee = data['delivery_fee']
-    location = data['location']
-
-    if (resto_name == '' or not min_order or not delivery_fee or location == ''):
-
-        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-
-    else:
-
-        restaurant = spcalls.spcall('store_restaurant', (resto_name, min_order, delivery_fee, location), True)
-
-        if 'Error' in str(restaurant[0][0]):
-            return jsonify({"status": "FAILED", "message": restaurant[0][0]})
-
-        else:
-            return jsonify({"status": "OK", "message": restaurant[0][0]})
-
-
 # Users
-
 @app.route('/api/foodcart/users/signup/', methods=['POST'])
 def store_new_user():
     data = json.loads(request.data)
@@ -71,43 +46,9 @@ def store_new_user():
         return jsonify({"status": "OK", "message": user[0][0]})
 
 
-@app.route('/api/foodcart/users/login/', methods=['POST'])
-def user_login():
-    data = json.loads(request.data)
-
-    login = spcalls.spcall("loginauth", (data['email_add'], data['password']))
-
-    if login[0][0] == 'ERROR':
-        status = False
-        return jsonify({'status': status, 'message': 'error'})
-    else:
-        status = True
-        return jsonify({'status': status, 'message': 'Successfully Logged In'})
-
-
-@app.route('/api/foodcart/users/', methods=['GET'])
-def get_users():
-    user = spcalls.spcall('get_all_user', ())
-    entries = []
-
-    if 'Error' in str(user[0][0]):
-        return jsonify({"status": "FAILED", "message": user[0][0]})
-
-    elif len(user) != 0:
-        for r in user:
-            entries.append(
-                {'id': str(r[0]), 'fname': str(r[1]), 'mname': str(r[2]), 'lname': str(r[3]), 'address': str(r[4]),
-                 'email': str(r[5]), 'mobile_number': str(r[6]), 'role_id': str(r[8]), 'earned_points': str(r[9])})
-
-        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
-
-    else:
-        return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
-
-
 @app.route('/api/foodcart/users/<int:id>/', methods=['GET'])
-def get_user(id):
-    user = spcalls.spcall('show_user', (id,))
+def show_user_id(id):
+    user = spcalls.spcall('show_user_id', (id,))
     entries = []
 
     if len(user) == 0:
@@ -118,11 +59,11 @@ def get_user(id):
 
     else:
         r = user[0]
-        entries.append({'id': str(id), 'fname': str(r[0]), 'mname': str(r[1]), 'lname': str(r[2]), 'address': str(r[3]),
-             'email': str(r[4]), 'mobile_number': str(r[5]), 'role_id': str(r[7]), 'earned_points': str(r[8])})
+        entries.append({'id': str(id), 'fname': str(r[0]), 'mname': str(r[1]), 'lname': str(r[2]), 'earned_points': str(r[4]),
+                        'email': str(r[8]), 'tel_number': str(r[9]), 'mobile_number': str(r[10]), 'bldg_number': str(r[11]),
+                        'street': str(r[12]), 'room_number': str(r[13]), 'role_id': str(r[7])})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
-
 
 @app.route('/api/foodcart/users/update/', methods=['PUT'])
 def update():
