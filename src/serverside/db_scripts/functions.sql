@@ -89,7 +89,7 @@ create or replace function show_user(out bigint, out varchar, out varchar, out v
 
 --[PUT] Update User
 --select update_user(3, 'Kristel', 'Ahlaine', 'Gem', 'asdasd');
-create or replace function update_user(in par_ID bigint, par_fname varchar, par_mname varchar, par_lname varchar, par_password varchar)
+create or replace function update_user(in par_ID bigint, par_fname varchar, par_mname varchar, par_lname varchar, par_password varchar, par_points float)
 returns text as
   $$
     declare
@@ -100,7 +100,8 @@ returns text as
         fname = par_fname,
         mname = par_mname,
         lname = par_lname,
-        user_password = par_password
+        user_password = par_password,
+        earned_points = par_points
       where id = par_ID;
 
       local_response = 'OK';
