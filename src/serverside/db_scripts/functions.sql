@@ -268,3 +268,22 @@ create or replace function update_restaurant(in par_restoID int, par_minOrder fl
 		end;
 	$$
 	language 'plpgsql';
+
+
+--[DELETE] Deactivates restaurant_branch
+--select delete_restaurant_branch(1);
+create or replace function delete_restaurant_branch(in par_restoID bigint)
+	returns text as
+	$$
+		declare
+			local_response text;
+		begin
+			update Restaurant_branch
+			set is_active = False
+			where id = par_restoID;
+
+			local_response = 'SUCCESS';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
