@@ -27,18 +27,18 @@ As a system administrator, I want to update users' details.
 			| 4  |  James  |   M   | Reid  |       0       | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 
 
-#    Scenario: Update user
-#             Given the details of user
-#             | id | fname   | mname |    lname   |  address |            email            | mobile_number | user_password | role_id | earned_points |
-#             | 12 | Kristel |   D   | Pabillaran | Dalipuga | kristelahlainegem@gmail.com |  09123456789  |      asd      |    1    |       0       |
-#             And the new details of user
-#             | id | fname   | mname |    lname   |  address |            email            | mobile_number | user_password | role_id | earned_points |
-#             | 12 | Kristel |   P   | Reid | Dalipuga | kristelahlainegem@gmail.com |  09123456789  |      asd      |    1    |       0       |
-#
-#             When  the update button is clicked
-#             Then  it should have a '200' response
-#             And   it should have a field 'status' containing 'OK'
-#
+    Scenario: Update user
+             Given the details of user
+             | id | fname   |  mname  | lname | user_password | earned_points | contact_id | address_id | role_id | is_active |
+             | 3  | Kristel | Ahlaine |  Gem  |    asdasd     |      100      |      3     |      3     |    1    |    TRUE   |
+             And the new details of user
+             | id | fname   |  mname  |    lname     | user_password | earned_points |
+             | 3  | Kristel | Ahlaine |  Pabillaran  |    asdasd     |      100      |
+		     When  the update button is clicked
+             Then  it should have a '200' response
+             And   it should have a field 'status' containing 'OK'
+
+
 #    Scenario:  Search user
 #            Given the entered keyword
 #            | search |
