@@ -287,3 +287,45 @@ create or replace function delete_restaurant_branch(in par_restoID bigint)
 		end;
 	$$
 	language 'plpgsql';
+
+
+------------
+--  FOOD  --
+------------
+
+--[POST] Add food
+--select store_food('test food', 'test description', 1,1);
+create or replace function store_food(par_food_name varchar, par_description text, par_unit_cost float, par_resto_branch_ID int)
+	returns bigint as
+	$$
+		declare
+			local_food_name	varchar;
+			local_response text;
+
+		begin
+
+			select into local_food_name food_name
+			from Foods
+			where food_name = par_food_name;
+
+			if local_food_name isnull
+			then
+				insert into Foods(food_name, description, unit_cost, resto_id)
+					values (par_food_name, par_description, par_unit_cost, par_resto_branch_ID);
+
+				select into local_response currval(pg_get_serial_sequence('Foods','id'));
+
+				update Foods
+				set image_id = local_response
+				where id = local_response;
+
+			else
+				local_response = 0;
+
+			end if;
+
+			return local_response;
+
+		end;
+	$$
+	language 'plpgsql';
