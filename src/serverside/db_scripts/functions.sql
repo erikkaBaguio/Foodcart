@@ -65,6 +65,29 @@ create or replace function show_user_id(in par_ID bigint, out varchar, out varch
     language 'sql';
 
 
+--[GET] View all users
+--select * from show_user();
+create or replace function show_user(out bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
+  $$
+    select Users.*,
+      User_contacts.email,
+      User_contacts.tel_number,
+      User_contacts.mobile_number,
+      User_address.bldg_number,
+      User_address.street,
+      User_address.room_number
+    from Users
+    inner join User_contacts on (
+      Users.contact_id = User_contacts.id
+    )
+    inner join User_address on (
+      Users.address_id = User_address.id
+    );
+  $$
+    language 'sql';
+
+
+
 --[PUT] Update User Contact
 --select update_user_contact(2, 'kristel@gmail.com', '225-1116', '0912345789');
 create or replace function update_user_contact(par_id int, in par_email varchar, in par_telNum varchar, in par_mobNum varchar)
