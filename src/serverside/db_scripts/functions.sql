@@ -59,6 +59,37 @@ create or replace function user_login(in par_email varchar, in par_password varc
 
 
 --[GET] Show user details using email
+--select * from show_user_email('james@gmail.com	');
+create or replace function show_user_email(in par_email varchar, out bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
+  $$
+    select
+      Users.id,
+      Users.fname,
+      Users.mname,
+      Users.lname,
+      Users.user_password,
+      Users.earned_points,
+      Users.contact_id,
+      Users.address_id,
+      Users.role_id,
+      Users.is_active,
+      User_contacts.email,
+      User_contacts.tel_number,
+      User_contacts.mobile_number,
+      User_address.bldg_number,
+      User_address.street,
+      User_address.room_number
+      from Users
+    inner join User_contacts on (
+      Users.contact_id = User_contacts.id
+    )
+    inner join User_address on (
+      Users.address_id = User_address.id
+    )
+    where User_contacts.email = par_email;
+  $$
+    language 'sql';
+
 
 
 
