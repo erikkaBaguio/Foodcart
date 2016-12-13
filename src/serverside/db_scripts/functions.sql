@@ -58,6 +58,10 @@ create or replace function user_login(in par_email varchar, in par_password varc
   language 'plpgsql';
 
 
+--[GET] Show user details using email
+
+
+
 --[GET] View user by ID
 --select * from show_user_id(4);
 create or replace function show_user_id(in par_ID bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
