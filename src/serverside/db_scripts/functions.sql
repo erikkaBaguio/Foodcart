@@ -112,6 +112,21 @@ returns text as
     language 'plpgsql';
 
 
+--Deactivate User
+create or replace function deactivate_user(in par_id bigint) returns text as
+  $$
+    declare
+      loc_res text;
+    begin
+      update Users set is_active = False where id = par_id;
+
+      loc_res = 'SUCCESS';
+      return loc_res;
+    end;
+  $$
+    language 'plpgsql';
+
+
 --[PUT] Update User Contact
 --select update_user_contact(2, 'kristel@gmail.com', '225-1116', '0912345789');
 create or replace function update_user_contact(par_id int, in par_email varchar, in par_telNum varchar, in par_mobNum varchar)
