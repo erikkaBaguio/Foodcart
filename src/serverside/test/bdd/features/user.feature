@@ -10,7 +10,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Adding user
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password | user_email      | user_tel_number | user_mobile_number | user_bldg_number |   user_street    | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -23,7 +23,7 @@ As a system administrator, I want to update users' details.
             And   it should have a field 'status' containing 'OK'
             And   it should have a field 'message' containing 'OK'
             And   the following details will be returned:
-            | id | fname   | mname | lname | earned_points |      email      | tel_number | mobile_number | bldg_number |    street   | room_number | role_id |
+            | id | fname   | mname | lname | earned_points |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			| 4  |  James  |   M   | Reid  |       0       | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 
 
@@ -48,7 +48,7 @@ As a system administrator, I want to update users' details.
             And   it should have a field 'status' containing 'OK'
             And   it should have a field 'message' containing 'OK'
             And   the following details will be returned
-            |  fname  |  mname  | lname  | earned_points | role_id |      email      | tel_number | mobile_number | bldg_number |    street   | room_number |
+            |  fname  |  mname  | lname  | earned_points | role_id |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number |
 			|  James  |    M    |  Reid  |       0       |    1    | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |
 
 
@@ -66,7 +66,7 @@ As a system administrator, I want to update users' details.
 ################
 	Scenario: Add existing user
             Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -76,7 +76,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - fname field empty
            	Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|         |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -86,7 +86,7 @@ As a system administrator, I want to update users' details.
 
     Scenario: Add user - mname field empty
             Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|  James  |       |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -96,7 +96,7 @@ As a system administrator, I want to update users' details.
 
     Scenario: Add user - lname field empty
             Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |            |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -106,7 +106,7 @@ As a system administrator, I want to update users' details.
 
     Scenario: Add user - user_password field empty
             Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |               | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -116,7 +116,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - email field empty
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      |                 |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -126,7 +126,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - tel_number field empty
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |            |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -136,7 +136,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - mobile_number field empty
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |               |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -146,7 +146,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - bldg_number field empty
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |             | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -156,7 +156,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - street field empty
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     |             |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -166,7 +166,7 @@ As a system administrator, I want to update users' details.
 
 	Scenario: Add user - room_number field empty
 			Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |             |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
@@ -177,7 +177,7 @@ As a system administrator, I want to update users' details.
 
     Scenario: Add user - role_id field empty
             Given I have the following user details:
-			| fname   | mname |    lname   | user_password |      email      | tel_number | mobile_number | bldg_number |   street    | room_number | role_id |
+			| fname   | mname |    lname   | user_password |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |         |
 			When  the user clicks the send button
 			Then  it should have a '200' response
