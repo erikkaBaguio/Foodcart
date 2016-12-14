@@ -157,7 +157,7 @@ function viewAllUser(){
 										'<td>' + results.entries[i].role_id + '</td>' +
 										'<td>'+'<button onclick="viewUserById('+ results.entries[i].id +'); $(\'#view-user\').show();$(\'#view-all-user\').hide()" class="btn btn-info">View</button>'+'</td>'+
 										// '<td>' + '<button onclick="updateUser('+ results.entries[i].id +'); $(\'#update-user-form\').show(); $(\'#view-all-user\').hide()" class="btn btn-info">Update</button>'+'</td>' +
-										// '<td>'+'<button onclick="deactivateUser('+ results.entries[i].id +'); $(\'#view-user\').show()" class="btn btn-danger">Deactivate</button>'+'</td>'+
+										'<td>'+'<button onclick="deactivateUser('+ results.entries[i].id +'); $(\'#view-user\').show()" class="btn btn-danger">Deactivate</button>'+'</td>'+
 									 '</tr>';
 
 						user_row  = user_row + user
