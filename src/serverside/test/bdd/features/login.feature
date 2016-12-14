@@ -8,7 +8,7 @@ Feature: Login
 
   Scenario: Successful log in
       Given I have the following login details:
-      |      email      | password |
+      |      email_add  | password |
       | james@gmail.com |  asdasd  |
       When I click login button
       Then I get a '200' response
@@ -22,7 +22,7 @@ Feature: Login
 
   Scenario: Empty email field
         Given I have the following login details:
-              |email          |password  |
+              |email_add      |password  |
               |               |asdasd    |
         When I click login button
         Then I get a '200' response
@@ -31,7 +31,7 @@ Feature: Login
 
   Scenario: Empty password field
         Given I have the following login details:
-              |  email          |password  |
+              |  email_add      |password  |
               | james@gmail.com |          |
         When I click login button
         Then I get a '200' response
