@@ -61,6 +61,9 @@ def authentication():
 
     login = spcalls.spcall("user_login", (data['email'], pw_hash.hexdigest()))
 
+    if data['email'] == '' or not password:
+        return jsonify({'status': 'FAILED', 'message': 'Invalid email or password'})
+
     if login[0][0] == 'ERROR':
         status = False
         return jsonify({'status': status, 'message': 'error'})
