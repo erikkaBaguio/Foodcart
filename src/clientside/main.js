@@ -94,6 +94,36 @@ function searchRestaurant(){
 }
 
 
+function deactivateUser(id){
+	$.ajax({
+		type: "PUT",
+		url: "http://localhost:5000/api/foodcart/users/deactivate/" + id + "/",
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#update-alert').html(
+						'<div class="view-user-alert"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#update-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	});
+}
+
+
 
 function searchUser(){
 	var search = $('#user-search').val();
@@ -151,34 +181,4 @@ function searchUser(){
 
 	        }
 	    });
-}
-
-
-function deactivateUser(id){
-	$.ajax({
-		type: "PUT",
-		url: "http://localhost:5000/api/foodcart/users/deactivate/" + id + "/",
-		contentType:"application/json; charset=utf-8",
-		dataType:"json",
-
-		success: function(results){
-				if (results.status == 'OK'){
-
-					$('#update-alert').html(
-						'<div class="view-user-alert"><strong>Success ' +
-						 '!</strong>' + results.message +'</div>');
-
-					$("#update-alert").fadeTo(2000, 500).slideUp(500);
-
-				}
-			},
-			error: function(e){
-				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
-			},
-			beforeSend: function (xhrObj){
-
-	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
-
-	        }
-	});
 }
