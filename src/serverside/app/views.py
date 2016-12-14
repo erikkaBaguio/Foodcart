@@ -5,6 +5,7 @@ from models import DBconn
 import json, flask
 from spcalls import SPcalls
 from restaurants import *
+from foods import *
 from app import app
 
 spcalls = SPcalls()
@@ -78,25 +79,11 @@ def search_restaurant():
 #############
 
 @app.route('/api/foodcart/foods/', methods=['POST'])
-def store_food():
+def add_food():
     data = json.loads(request.data)
+    response = store_food(data)
 
-    food_name = data['food_name']
-    description = data['description']
-    unit_cost = data['unit_cost']
-
-    if (food_name == '' or description == '' or not unit_cost):
-        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-
-    else:
-
-        food = spcalls.spcall('store_food', (food_name, description, unit_cost,), True)
-
-        if 'Error' in str(food[0][0]):
-            return jsonify({"status": "FAILED", "message": food[0][0]})
-
-        else:
-            return jsonify({"status": "OK", "message": food[0][0]})
+    return response
 
 
 @app.route('/api/foodcart/foods/', methods=['GET'])

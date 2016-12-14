@@ -295,12 +295,12 @@ create or replace function delete_restaurant_branch(in par_restoID bigint)
 
 --[POST] Add food
 --select store_food('test food', 'test description', 1,1);
-create or replace function store_food(par_food_name varchar, par_description text, par_unit_cost float, par_resto_branch_ID int)
+create or replace function store_food(par_food_name varchar, par_description text, par_unit_cost float, par_resto_branch_id int)
 	returns bigint as
 	$$
 		declare
 			local_food_name	varchar;
-			local_response text;
+			local_response bigint;
 
 		begin
 
@@ -310,8 +310,8 @@ create or replace function store_food(par_food_name varchar, par_description tex
 
 			if local_food_name isnull
 			then
-				insert into Foods(food_name, description, unit_cost, resto_id)
-					values (par_food_name, par_description, par_unit_cost, par_resto_branch_ID);
+				insert into Foods(food_name, description, unit_cost, resto_branch_id)
+					values (par_food_name, par_description, par_unit_cost, par_resto_branch_id);
 
 				select into local_response currval(pg_get_serial_sequence('Foods','id'));
 

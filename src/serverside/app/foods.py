@@ -8,6 +8,9 @@ from flask import jsonify
 from spcalls import SPcalls
 
 
+spcalls = SPcalls()
+
+
 def store_food(data):
 
     food_name = data['food_name']
@@ -44,5 +47,3 @@ def store_food(data):
 
                 else:
                     return jsonify({"status": "OK", "message": "OK"})
-
-            return jsonify({"status": "OK", "message": food[0][0]})
