@@ -61,8 +61,8 @@ Scenario: Search food
 
 Scenario: Add food - food name already exists
   Given following food details:
-    | food_name	  | description 										| unit_cost  |
-    | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    |
+        | food_name	  | description 										| unit_cost  | image_url     | resto_branch_id |
+        | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    | tacorella.jpg | 1               |
 
   When  add button is clicked
   Then  it should have a '200' response
@@ -71,8 +71,8 @@ Scenario: Add food - food name already exists
 
 Scenario: Add food - food name field is empty
   Given following food details:
-    | food_name	  | description 										| unit_cost  |
-    | 	          | A taste of famous Mexican taco delicacy in a pizza. |     299    |
+        | food_name	  | description 										| unit_cost  | image_url     | resto_branch_id |
+        |             | A taste of famous Mexican taco delicacy in a pizza. |     299    | tacorella.jpg | 1               |
 
   When  add button is clicked
   Then  it should have a '200' response
@@ -81,8 +81,8 @@ Scenario: Add food - food name field is empty
 
 Scenario: Add food - unit cost field is empty
   Given following food details:
-    | food_name	  | description 										| unit_cost  |
-    | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |            |
+        | food_name	  | description 										| unit_cost  | image_url     | resto_branch_id |
+        | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |            | tacorella.jpg | 1               |
 
   When  add button is clicked
   Then  it should have a '200' response
