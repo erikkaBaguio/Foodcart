@@ -79,7 +79,7 @@ create table Users
   mname           VARCHAR(50),
   lname           VARCHAR(50),
   user_password   VARCHAR(50),
-  earned_points   FLOAT,
+  earned_points   FLOAT DEFAULT 0,
   contact_id      INT REFERENCES User_contacts(id),
   address_id      INT REFERENCES User_address(id),
   role_id         INT REFERENCES Roles(id),
