@@ -41,20 +41,26 @@ function signup(){
 	var fname = $('#fname').val();
 	var mname = $('#mname').val();
 	var lname = $('#lname').val();
-	var address = $('#address').val();
-	var email = $('#email').val();
-	var mobile_number = $('#mobile_number').val();
 	var user_password = $('#user_password').val();
+	var email = $('#user_email').val();
+    var tel_number = $('#user_tel_number').val();
+	var mobile_number = $('#user_mobile_number').val();
+    var bldg_number = $('#user_bldg_number').val();
+    var street = $('#user_street').val();
+    var room_number = $('#user_room_number').val();
 	var role_id = $('#role_id').val();
 	var earned_points = $('#earned_points').val();
 
 	var data = JSON.stringify({ 'fname' : fname,
 								'mname' : mname,
 								'lname' : lname,
-								'address' : address,
-								'email' : email,
-								'mobile_number' : mobile_number,
 								'user_password' : user_password,
+								'user_email' : email,
+                                'user_tel_number': tel_number,
+								'user_mobile_number' : mobile_number,
+								'user_bldg_number' : bldg_number,
+                                'user_street' : street,
+                                'user_room_number' : room_number,
 								'role_id' : role_id,
 								'earned_points' : earned_points
 							});
@@ -101,6 +107,13 @@ function signup(){
 	        }
 	    });
 }
+
+
+function clearSignupForm(){
+	var user_form = document.getElementById("user-form");
+	user_form.reset();
+}
+
 
 function login(){
 	var email = $('#email_add').val();
