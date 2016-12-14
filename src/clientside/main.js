@@ -293,9 +293,10 @@ function viewUserById(id){
 			                                	'<h4 class="box-title"><b>'+ 'Name: ' + results.entries[i].fname + ' ' + results.entries[i].mname + '. ' + results.entries[i].lname +'</b></h3></div>' +
 			                                    '<div class="col-md-4">' +
 			                                        '<p style="margin-left: 5px">' +
-														 'Address: ' + results.entries[i].address + '<br><br>' +
-														 'Mobile Number: ' + results.entries[i].mobile_number + '<br><br>' +
-														 'Role ID: ' + results.entries[i].role_id + '<br><br>' +
+														 'Email: ' + results.entries[i].email + '<br><br>' +
+														 'Telephone Number: ' + results.entries[i].tel_number + '<br><br>' +
+								 						 'Mobile Number: ' + results.entries[i].mobile_number  + '<br><br>' +
+														 'Address: ' + results.entries[i].bldg_number + ' ' + results.entries[i].street + ' ' + results.entries[i].room_number + '<br><br>' +
 								  						 'Points: ' + results.entries[i].earned_points + '<br><br>' +
 			                                        '</p>' +
 			                                    '</div>'
