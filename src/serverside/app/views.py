@@ -62,9 +62,9 @@ def authentication():
 
     pw_hash = hashlib.md5(password.encode())
 
-    login = spcalls.spcall("user_login", (data['email'], pw_hash.hexdigest()))
+    login = spcalls.spcall("user_login", (data['email_add'], pw_hash.hexdigest()))
 
-    if data['email'] == '' or not password:
+    if data['email_add'] == '' or not password:
         return jsonify({'status': 'FAILED', 'message': 'Invalid email or password'})
 
     if login[0][0] == 'ERROR':
