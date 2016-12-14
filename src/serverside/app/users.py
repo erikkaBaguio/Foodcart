@@ -44,7 +44,7 @@ def store_user(data):
         return jsonify({"status": "OK", "message": user[0][0]})
 
 
-def show_user_id(id):
+def get_user_id(id):
     user = spcalls.spcall('show_user_id', (id,))
     entries = []
 
@@ -84,25 +84,6 @@ def show_all_users():
     else:
         return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
 
-
-def update_user(jsn):
-    id = jsn.get('id', '')
-    fname = jsn.get('fname', '')
-    mname = jsn.get('mname', '')
-    lname = jsn.get('lname', '')
-    user_password = jsn.get('user_password', '')
-    earned_points = jsn.get('earned_points', '')
-
-    spcalls.spcall('update_user', (
-        id,
-        fname,
-        mname,
-        lname,
-        user_password,
-        earned_points
-    ), True)
-
-    return jsonify({'status': 'OK'})
 
 
 def delete_user(id):
