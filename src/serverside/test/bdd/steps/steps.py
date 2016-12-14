@@ -166,3 +166,108 @@ def given_the_entered_keyword(step):
 def when_the_search_button_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/foods/search/', data=json.dumps(world.food_keyword))
+
+
+
+"""Steps for User feature"""
+
+"""Adding User"""
+
+
+@step(u'Given I have the following user details:')
+def user_details(step):
+    world.user = step.hashes[0]
+
+
+@step(u'When  the user clicks the send button')
+def when_the_user_clicks_the_send_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/signup/', data=json.dumps(world.user))
+
+
+"""Retrieving User"""
+
+
+@step(u'Given the user with an id \'([^\']*)\'')
+def given_the_user_with_an_id_group1(step, id):
+    world.user_id = id
+    world.user = world.app.get('/api/foodcart/users/{}/'.format(id))
+    world.response_json = json.loads(world.user.data)
+
+
+@step(u'When  view button is clicked')
+def when_the_view_button_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/users/{}/'.format(world.user_id))
+
+
+"""Updating User"""
+
+
+@step(u'Given the details of user')
+def given_the_details_of_user(step):
+    world.user_oldInfo = step.hashes[0]
+
+
+@step(u'And the new details of user')
+def and_the_new_details_of_user(step):
+    world.user_updatedInfo = step.hashes[0]
+
+
+@step(u'When  the update button is clicked')
+def when_the_update_button_is_clicked(step):
+    world.response = world.app.put('/api/foodcart/users/update/', data=json.dumps(world.user_updatedInfo))
+
+
+"""Search User"""
+
+@step(u'Given the entered keyword')
+def given_the_entered_keyword(step):
+    world.user_keyword = step.hashes[0]
+
+
+@step(u'When  the search button is clicked')
+def when_the_search_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/search/', data=json.dumps(world.user_keyword))
+
+
+"""Deactivating User"""
+
+@step(u'Given the user id \'([^\']*)\' is in the database')
+def given_the_user_id_group1_is_in_the_database(step, id):
+    world.user_id = id
+
+
+@step(u'When  the deactivate button is clicked')
+def when_the_deactivate_button_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.put('/api/foodcart/users/deactivate/{}/'.format(world.user_id))
+
+
+"""Log In"""
+
+@step(u'Given I have the following login details:')
+def given_login_details(step):
+    world.login = step.hashes[0]
+
+
+@step(u'When I click login button')
+def when_i_click_login_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/login/', data = json.dumps(world.login))
+
+@step(u'Then I get a \'(.*)\' response')
+def then_i_should_get_a_200_response(step, expected_status_code):
+    assert_equals(world.response.status_code, int(expected_status_code))
+
+
+@step(u'And a message "Successfully Logged In" is returned')
+def message_res(step):
+    world.respn = json.loads(world.response.data)
+    assert_equals(world.respn['message'], "Successfully Logged In")
+
+
+@step(u'And a message "Invalid email or password" is returned')
+def message_res(step):
+    world.respn = json.loads(world.response.data)
+    assert_equals(world.respn['message'], "Invalid email or password")
