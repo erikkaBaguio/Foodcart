@@ -3,12 +3,141 @@ from flask import Flask, jsonify, request
 from os import sys
 from models import DBconn
 import json, flask
+import hashlib
+from flask.ext.httpauth import HTTPBasicAuth
+from datetime import timedelta
+from itsdangerous import URLSafeTimedSerializer
 from spcalls import SPcalls
 from restaurants import *
 from foods import *
+from users import *
 from app import app
 
+SECRET_KEY = "a_random_secret_key_$%#!@"
+auth = HTTPBasicAuth()
 spcalls = SPcalls()
+
+login_serializer = URLSafeTimedSerializer(SECRET_KEY)
+
+
+# Users
+def get_auth_token(username, password):
+    """
+    Encode a secure token for cookie
+    """
+    data = [username, password]
+    return login_serializer.dumps(data)
+
+
+def load_token(token):
+    """
+    The Token was encrypted using itsdangerous.URLSafeTimedSerializer which
+    allows us to have a max_age on the token itself.  When the cookie is stored
+    on the users computer it also has a exipry date, but could be changed by
+    the user, so this feature allows us to enforce the exipry date of the token
+    server side and not rely on the users cookie to exipre.
+    source: http://thecircuitnerd.com/flask-login-tokens/
+    """
+    days = timedelta(days=14)
+    max_age = days.total_seconds()
+
+    # Decrypt the Security Token, data = [username, hashpass]
+    data = login_serializer.loads(token, max_age=max_age)
+
+    return data[0] + ':' + data[1]
+
+
+@app.route('/decrypt', methods=['POST'])
+def decr():
+    credentials = json.loads(request.data)
+    token = credentials['token']
+
+    return jsonify({'status': 'OK', 'token': load_token(token)})
+
+
+@app.route('/api/foodcart/users/login/', methods=['POST'])
+def authentication():
+    data = json.loads(request.data)
+    password = data['password']
+
+    pw_hash = hashlib.md5(password.encode())
+
+    login = spcalls.spcall("user_login", (data['email'], pw_hash.hexdigest()))
+
+    if data['email'] == '' or not password:
+        return jsonify({'status': 'FAILED', 'message': 'Invalid email or password'})
+
+    if login[0][0] == 'ERROR':
+        status = False
+        return jsonify({'status': status, 'message': 'error'})
+    else:
+        status = True
+        return jsonify({'status': status, 'message': 'Successfully Logged In'})
+
+
+@app.route('/api/foodcart/users/signup/', methods=['POST'])
+def store_new_user():
+    data = json.loads(request.data)
+
+    response = store_user(data)
+
+    return response
+
+
+@app.route('/api/foodcart/users/<int:id>/', methods=['GET'])
+def show_user_id(id):
+
+    response = show_user_id(id)
+
+    return response
+
+
+@app.route('/api/foodcart/users/', methods=['GET'])
+def show_user():
+
+    response = show_all_users()
+
+    return response
+
+
+@app.route('/api/foodcart/users/update/', methods=['PUT'])
+def update_user():
+    jsn = json.loads(request.data)
+
+    response = update_user(jsn)
+
+    return response
+
+
+@app.route('/api/foodcart/users/deactivate/<id>/', methods = ['PUT'])
+def deactivate_user(id):
+
+    response = delete_user(id)
+
+    return response
+
+
+@app.route('/api/foodcart/users/search/', methods=['POST'])
+def search_user():
+    data = json.loads(request.data)
+
+    keyword = data['search']
+
+    users = spcalls.spcall('search_user', (keyword,))
+    entries = []
+
+
+    if users:
+        for r in users:
+            if r[7] == True:
+                entries.append({"fname": r[0], "mname": r[1], "lname": r[2], "earned_points": r[3],
+                                "role_id": r[4], "email": r[5], "tel_number": r[6], "mobile_number": r[7], "bldg_number": r[8],
+                                "street": r[9], "room_number": r[10]})
+
+        return jsonify({'status': 'OK', 'message': 'OK', 'entries': entries})
+
+    return jsonify({'status': 'FAILED', 'message': 'No data matched your search'})
+
 
 
 @app.route('/api/foodcart/restaurants/', methods=['POST'])
