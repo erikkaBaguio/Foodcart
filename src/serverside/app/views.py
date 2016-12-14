@@ -87,7 +87,7 @@ def store_new_user():
 @app.route('/api/foodcart/users/<int:id>/', methods=['GET'])
 def show_user_id(id):
 
-    response = show_user_id(id)
+    response = get_user_id(id)
 
     return response
 
@@ -104,9 +104,23 @@ def show_user():
 def update_user():
     jsn = json.loads(request.data)
 
-    response = update_user(jsn)
+    id = jsn.get('id', '')
+    fname = jsn.get('fname', '')
+    mname = jsn.get('mname', '')
+    lname = jsn.get('lname', '')
+    user_password = jsn.get('user_password', '')
+    earned_points = jsn.get('earned_points', '')
 
-    return response
+    spcalls.spcall('update_user', (
+        id,
+        fname,
+        mname,
+        lname,
+        user_password,
+        earned_points
+    ), True)
+
+    return jsonify({'status': 'OK'})
 
 
 @app.route('/api/foodcart/users/deactivate/<id>/', methods = ['PUT'])
