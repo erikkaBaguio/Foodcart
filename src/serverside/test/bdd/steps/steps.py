@@ -140,6 +140,12 @@ def message_res(step):
     assert_equals(world.respn['message'], "Successfully Logged In")
 
 
+@step(u'And a message "Invalid email or password" is returned')
+def message_res(step):
+    world.respn = json.loads(world.response.data)
+    assert_equals(world.respn['message'], "Invalid email or password")
+
+
 """Order"""
 """Adding Order"""
 
