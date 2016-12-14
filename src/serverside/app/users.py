@@ -14,8 +14,8 @@ spcalls = SPcalls()
 
 def store_user(data):
     if (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['user_password'] == '' or not data['role_id'] or
-        data['email'] == '' or data['tel_number'] == '' or data['mobile_number'] == '' or data['bldg_number'] == '' or data['street'] == ''
-        or data['room_number'] == ''):
+        data['user_email'] == '' or data['user_tel_number'] == '' or data['user_mobile_number'] == ''
+        or data['user_bldg_number'] == '' or data['user_street'] == '' or data['user_room_number'] == ''):
 
         return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
 
@@ -29,8 +29,8 @@ def store_user(data):
         else:
             user_id = user[0][0]
 
-            contact = spcalls.spcall('update_user_contact', (user_id, data['email'], data['tel_number'], data['mobile_number']), True)
-            address = spcalls.spcall('update_user_address', (user_id, data['bldg_number'], data['street'], data['room_number']), True)
+            contact = spcalls.spcall('update_user_contact', (user_id, data['user_email'], data['user_tel_number'], data['user_mobile_number']), True)
+            address = spcalls.spcall('update_user_address', (user_id, data['user_bldg_number'], data['user_street'], data['user_room_number']), True)
 
             if 'Error' in str(contact[0][0]):
                 return jsonify({"status": "FAILED", "message": contact[0][0]})
