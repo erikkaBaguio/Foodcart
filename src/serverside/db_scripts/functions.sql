@@ -453,7 +453,8 @@ create or replace function show_user_email(in par_email varchar, out bigint, out
 
 --[GET] View user by ID
 --select * from show_user_id(4);
-create or replace function show_user_id(in par_ID bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
+create or replace function show_user_id(in par_ID bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int,
+out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
   $$
     select Users.fname,
       Users.mname,
@@ -463,7 +464,6 @@ create or replace function show_user_id(in par_ID bigint, out varchar, out varch
       Users.contact_id,
       Users.address_id,
       Users.role_id,
-      Users.is_active,
       User_contacts.email,
       User_contacts.tel_number,
       User_contacts.mobile_number,
