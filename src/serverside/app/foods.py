@@ -34,7 +34,7 @@ def store_food(data):
             food_id  = food[0][0]
 
             if (food_id == 0):
-                return jsonify({"status": "FAILED", "message": "Exists"})
+                return jsonify({"status": "FAILED", "message": "EXISTED"})
 
             elif 'Error' in str(food[0][0]):
                 return jsonify({"status": "FAILED", "message": food[0][0]})

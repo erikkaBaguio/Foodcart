@@ -109,8 +109,8 @@ def when_the_search_button_is_clicked(step):
 def given_following_food_details(step):
     world.restaurant = step.hashes[0]
 
-@step(u'When  add button is clicked')
-def when_add_button_is_clicked(step):
+@step(u'When  add button for food is clicked')
+def when_add_button_for_food_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/foods/', data=json.dumps(world.restaurant))
 

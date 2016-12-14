@@ -64,9 +64,9 @@ Scenario: Add food - food name already exists
         | food_name	  | description 										| unit_cost  | image_url     | resto_branch_id |
         | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    | tacorella.jpg | 1               |
 
-  When  add button is clicked
+  When  add button for food is clicked
   Then  it should have a '200' response
-  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'EXISTED'
 
 Scenario: Add food - food name field is empty
@@ -74,7 +74,7 @@ Scenario: Add food - food name field is empty
         | food_name	  | description 										| unit_cost  | image_url     | resto_branch_id |
         |             | A taste of famous Mexican taco delicacy in a pizza. |     299    | tacorella.jpg | 1               |
 
-  When  add button is clicked
+  When  add button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
@@ -84,7 +84,7 @@ Scenario: Add food - unit cost field is empty
         | food_name	  | description 										| unit_cost  | image_url     | resto_branch_id |
         | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |            | tacorella.jpg | 1               |
 
-  When  add button is clicked
+  When  add button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
