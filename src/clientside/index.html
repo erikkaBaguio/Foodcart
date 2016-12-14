@@ -26,16 +26,13 @@
           <h1 class="display-3">Simple CRUD</h1>
           <hr class="my-2">
           <p class="lead" style="margin-top:10px">
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#login-form').show(); $('#view-all-resto').hide(); $('#add-resto-form').hide(); $('#add-user-form').hide(); $('#view-all-user').hide();" role="button" style="margin-top:10px">Log In</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show(); $('#add-user-form').hide()" role="button" style="margin-top:10px">Add Restaurant</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-user-form').show(); $('#add-resto-form').hide()" role="button" style="margin-top:10px">Sign Up</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant(); $('#view-all-user').hide()" role="button" style="margin-top:10px">View All Restaurants</a>
-            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-user').show();viewAllUser(); $('#view-all-resto').hide()" role="button" style="margin-top:10px">View All Users</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-resto-form').show();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Restaurant</a>
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#view-all-resto').show();viewAllRestaurant();" role="button" style="margin-top:10px">View All Restaurants</a><br><br>
           </p>
 
-          <!-- RESTAURANT FORM -->
+          <!-- ADD RESTAURANT FORM -->
           <hr class="my-2">
-            <section class="content" id="add-resto-form" style="display:none">                    
+            <section class="content" id="add-resto-form" style="display:none">
                 <div class="box box-primary">
                 <div id="add-resto-alert">
                 </div>
@@ -60,14 +57,38 @@
                                     <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="text-input">Location</label>
-                                    <input class="form-control" type="text" name="text-input" id="location" required>
+                                    <label class="control-label" for="text-input">Image</label>
+                                    <input class="form-control" type="text" name="text-input" id="image_url" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Email</label>
+                                    <input class="form-control" type="email" name="text-input" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Telephone No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="tel_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Mobile No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="mobile_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Building No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="bldg_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Street</label>
+                                    <input class="form-control" type="text" name="text-input" id="street" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Room No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="room_number" required>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <!-- /.row -->
-                </div>                   
+                </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
@@ -77,11 +98,13 @@
             </div>
             <!-- /.box -->
             </section>
-            <!-- END OF RESTAURANT FORM -->
+            <!-- END OF ADD RESTAURANT FORM -->
 
 
             <!-- VIEW ALL RESTAURANT -->
-            <!--<hr class="my-2">-->
+            <hr class="my-2">
+            <div id="view-resto-alert">
+            </div>
             <section class="content" id="view-all-resto" style="display:none">
                 <div class="box-header with-border">
                     <h3 class="box-title" style="padding: 5px">Restaurant</h3>
@@ -96,9 +119,10 @@
                                 <thead>
                                     <tr>
                                         <th>Restaurant Name</th>
-                                        <!-- <th>Minimum Order</th>
+                                        <th>Minimum Order</th>
                                         <th>Delivery Fee</th>
-                                        <th>Location</th> -->
+                                        <th>Location</th>
+                                        <th>Image</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -113,201 +137,67 @@
             <!-- END VIEW ALL RESTAURANT -->
 
             <!-- VIEW RESTAURANT -->
-            <!--<hr class="my-2">-->
+            <hr class="my-2">
             <section class="content" id="view-resto" style="display:none">
                 <div class="row">
-                    <div id="view-resto-alert">
-                    </div>
                     <div class="col-md-12">
                         <div id="view-resto-info" class="box box-default" style="margin-top:10px">
-                        </div> 
-                    </div>                                            
-                </div> 
+                        </div>
+                    </div>
+                </div>
             </section>
             <!-- END VIEW RESTAURANT -->
 
-            <!-- SIGNUP FORM -->
-                    <section class="content" id="add-user-form" style="display:none">
-                        <div class="box box-primary">
-                        <div id="add-user-alert">
-                        </div>
-                        <div class="box-header with-border">
-                            <h3 class="box-title" style="padding: 5px">Sign Up</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form id="user-form" class="bootstrap-form-with-validation">
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">First Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="fname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Middle Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="mname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Last Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="lname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Address</label>
-                                            <input class="form-control" type="text" name="text-input" id="address" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Email Address</label>
-                                            <input class="form-control" type="text" name="text-input" id="email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Mobile Number</label>
-                                            <input class="form-control" type="text" name="text-input" id="mobile_number" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Password</label>
-                                            <input class="form-control" type="password" name="text-input" id="user_password" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="dropdown-input-field">User Role</label>
-                                            <select id="role_id" name="role_id">
-                                                <option value="1">System Administrator</option>
-                                                <option value="2">Business Owner</option>
-                                                <option value="3">Customer</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <!--<label class="control-label" for="text-input" type="hidden">Earned Points</label>-->
-                                            <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearSignupForm();">Clear</button>
-                            <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="signup();">Submit</button>
-                        </div>
-                        <!-- /.box-footer -->
-                    </div>
-                    <!-- /.box -->
-                    </section>
-
-            <!-- END SIGNUP FORM -->
-
-            <!-- LOGIN FORM -->
-                <form id="login-form" class="login-card" method="post" style="display:none" onsubmit="return false">
-                    <h3>Please Log in</h3><br>
-                    <div id="log-in-alert"></div>
-                    <div class="form-group">
-                        <input id="email_add" name="email" type="text" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input id="password" name="password" type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <button onclick="login();" class="btn btn-primary btn-block btn-lg btn-signin">Log In</button>
-                    </div>
-                </form>
-            <!-- END LOGIN FORM -->
-
-            <!-- VIEW ALL USERS -->
-                    <!--<hr class="my-2">-->
-                    <section class="content" id="view-all-user" style="display:none">
-                        <div class="box-header with-border">
-                            <h3 class="box-title" style="padding: 5px">Users</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div id="message-alert">
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="view-user-table-body">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </section>
-            <!-- END VIEW ALL USERS -->
-
-            <!-- VIEW SPECIFIC USER -->
-            <!--<hr class="my-2">-->
-                    <section class="content" id="view-user" style="display:none">
-                        <div class="row">
-                            <div id="view-user-alert">
-                            </div>
-                            <div class="col-md-12">
-                                <div id="view-user-info" class="box box-default" style="margin-top:10px">
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-            <!-- END VIEW SPECIFIC USER -->
-
-            <!-- UPDATE USER FORM -->
-            <section class="content" id="update-user-form" style="display:none">
+        <!-- UPDATE RESTAURANT FORM -->
+          <hr class="my-2">
+            <section class="content" id="update-resto-form" style="display:none">
                 <div class="box box-primary">
-                <div id="update-user-alert">
+                <div id="update-resto-alert">
                 </div>
                 <div class="box-header with-border">
-                    <h3 class="box-title" style="padding: 5px">Update User</h3>
+                    <h3 class="box-title" style="padding: 5px">Update Restaurant</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <form id="update-form" class="bootstrap-form-with-validation">
+                            <form id="update-restaurant-form" class="bootstrap-form-with-validation">
                                 <div class="form-group">
-                                            <label class="control-label" for="text-input">First Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="update_fname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Middle Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="update_mname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Last Name</label>
-                                            <input class="form-control" type="text" name="text-input" id="update_lname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Address</label>
-                                            <input class="form-control" type="text" name="text-input" id="update_address" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Email Address</label>
-                                            <input class="form-control" type="text" name="text-input" id="update_email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Mobile Number</label>
-                                            <input class="form-control" type="text" name="text-input" id="update_mobile_number" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="text-input">Password</label>
-                                            <input class="form-control" type="password" name="text-input" id="update_user_password" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="dropdown-input-field">User Role</label>
-                                            <select id="update_role_id" name="role_id">
-                                                <option value="1">System Administrator</option>
-                                                <option value="2">Business Owner</option>
-                                                <option value="3">Customer</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <!--<label class="control-label" for="text-input" type="hidden">Earned Points</label>-->
-                                            <input class="form-control" type="hidden" name="text-input" id="update_earned_points" value="0" required>
-                                        </div>
+                                    <label class="control-label" for="text-input">Restaurant Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_resto_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Minimum Order</label>
+                                    <input class="form-control" type="number" name="text-input" id="update_min_order" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Delivery Fee</label>
+                                    <input class="form-control" type="number" name="text-input" id="update_delivery_fee" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Email</label>
+                                    <input class="form-control" type="email" name="text-input" id="update_email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Telephone No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_tel_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Mobile No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_mobile_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Building No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_bldg_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Street</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_street" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Room No.</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_room_number" required>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -315,25 +205,25 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearSignupForm();">Clear</button>
-                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateUser();">Update</button>
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateRestaurant();">Update</button>
                 </div>
                 <!-- /.box-footer -->
             </div>
             <!-- /.box -->
             </section>
-            <!-- END OF UPDATE USER FORM -->
+        <!-- END OF UPDATE RESTAURANT FORM -->
 
-            <!--USER SEARCH BOX-->
-            <section id="user-search-box" class="content" style="margin-top: 10px;">
-                <div class="col-md-3" id="user-search-alert"></div>
-                <div class="col-md-6" id="user-search-box">
+            <!--RESTAURANT SEARCH BOX-->
+            <section id="resto-search-box" class="content" style="margin-top: 10px;">
+                <div class="col-md-3" id="resto-search-alert"></div>
+                <div class="col-md-6" id="resto-search-box">
                     <!-- search form -->
                     <form method="get" class="sidebar-form" onsubmit="return false">
                         <div class="input-group">
-                            <input id="user-search" type="text" name="q" class="form-control" placeholder="Enter User">
+                            <input id="resto-search" type="text" name="q" class="form-control" placeholder="Enter restaurant">
                             <span class="input-group-btn">
-                                <button onclick="searchUser();" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search">Search</i>
+                                <button onclick="searchRestaurant();" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search">Search</i>
                                 </button>
                             </span>
                         </div>
@@ -355,17 +245,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>First Name</th>
-                                        <th>Middle Name</th>
-                                        <th>Last Name</th>
-                                        <th>Address</th>
-                                        <th>Email</th>
-                                        <th>Mobile Number</th>
-                                        <th>Role ID</th>
-                                        <th>Earned Points</th>
+                                        <th>Restaurant Name</th>
+                                        <th>Minimum Order</th>
+                                        <th>Delivery Fee</th>
+                                        <th>Location</th>
                                     </tr>
                                 </thead>
-                                <tbody id="search-user-table-body">
+                                <tbody id="search-resto-table-body">
                                 </tbody>
                             </table>
                         </div>
@@ -375,7 +261,191 @@
 
 
             </section>
-            <!--END USER SEARCH BOX-->
+            <!--END RESTAURANT SEARCH BOX-->
+
+        <p class="lead" style="margin-top:10px">
+            <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').show();$('#view-all-resto').hide();$('#view-all-resto').hide();" role="button" style="margin-top:10px">Add Food</a>
+             <a class="btn btn-primary btn-lg" href="#" onclick="$('#add-food-form').hide();$('#view-all-resto').hide();$('#view-all-resto').hide();$('#view-all-food').show();viewAllFood();" role="button" style="margin-top:10px">View All Food</a>
+          </p>
+
+          <!-- ADD FOOD FORM -->
+          <hr class="my-2">
+            <section class="content" id="add-food-form" style="display:none">
+                <div class="box box-primary">
+                <div id="add-food-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="food-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Food Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Description</label>
+                                    <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Unit Cost</label>
+                                    <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeFood();">Submit</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+            <!-- END OF ADD FOOD FORM -->
+
+
+            <!-- VIEW ALL FOOD -->
+            <hr class="my-2">
+            <section class="content" id="view-all-food" style="display:none">
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Foods</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="view-food-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Food Name</th>
+                                       <!--  <th>Description</th>
+                                        <th>Unit Cost</th> -->
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="view-food-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </section>
+            <!-- END VIEW ALL FOOD -->
+
+            <!-- VIEW FOOD -->
+            <hr class="my-2">
+            <section class="content" id="view-food" style="display:none">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="view-food-info" class="box box-default" style="margin-top:10px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END VIEW FOOD -->
+
+
+        <!-- UPDATE FOOD FORM -->
+          <hr class="my-2">
+            <section class="content" id="update-food-form" style="display:none">
+                <div class="box box-primary">
+                <div id="update-food-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Update Food</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box-body">
+                            <form id="update-food-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Food Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Description</label>
+                                    <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Unit Cost</label>
+                                    <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearFoodForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateFood();">Update</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+        <!-- END OF UPDATE FOOD FORM -->
+
+        <!--FOOD SEARCH BOX-->
+            <section id="food-search-box" class="content" style="margin-top: 10px;">
+                <div class="col-md-3" id="food-search-alert"></div>
+                <div class="col-md-6" id="food-search-box">
+                    <!-- search form -->
+                    <form method="get" class="sidebar-form" onsubmit="return false">
+                        <div class="input-group">
+                            <input id="food-search" type="text" name="q" class="form-control" placeholder="Enter food">
+                            <span class="input-group-btn">
+                                <button name="search" id="search-btn" class="btn btn-flat" onclick="searchFood();"><i class="fa fa-search">Search</i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                </div>
+                <div class="col-md-3"></div> <br>
+
+
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Search Results</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="search-food-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Food Name</th>
+                                        <th>Description</th>
+                                        <th>Unit Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-food-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+
+            </section>
+            <!--END FOOD SEARCH BOX-->
+
 
         </div>
 
@@ -393,5 +463,7 @@
     <script src="assets/js/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="assets/js/jquery-jvectormap-world-mill-en.js"></script>
     <script src="main.js"></script>
+    <script src="restaurant.js"></script>
+    <script src="food.js"></script>
 </head>
 </html>
