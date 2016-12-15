@@ -284,7 +284,7 @@ def user_details(step):
 @step(u'When the user clicks the add button')
 def when_the_user_clicks_the_send_button(step):
     world.browser = TestApp(app)
-    world.response = world.app.post('/api/foodcart/orders/', data=json.dumps(world.orders))
+    world.response = world.app.post('/api/foodcart/orders/add/', data=json.dumps(world.orders))
 
 
 @step(u'Given the order with an id \'([^\']*)\'')
