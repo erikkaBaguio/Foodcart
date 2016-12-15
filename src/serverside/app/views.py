@@ -287,7 +287,7 @@ def search_food():
 #   ORDERS    #
 ###############
 
-@app.route('/api/foodcart/orders/', methods=['POST'])
+@app.route('/api/foodcart/orders/add/', methods=['POST'])
 def add_order():
     data = json.loads(request.data)
     response = store_order(data)
@@ -298,6 +298,14 @@ def add_order():
 @app.route('/api/foodcart/orders/<id>/', methods=['GET'])
 def get_orderID(id):
     response = get_order_id(id)
+
+    return response
+
+
+@app.route('/api/foodcart/orders/', methods=['GET'])
+def show_orders():
+
+    response = show_all_orders()
 
     return response
 
