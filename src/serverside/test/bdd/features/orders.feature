@@ -14,3 +14,14 @@ Feature: Order
       Then  it should have a '200' response
       And   it should have a field 'status' containing 'OK'
       And   it should have a field 'message' containing 'OK'
+
+
+  Scenario: Retrieve specific order
+      Given the order with an id '1'
+      When  view is clicked
+      Then  it should have a '200' response
+      And   it should have a field 'status' containing 'OK'
+      And   it should have a field 'message' containing 'OK'
+      And   the following details will be returned:
+      | quantity | food_id | resto_branch_id | is_done |
+      |     1    |    4    |        2        |  FALSE  |
