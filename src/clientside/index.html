@@ -588,6 +588,60 @@
             </section>
             <!-- END VIEW USER -->
 
+            <!--USER SEARCH BOX-->
+            <section id="user-search-box" class="content" style="margin-top: 10px;">
+                <div class="col-md-3" id="user-search-alert"></div>
+                <div class="col-md-6" id="user-search-box">
+                    <!-- search form -->
+                    <form method="get" class="sidebar-form" onsubmit="return false">
+                        <div class="input-group">
+                            <input id="user-search" type="text" name="q" class="form-control" placeholder="Search User">
+                            <span class="input-group-btn">
+                                <button onclick="searchUser();" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search">Search</i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                </div>
+                <div class="col-md-3"></div> <br>
+
+
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Search Results</h3>
+                </div>
+                <!-- /.box-header -->
+                <div id="search-alert">
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Telephone Number</th>
+                                        <th>Mobile Number</th>
+                                        <th>Building Number</th>
+                                        <th>Street</th>
+                                        <th>Room Number</th>
+                                        <th>Earned Points</th>
+                                        <th>Role ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-user-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+
+            </section>
+            <!--END USER SEARCH BOX-->
+
 
         </div>
 
