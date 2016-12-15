@@ -838,3 +838,21 @@ out varchar, out varchar, out varchar, out boolean) returns setof record as
 
 
 
+--[GET] Retrieve all transactions
+--select * from show_transaction();
+create or replace function show_transaction(out int, out timestamp, out int, out float,
+out varchar, out varchar, out varchar, out boolean) returns setof record as
+  $$
+    select
+      Transactions.transaction_number,
+      Transactions.transaction_date,
+      Transactions.order_id,
+      Transactions.total,
+      Transaction_address.bldg_number,
+      Transaction_address.street,
+      Transaction_address.room_number,
+      Transactions.is_paid
+    from Transactions
+    inner join Transaction_address on Transactions.address_id = Transaction_address.id
+  $$
+    language 'sql';
