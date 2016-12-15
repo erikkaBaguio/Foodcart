@@ -100,27 +100,28 @@ def show_user():
     return response
 
 
-@app.route('/api/foodcart/users/update/', methods=['PUT'])
-def update_user():
-    jsn = json.loads(request.data)
+@app.route('/api/foodcart/users/update/<user_id>/', methods=['PUT'])
+def update_user(user_id):
+    data = json.loads(request.data)
 
-    id = jsn.get('id', '')
-    fname = jsn.get('fname', '')
-    mname = jsn.get('mname', '')
-    lname = jsn.get('lname', '')
-    user_password = jsn.get('user_password', '')
-    earned_points = jsn.get('earned_points', '')
+    fname = data['update_fname']
+    mname = data['update_mname']
+    lname = data['update_lname']
+    user_password = data['update_user_password']
+    earned_points = data['update_earned_points']
 
-    spcalls.spcall('update_user', (
-        id,
-        fname,
-        mname,
-        lname,
-        user_password,
-        earned_points
-    ), True)
+    if (fname == '' or mname == '' or lname == '' or user_password == ''):
 
-    return jsonify({'status': 'OK'})
+        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+
+    else:
+        user = spcalls.spcall('update_user', (user_id, fname, mname, lname, user_password, earned_points), True)
+
+        if 'Error' in str(user[0][0]):
+            return jsonify({"status": "FAILED", "message": user[0][0]})
+
+        else:
+            return jsonify({"status": "OK", "message": user[0][0]})
 
 
 @app.route('/api/foodcart/users/deactivate/<id>/', methods = ['PUT'])
