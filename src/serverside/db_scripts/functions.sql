@@ -765,3 +765,31 @@ create or replace function show_orders(out bigint, out int, out int, out boolean
     language 'sql';
 
 
+------------------
+-- TRANSACTIONS --
+------------------
+
+--[POST] Add transaction
+--select add_transaction(1, 1, 12.50);
+create or replace function add_transaction(in par_transnum int, in par_orderID int, in par_total float)
+ returns bigint as
+  $$
+    declare
+      local_response bigint;
+    begin
+      insert into Transactions(transaction_number, order_id, total)
+      values (par_transnum, par_orderID, par_total);
+
+      select into local_response currval(pg_get_serial_sequence('Transactions', 'id'));
+
+      update Transactions
+      set address_id = local_response
+      where id = local_response;
+
+      return local_response;
+    end;
+  $$
+    language 'plpgsql';
+
+
+
