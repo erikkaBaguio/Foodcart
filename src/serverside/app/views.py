@@ -137,20 +137,19 @@ def search_user():
 
     keyword = data['search']
 
-    users = spcalls.spcall('search_user', (keyword,))
+    users = spcalls.spcall('search_user', (keyword,), True)
     entries = []
 
 
     if users:
         for r in users:
-            if r[7] == True:
                 entries.append({"fname": r[0], "mname": r[1], "lname": r[2], "earned_points": r[3],
                                 "role_id": r[4], "email": r[5], "tel_number": r[6], "mobile_number": r[7], "bldg_number": r[8],
                                 "street": r[9], "room_number": r[10]})
 
-        return jsonify({'status': 'OK', 'message': 'OK', 'entries': entries})
+        return jsonify({'status': 'OK', 'message': 'OK', 'entries': entries, "count": len(entries)})
 
-    return jsonify({'status': 'FAILED', 'message': 'No data matched your search'})
+    return jsonify({'status': 'FAILED', 'message': 'No data matched your search', "entries": []})
 
 
 
