@@ -330,6 +330,16 @@ def get_transID(id):
     return response
 
 
+@app.route('/api/foodcart/transactions/', methods=['GET'])
+def show_transactions():
+
+    response = show_all_transactions()
+
+    return response
+
+
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
