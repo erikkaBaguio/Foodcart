@@ -289,6 +289,19 @@ create or replace function delete_restaurant_branch(in par_restoID bigint)
 	language 'plpgsql';
 
 
+--Returns set of restaurants that match or slightly match your search
+--select search_restaurant('Iligan');
+--source: http://www.tutorialspoint.com/postgresql/postgresql_like_clause.htm
+--source on concationation in postgres: http://www.postgresql.org/docs/9.1/static/functions-string.html
+create or replace function search_restaurant(in par_search text, out bigint, out varchar, out float, out int) returns setof record as
+  $$
+      select *
+      from Restaurants
+      where resto_name like '%'|| par_search || '%';
+  $$
+  language 'sql';
+
+
 ------------
 --  FOOD  --
 ------------
