@@ -295,6 +295,13 @@ def add_order():
     return response
 
 
+@app.route('/api/foodcart/orders/<id>/', methods=['GET'])
+def get_orderID(id):
+    response = get_order_id(id)
+
+    return response
+
+
 @app.after_request
 def add_cors(resp):
     resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
