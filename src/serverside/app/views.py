@@ -12,6 +12,7 @@ from restaurants import *
 from foods import *
 from users import *
 from orders import *
+from transactions import *
 from app import app
 
 SECRET_KEY = "a_random_secret_key_$%#!@"
@@ -306,6 +307,18 @@ def get_orderID(id):
 def show_orders():
 
     response = show_all_orders()
+
+    return response
+
+
+################
+# TRANSACTIONS #
+################
+
+@app.route('/api/foodcart/transactions/add/', methods=['POST'])
+def add_transaction():
+    data = json.loads(request.data)
+    response = new_transaction(data)
 
     return response
 
