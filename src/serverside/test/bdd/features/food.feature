@@ -17,8 +17,7 @@ Scenario: Add food successfully.
   And   it should have a field 'message' containing 'OK'
 
 Scenario: View food
-  Given the restaurant id '1'
-  And   food with an id '3'
+  Given the restaurant id '1' and food id '3'
   When  the view button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
@@ -91,8 +90,7 @@ Scenario: Add food - unit cost field is empty
   And   it should have a field 'message' containing 'Please fill the required fields'
 
 Scenario: View food
-  Given the restaurant id '1000'
-  And   food with an id '3'
+  Given the restaurant id '1000' and food id '3'
   When  the view button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
