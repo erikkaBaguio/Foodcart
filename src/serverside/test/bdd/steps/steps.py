@@ -271,3 +271,17 @@ def message_res(step):
 def message_res(step):
     world.respn = json.loads(world.response.data)
     assert_equals(world.respn['message'], "Invalid email or password")
+
+
+"""Orders"""
+
+
+@step(u'Given I have the following order details:')
+def user_details(step):
+    world.orders = step.hashes[0]
+
+
+@step(u'When the user clicks the add button')
+def when_the_user_clicks_the_send_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/orders/', data=json.dumps(world.orders))
