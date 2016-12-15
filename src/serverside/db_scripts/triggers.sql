@@ -84,7 +84,7 @@ EXECUTE PROCEDURE create_contact_address();
 ------------
 
 --this trigger will create an order_foods where id == to the newly created order
---but this will not store any other attribute of contact and address. only the id.
+--but this will not store any other attribute of order_foods. only the id.
 create or replace function create_order_foods() returns trigger as
 	$$
 		begin
@@ -100,3 +100,26 @@ create or replace function create_order_foods() returns trigger as
 
 create trigger create_order_foods_ins AFTER insert on Orders FOR each ROW
 EXECUTE PROCEDURE create_order_foods();
+
+
+------------------
+-- TRANSACTIONS --
+------------------
+
+--this trigger will create a transaction_address where id == to the newly created transaction
+--but this will not store any other attribute of transaction_address. only the id.
+create or replace function create_transaction() returns trigger as
+	$$
+		begin
+			if tg_op = 'INSERT' then
+				insert into Transaction_address(id)
+					values (new.id);
+			end if;
+			return new;
+		end;
+	$$
+		LANGUAGE 'plpgsql';
+
+
+create trigger create_transaction_ins AFTER insert on Transactions FOR each ROW
+EXECUTE PROCEDURE create_transaction();
