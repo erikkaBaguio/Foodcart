@@ -145,13 +145,16 @@ function searchUser(){
 					var user;
 
 					for (var i = 0; i < results.entries.length; i++) {
-						restaurant = '<tr>' +
-										'<td>' + results.entries[i].fname + results.entries[i].mname + results.entries[i].lname+ '</td>' +
-										'<td>' + results.entries[i].address + '</td>' +
+						user_row = '<tr>' +
+										'<td>' + results.entries[i].fname + ' ' + results.entries[i].mname + ' ' + results.entries[i].lname+ '</td>' +
 										'<td>' + results.entries[i].email + '</td>' +
+										'<td>' + results.entries[i].tel_number + '</td>' +
 										'<td>' + results.entries[i].mobile_number + '</td>' +
-										'<td>' + results.entries[i].role_id + '</td>' +
+										'<td>' + results.entries[i].bldg_number + '</td>' +
+										'<td>' + results.entries[i].street + '</td>' +
+										'<td>' + results.entries[i].room_number + '</td>' +
 										'<td>' + results.entries[i].earned_points + '</td>' +
+										'<td>' + results.entries[i].role_id + '</td>' +
 										'</tr>';
 
 						user_row  += user
