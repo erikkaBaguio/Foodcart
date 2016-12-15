@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--Custom Theme files -->
 <link href="assets/web/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 <link href="assets/web/css/style.css" type="text/css" rel="stylesheet" media="all">
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/web/css/flexslider.css" type="text/css" media="screen" />
 <!-- //Custom Theme files -->
 <!-- js -->
 <script src="assets/web/js/jquery-1.11.1.min.js"></script>
@@ -60,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h1 class="wow zoomIn animated" data-wow-delay=".5s"><a href="index.html">Foodcart</a></h1>
 				</div>
 				<div class="top-nav">
-					<span class="menu"><img src="images/menu.png" alt=""/></span>
+					<span class="menu"><img src="assets/web/images/menu.png" alt=""/></span>
 					<ul>
 						<li class="wow slideInDown animated" data-wow-delay=".5s"><a class="active" href="index.html">Home</a></li>
 						<li class="wow slideInDown" data-wow-delay=".6s"><a href="">About</a></li>
@@ -80,30 +80,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-			<!--//header-->
+			<!--//header Restaurant Search-->
+
+			<section id="resto-search-box" class="content" style="margin-top: 10px">
 			<div class="bnr-text wow slideInUp animated" data-wow-delay=".5s">
-                <div class="col-lg-3"></div>
-				<div class="col-lg-6">
+				<div class="col-lg-3" id="resto-search-alert"></div>
+				<div class="col-lg-6" id="resto-search-box">
                     <!-- search form -->
                     <form method="get" class="sidebar-form" onsubmit="return false">
                         <div class="input-group">
-                            <input id="food-search" type="text" name="q" class="form-control" placeholder="Search for Restaurant">
+                            <input id="resto-search" type="text" name="q" class="form-control" placeholder="Search for Restaurant">
                             <span class="input-group-btn">
-                                <button name="search" id="search-btn" class="btn btn-flat" onclick="searchFood();"><i class="fa fa-search">Search</i>
+                                <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();"><i class="fa fa-search">Search</i>
                                 </button>
                             </span>
                         </div>
                     </form>
                     <!-- /.search form -->
-                <div class="col-lg-3"></div>
+				</div>
+            	<div class="col-lg-3"></div>
 			</div>
-		</div>
+			</section>
 	</div>
 	<!--//banner-->
 	<!--menu-form-->
 	<div class="menu-form">
 		<div class="menu-info">
-			<h3 class="title wow fadeInDown animated" data-wow-delay=".5s">Our Menu</h3>
+			<h3 class="title wow fadeInDown animated" data-wow-delay=".5s" id="">Restaurants</h3>
 			<div class="scrollbar scrollbar1">
 				<div class="menu-grids agile wow fadeInDown animated" data-wow-delay=".5s">
 					<div class="menu-left">
@@ -246,6 +249,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/web/js/bootstrap.js"></script>
+	<script src="main.js"></script>
+    <script src="restaurant.js"></script>
+    <script src="food.js"></script>
+    <script src="user.js"></script>
 	</div>
 </body>
 </html>
