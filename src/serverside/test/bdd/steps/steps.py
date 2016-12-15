@@ -285,3 +285,16 @@ def user_details(step):
 def when_the_user_clicks_the_send_button(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/orders/', data=json.dumps(world.orders))
+
+
+@step(u'Given the order with an id \'([^\']*)\'')
+def given_the_user_with_an_id_group1(step, id):
+    world.order_id = id
+    world.order = world.app.get('/api/foodcart/orders/{}/'.format(id))
+    world.response_json = json.loads(world.order.data)
+
+
+@step(u'When  view is clicked')
+def when_the_view_button_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/orders/{}/'.format(world.order_id))
+
