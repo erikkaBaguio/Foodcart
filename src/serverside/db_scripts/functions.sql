@@ -744,7 +744,7 @@ create or replace function show_order_id(in par_ID bigint, out int, out int, out
       Order_foods.food_id,
       Order_foods.resto_branch_id,
       Orders.is_done
-      from Orders
+    from Orders
     inner join Order_foods on Orders.order_food_id = Order_foods.id
     where Orders.id = par_ID;
   $$
@@ -814,6 +814,27 @@ create or replace function update_trans_address(par_id int, in par_bldgNum varch
 		end;
 	$$
 		language 'plpgsql';
+
+
+--[GET] Retrieve transaction by id
+--select * from show_transaction_id(5);
+create or replace function show_transaction_id(in par_ID bigint, out int, out timestamp, out int, out float,
+out varchar, out varchar, out varchar, out boolean) returns setof record as
+  $$
+    select
+      Transactions.transaction_number,
+      Transactions.transaction_date,
+      Transactions.order_id,
+      Transactions.total,
+      Transaction_address.bldg_number,
+      Transaction_address.street,
+      Transaction_address.room_number,
+      Transactions.is_paid
+    from Transactions
+    inner join Transaction_address on Transactions.address_id = Transaction_address.id
+    where Transactions.id = par_ID;
+  $$
+    language 'sql';
 
 
 
