@@ -392,15 +392,22 @@ create or replace function update_food(par_food_id int, par_food_name varchar, p
       local_response text;
 
     begin
+      select into local_food_name food_name
+			from Foods
+			where food_name = par_food_name;
 
-      Update Foods
-      set food_name = par_food_name,
-          description = par_description,
-          unit_cost = par_unit_cost
-      where id = par_food_id;
+			if local_food_name isnull
+			then
+        Update Foods
+        set food_name = par_food_name,
+            description = par_description,
+            unit_cost = par_unit_cost
+        where id = par_food_id;
 
-      local_response = 'SUCCESS';
-      return local_response;
+        local_response = 'SUCCESS';
+
+      else
+       local_response = 'EXISTED';
 
     end;
   $$

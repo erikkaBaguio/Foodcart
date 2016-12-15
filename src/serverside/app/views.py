@@ -247,22 +247,9 @@ def get_food(resto_id,food_id):
 def update_food(food_id):
     data = json.loads(request.data)
 
-    food_name = data['food_name']
-    description = data['description']
-    unit_cost = data['unit_cost']
+    response = food_update(data, food_id)
 
-    if (food_name == '' or description == '' or not unit_cost):
-        return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
-
-    else:
-
-        food = spcalls.spcall('update_food', (food_id, food_name, description, unit_cost,), True)
-
-        if 'Error' in str(food[0][0]):
-            return jsonify({"status": "FAILED", "message": food[0][0]})
-
-        else:
-            return jsonify({"status": "OK", "message": food[0][0]})
+    return response
 
 
 @app.route('/api/foodcart/foods/deactivate/<food_id>', methods=['PUT'])
