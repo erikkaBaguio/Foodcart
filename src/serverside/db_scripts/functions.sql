@@ -367,6 +367,41 @@ create or replace function update_food_image(par_id int, in par_url varchar)
 		language 'plpgsql';
 
 
+--[GET] Retrieve information of a specific food
+--select show_food(resto_id, food_id)
+create or replace function show_food(par_resto_id int, par_food_id int, out bigint, out varchar, out text, out float, out boolean, out boolean, out varchar)
+  returns setof record as
+  $$
+
+    select Foods.id, food_name, description, unit_cost, is_available, is_active, url
+    from Foods
+    inner join Food_images on Foods.image_id = Food_images.id
+    where Foods.resto_id = par_resto_id and Foods.id = par_food_id;
+
+  $$
+    language 'sql';
+
+
+--[PUT] Update food image
+--select update_food_image(1, 'sample.jpg')
+create or replace function update_food_image(par_id int, in par_url varchar)
+	returns text as
+	$$
+		declare
+			local_response text;
+
+		begin
+			Update Food_images
+			set url = par_url
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
+
 
 ------------
 --  USERS --
