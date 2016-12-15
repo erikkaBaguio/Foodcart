@@ -310,7 +310,7 @@ create or replace function store_food(par_food_name varchar, par_description tex
 
 			if local_food_name isnull
 			then
-				insert into Foods(food_name, description, unit_cost, resto_branch_id)
+				insert into Foods(food_name, description, unit_cost, resto_id)
 					values (par_food_name, par_description, par_unit_cost, par_resto_id);
 
 				select into local_response currval(pg_get_serial_sequence('Foods','id'));
@@ -340,7 +340,7 @@ create or replace function show_foods(par_resto_id int, out bigint, out varchar,
     select Foods.id, food_name, description, unit_cost, is_available, is_active, url
     from Foods
     inner join Food_images on Foods.image_id = Food_images.id
-    where Foods.resto_branch_id = par_resto_id;
+    where Foods.resto_id= par_resto_id;
 
   $$
     language 'sql';
@@ -383,6 +383,7 @@ create or replace function show_food(par_resto_id int, par_food_id int, out bigi
 
 
 --[PUT] Update food information
+--select update_food(3, 'Madcow', 'The original hot and spicy pizza in the world.', 300)
 --select update_food(3, 'Tacorella', 'A taste of famous Mexican taco delicacy in a pizza.', 300)
 create or replace function update_food(par_food_id int, par_food_name varchar, par_description text, par_unit_cost float)
   returns text as
@@ -392,12 +393,6 @@ create or replace function update_food(par_food_id int, par_food_name varchar, p
       local_response text;
 
     begin
-      select into local_food_name food_name
-			from Foods
-			where food_name = par_food_name;
-
-			if local_food_name isnull
-			then
         Update Foods
         set food_name = par_food_name,
             description = par_description,
@@ -405,14 +400,11 @@ create or replace function update_food(par_food_id int, par_food_name varchar, p
         where id = par_food_id;
 
         local_response = 'SUCCESS';
-
-      else
-       local_response = 'EXISTED';
+        return local_response;
 
     end;
   $$
     language 'plpgsql';
-
 
 ------------
 --  USERS --

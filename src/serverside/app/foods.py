@@ -103,7 +103,6 @@ def food_update(data, food_id):
     description = data['description']
     unit_cost = data['unit_cost']
     image_url = data['image_url']
-    resto_id = data['resto_id']
 
 
     if (food_name == '' or description == '' or not unit_cost):
@@ -111,18 +110,14 @@ def food_update(data, food_id):
 
     else:
 
-        food = spcalls.spcall('update_food', (food_id, food_name, description, unit_cost, resto_id), True)
+        food = spcalls.spcall('update_food', (food_id, food_name, description, unit_cost, ), True)
 
         if 'Error' in str(food[0][0]):
             return jsonify({"status": "FAILED", "message": food[0][0]})
 
         else:
-            food_id  = food[0][0]
 
-            if (food[0][0] == 'EXISTED'):
-                return jsonify({"status": "FAILED", "message": "EXISTED"})
-
-            elif 'Error' in str(food[0][0]):
+            if 'Error' in str(food[0][0]):
                 return jsonify({"status": "FAILED", "message": food[0][0]})
 
             else:

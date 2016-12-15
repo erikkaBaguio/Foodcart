@@ -8,7 +8,7 @@ As a business manager, I want to add food
 
 Scenario: Add food successfully.
   Given following food details:
-        | food_name	  | description 										| unit_cost  | image_url     | resto_id |
+        | food_name   | description 										| unit_cost  | image_url     | resto_id |
         | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    | tacorella.jpg | 1        |
 
   When  add button for food is clicked
@@ -26,17 +26,17 @@ Scenario: View food
         | food_id | food_name	| description 										  | unit_cost  | is_active | is_available | image_url     |
         | 1       | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    | true      | true         | tacorella.jpg |
 
-Scenario: Update restaurant
+Scenario: Update food
   Given the food with an id '1'
-  And the old details of the food
-    | food_name   | description                                       | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |     299    |
+  And   the old details of the food
+        | food_name   | description                                       | unit_cost  | image_url  |
+        | Madcow      | The original hot and spicy pizza in the world.    |     299    | madcow.jpg |
 
-  And the new details of food
-    | food_name   | description                                       | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |     300    |
+  And   the new details of food
+        | food_name   | description                                       | unit_cost  | image_url  |
+        | Madcow      | The original hot and spicy pizza in the world.    |     300    | madcow.jpg |
 
-  When  the update button is clicked
+  When  the update button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
@@ -96,16 +96,15 @@ Scenario: View food
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'No food found'
 
-Scenario: Update restaurant - unit cost field is empty
+Scenario: Update food - unit cost field is empty
   Given the food with an id '1'
-  And the old details of the food
-    | food_name   | description                                       | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |     300    |
+  And   the old details of the food
+        | food_name   | description                                       | unit_cost  | image_url  |
+        | Madcow      | The original hot and spicy pizza in the world.    |     300    | madcow.jpg |
 
-  And the new details of food
-    | food_name   | description                                       | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |            |
-
+  And   the new details of food
+        | food_name   | description                                       | unit_cost  | image_url  |
+        | Madcow      | The original hot and spicy pizza in the world.    |            | madcow.jpg |
   When  the update button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
