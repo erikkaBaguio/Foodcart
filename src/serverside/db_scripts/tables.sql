@@ -146,11 +146,11 @@ create table Orders
 );
 
 
-create table Transaction
+create table Transactions
 (
   id                  SERIAL8 PRIMARY KEY,
   transaction_number  INT,
-  transaction_date    DATE,
+  transaction_date    TIMESTAMP DEFAULT now(),
   order_id            INT REFERENCES Orders(id),
   total               FLOAT,
   is_paid             BOOLEAN DEFAULT FALSE,
