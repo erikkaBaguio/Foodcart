@@ -303,10 +303,22 @@ def when_the_view_button_is_clicked(step):
 
 @step(u'Given I have the following transaction details:')
 def user_details(step):
-    world.orders = step.hashes[0]
+    world.transaction = step.hashes[0]
 
 
 @step(u'When the user clicks the add button for transaction')
 def when_the_user_clicks_the_send_button(step):
     world.browser = TestApp(app)
-    world.response = world.app.post('/api/foodcart/transactions/add/', data=json.dumps(world.orders))
+    world.response = world.app.post('/api/foodcart/transactions/add/', data=json.dumps(world.transaction))
+
+
+@step(u'Given the transaction with an id \'([^\']*)\'')
+def given_the_user_with_an_id_group1(step, id):
+    world.trans_id = id
+    world.transaction = world.app.get('/api/foodcart/transactions/{}/'.format(id))
+    world.response_json = json.loads(world.transaction.data)
+
+
+@step(u'When  view button for transaction is clicked')
+def when_the_view_button_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/transactions/{}/'.format(world.trans_id))
