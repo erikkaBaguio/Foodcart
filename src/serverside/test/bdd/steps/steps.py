@@ -93,8 +93,8 @@ def given_the_entered_keyword(step):
     world.restaurant_keyword = step.hashes[0]
 
 
-@step(u'When  the search button is clicked')
-def when_the_search_button_is_clicked(step):
+@step(u'When  the search button for restaurant is clicked')
+def when_the_search_button_for_restaurant_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/restaurants/search/', data=json.dumps(world.restaurant_keyword))
 

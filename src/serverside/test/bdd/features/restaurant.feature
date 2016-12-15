@@ -53,9 +53,19 @@ Scenario: Deactivate restaurant
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'SUCCESS'
 
+Scenario: Search restaurant
+  Given the entered keyword
+        |search                      |
+        |Flamoo Flame Grilled Burgers|
+  When  the search button for restaurant is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'OK'
+  And   the following details will be returned
+        | resto_name                  | min_order | image_id |
+        | Flamoo Flame Grilled Burgers| 5         | 1        |
 
-
-###############
+ ###############
  # Rainy Cases #
  ###############
 
@@ -210,3 +220,12 @@ Scenario: Update restaurant - mobile number field is empty
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
+
+Scenario: Search restaurant - the keyword do not match to any restaurant
+  Given the entered keyword
+        |search  |
+        |q       |
+  When  the search button is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'FAILED'
+  And   it should have a field 'message' containing 'No Restaurant Found'
