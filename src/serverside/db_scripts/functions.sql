@@ -382,25 +382,29 @@ create or replace function show_food(par_resto_id int, par_food_id int, out bigi
     language 'sql';
 
 
---[PUT] Update food image
---select update_food_image(1, 'sample.jpg')
-create or replace function update_food_image(par_id int, in par_url varchar)
-	returns text as
-	$$
-		declare
-			local_response text;
+--[PUT] Update food information
+--select update_food(3, 'Tacorella', 'A taste of famous Mexican taco delicacy in a pizza.', 300)
+create or replace function update_food(par_food_id int, par_food_name varchar, par_description text, par_unit_cost float)
+  returns text as
+  $$
 
-		begin
-			Update Food_images
-			set url = par_url
-			where id = par_id;
+    declare
+      local_response text;
 
-			local_response = 'OK';
+    begin
 
-			return local_response;
-		end;
-	$$
-		language 'plpgsql';
+      Update Foods
+      set food_name = par_food_name,
+          description = par_description,
+          unit_cost = par_unit_cost
+      where id = par_food_id;
+
+      local_response = 'SUCCESS';
+      return local_response;
+
+    end;
+  $$
+    language 'plpgsql';
 
 
 ------------
