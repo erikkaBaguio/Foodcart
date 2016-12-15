@@ -17,7 +17,7 @@ Scenario: Add food successfully.
   And   it should have a field 'message' containing 'OK'
 
 Scenario: View food
-  Given the restaurant id '1' and food id '3'
+  Given the restaurant id '1' and food id '2'
   When  the view button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
@@ -105,7 +105,7 @@ Scenario: Update food - unit cost field is empty
   And   the new details of food
         | food_name   | description                                       | unit_cost  | image_url  |
         | Madcow      | The original hot and spicy pizza in the world.    |            | madcow.jpg |
-  When  the update button is clicked
+  When  the update button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
