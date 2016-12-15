@@ -732,3 +732,21 @@ create or replace function update_orderfoodID(par_id int, in par_quantity int, i
 		end;
 	$$
 		language 'plpgsql';
+
+
+--[GET] Retrieve order by id
+--select * from show_order_id(1);
+create or replace function show_order_id(in par_ID bigint, out int, out int, out int, out int, out boolean) returns setof record as
+  $$
+    select
+      Orders.user_id,
+      Order_foods.quantity,
+      Order_foods.food_id,
+      Order_foods.resto_branch_id,
+      Orders.is_done
+      from Orders
+    inner join Order_foods on Orders.order_food_id = Order_foods.id
+    where Orders.id = par_ID;
+  $$
+    language 'sql';
+
