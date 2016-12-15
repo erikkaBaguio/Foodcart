@@ -186,3 +186,20 @@ def delete_restaurant(resto_id):
     restaurant = spcalls.spcall('delete_restaurant_branch', (resto_id,), True)
 
     return jsonify({"status": "OK", "message": restaurant[0][0]})
+
+def search_resto(data):
+    search_keyword = data['search']
+
+    restaurants = spcalls.spcall('search_restaurant', (search_keyword,), True)
+    entries = []
+
+    if restaurants:
+        for r in restaurants:
+                entries.append({"restaurant_id": r[0],
+                                "restaurant_name": r[1],
+                                "minimum_order": r[2],
+                                "image_id": r[3]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
