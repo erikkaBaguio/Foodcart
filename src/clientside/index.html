@@ -643,6 +643,58 @@
             <!--END USER SEARCH BOX-->
 
 
+            <!-- UPDATE USER FORM -->
+          <hr class="my-2">
+            <section class="content" id="update-user-form" style="display:none">
+                <div class="box box-primary">
+                <div id="update-user-alert">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="padding: 5px">Update User</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="update-user-form" class="bootstrap-form-with-validation">
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">First Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_fname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Middle Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_mname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Last Name</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_lname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input">Password</label>
+                                    <input class="form-control" type="password" name="text-input" id="update_user_password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="text-input" type="hidden">Earned Points</label>
+                                    <input class="form-control" type="text" name="text-input" id="update_earned_points" value="0" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearSignupForm();">Clear</button>
+                    <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="updateUser();">Update</button>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+            </section>
+        <!-- END OF UPDATE USER FORM -->
+
+
+
         </div>
 
     </div>
