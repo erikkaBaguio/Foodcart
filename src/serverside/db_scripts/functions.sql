@@ -751,3 +751,17 @@ create or replace function show_order_id(in par_ID bigint, out int, out int, out
     language 'sql';
 
 
+--[GET] Retrieve all orders
+--select * from show_orders();
+create or replace function show_orders(out bigint, out int, out int, out boolean, out int, out int, out int) returns setof record as
+  $$
+    select Orders.*,
+      Order_foods.quantity,
+      Order_foods.food_id,
+      Order_foods.resto_branch_id
+    from Orders
+    inner join Order_foods on Orders.order_food_id = Order_foods.id
+  $$
+    language 'sql';
+
+
