@@ -298,3 +298,15 @@ def given_the_user_with_an_id_group1(step, id):
 def when_the_view_button_is_clicked(step):
     world.response = world.app.get('/api/foodcart/orders/{}/'.format(world.order_id))
 
+
+"""Transactions"""
+
+@step(u'Given I have the following transaction details:')
+def user_details(step):
+    world.orders = step.hashes[0]
+
+
+@step(u'When the user clicks the add button for transaction')
+def when_the_user_clicks_the_send_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/transactions/add/', data=json.dumps(world.orders))
