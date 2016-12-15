@@ -141,7 +141,8 @@ create table Orders
 (
   id               SERIAL8 PRIMARY KEY,
   user_id          INT REFERENCES Users(id),
-  order_food_id    INT REFERENCES Order_foods(id)
+  order_food_id    INT REFERENCES Order_foods(id),
+  is_done          BOOLEAN DEFAULT FALSE
 );
 
 

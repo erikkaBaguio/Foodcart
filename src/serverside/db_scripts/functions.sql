@@ -259,7 +259,7 @@ create or replace function update_restaurant(in par_restoID int, par_minOrder fl
 		declare
 			local_response text;
 		begin
-			update Restaurant
+			update Restaurants
 			set min_order = par_minOrder
 			where id = par_restoID;
 
@@ -310,7 +310,7 @@ create or replace function store_food(par_food_name varchar, par_description tex
 
 			if local_food_name isnull
 			then
-				insert into Foods(food_name, description, unit_cost, resto_id)
+				insert into Foods(food_name, description, unit_cost, resto_branch_id)
 					values (par_food_name, par_description, par_unit_cost, par_resto_id);
 
 				select into local_response currval(pg_get_serial_sequence('Foods','id'));
@@ -340,7 +340,7 @@ create or replace function show_foods(par_resto_id int, out bigint, out varchar,
     select Foods.id, food_name, description, unit_cost, is_available, is_active, url
     from Foods
     inner join Food_images on Foods.image_id = Food_images.id
-    where Foods.resto_id = par_resto_id;
+    where Foods.resto_branch_id = par_resto_id;
 
   $$
     language 'sql';
@@ -418,6 +418,7 @@ create or replace function update_food(par_food_id int, par_food_name varchar, p
 --  USERS --
 ------------
 
+--[POST] Sign up
 --select store_user('Ma.', 'Erikka', 'Baguio', 'asdasd', 1);
 create or replace function store_user(in par_fname varchar, in par_mname varchar, in par_lname varchar, in par_password varchar,
                     in par_rolename int)
@@ -674,6 +675,55 @@ create or replace function update_user_address(par_id int, in par_bldgNum varcha
 			set bldg_number = par_bldgNum,
 				street = par_street,
 				room_number = par_roomNum
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
+
+
+------------
+-- ORDERS --
+------------
+
+--[POST] Add order
+--select add_order(4);
+create or replace function add_order(in par_userID int) returns bigint as
+  $$
+    declare
+      local_response bigint;
+    begin
+      insert into Orders(user_id) values (par_userID);
+
+      select into local_response currval(pg_get_serial_sequence('Orders', 'id'));
+
+      update Orders
+      set order_food_id = local_response
+      where id = local_response;
+
+      return local_response;
+    end;
+  $$
+    language 'plpgsql';
+
+
+--[PUT] Update Order_foods
+--select update_orderfoodID(1, 1, 4, 2);
+create or replace function update_orderfoodID(par_id int, in par_quantity int, in par_foodID int, in par_restobranchID int)
+	 returns text as
+	$$
+
+		declare
+			local_response text;
+
+		begin
+			Update Order_foods
+			set quantity = par_quantity,
+				food_id = par_foodID,
+				resto_branch_id = par_restobranchID
 			where id = par_id;
 
 			local_response = 'OK';

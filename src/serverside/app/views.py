@@ -11,6 +11,7 @@ from spcalls import SPcalls
 from restaurants import *
 from foods import *
 from users import *
+from orders import *
 from app import app
 
 SECRET_KEY = "a_random_secret_key_$%#!@"
@@ -280,6 +281,18 @@ def search_food():
             return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
     return jsonify({"status": "FAILED", "message": "No results found", "entries": []})
+
+
+###############
+#   ORDERS    #
+###############
+
+@app.route('/api/foodcart/orders/', methods=['POST'])
+def add_order():
+    data = json.loads(request.data)
+    response = store_order(data)
+
+    return response
 
 
 @app.after_request

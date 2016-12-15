@@ -77,3 +77,26 @@ create or replace function create_contact_address() returns trigger as
 
 create trigger create_user_trigger AFTER insert on Users FOR each ROW
 EXECUTE PROCEDURE create_contact_address();
+
+
+------------
+-- ORDERS --
+------------
+
+--this trigger will create an order_foods where id == to the newly created order
+--but this will not store any other attribute of contact and address. only the id.
+create or replace function create_order_foods() returns trigger as
+	$$
+		begin
+			if tg_op = 'INSERT' then
+				insert into Order_foods(id)
+					values (new.id);
+			end if;
+			return new;
+		end;
+	$$
+		LANGUAGE 'plpgsql';
+
+
+create trigger create_order_foods_ins AFTER insert on Orders FOR each ROW
+EXECUTE PROCEDURE create_order_foods();
