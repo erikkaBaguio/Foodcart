@@ -71,3 +71,27 @@ def show_foods(resto_id):
 
     else:
         return jsonify({"status": "FAILED", "message": "No food found", "entries": []})
+
+
+def show_food(resto_id, food_id):
+    food = spcalls.spcall('show_food', (resto_id, food_id,))
+    entries = []
+
+    if len(food) == 0:
+        return jsonify({"status": "FAILED", "message": "No food found", "entries": []})
+
+    elif 'Error' in str(food[0][0]):
+        return jsonify({"status": "FAILED", "message": food[0][0]})
+
+    else:
+        f = food[0]
+
+        entries.append({"food_id": f[0],
+                        "food_name": f[1],
+                        "description": f[2],
+                        "unit_cost": f[3],
+                        "is_available": f[4],
+                        "is_active": f[5],
+                        "image_url": f[6]})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
