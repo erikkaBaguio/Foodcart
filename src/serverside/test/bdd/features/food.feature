@@ -17,14 +17,15 @@ Scenario: Add food successfully.
   And   it should have a field 'message' containing 'OK'
 
 Scenario: View food
-  Given the food with an id '1'
-  When  the view button is clicked
+  Given the restaurant id '1'
+  And   food with an id '3'
+  When  the view button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
   And   the following details will be returned
-    | food_name	  | description 										| unit_cost  |
-    | Madcow   	  | The original hot and spicy pizza in the world.		|     299    |
+        | food_id | food_name	| description 										  | unit_cost  | is_active | is_available | image_url     |
+        | 1       | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    | true      | true         | tacorella.jpg |
 
 Scenario: Update restaurant
   Given the food with an id '1'
