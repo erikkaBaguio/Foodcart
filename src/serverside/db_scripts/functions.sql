@@ -418,6 +418,7 @@ create or replace function update_food(par_food_id int, par_food_name varchar, p
 --  USERS --
 ------------
 
+--[POST] Sign up
 --select store_user('Ma.', 'Erikka', 'Baguio', 'asdasd', 1);
 create or replace function store_user(in par_fname varchar, in par_mname varchar, in par_lname varchar, in par_password varchar,
                     in par_rolename int)
@@ -682,3 +683,28 @@ create or replace function update_user_address(par_id int, in par_bldgNum varcha
 		end;
 	$$
 		language 'plpgsql';
+
+
+------------
+-- ORDERS --
+------------
+
+--[POST] Add order
+--select add_order(4);
+create or replace function add_order(in par_userID int) returns bigint as
+  $$
+    declare
+      local_response bigint;
+    begin
+      insert into Orders(user_id) values (par_userID);
+
+      select into local_response currval(pg_get_serial_sequence('Orders', 'id'));
+
+      update Orders
+      set order_food_id = local_response
+      where id = local_response;
+
+      return local_response;
+    end;
+  $$
+    language 'plpgsql'
