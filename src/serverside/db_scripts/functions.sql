@@ -295,7 +295,7 @@ create or replace function delete_restaurant_branch(in par_restoID bigint)
 
 --[POST] Add food
 --select store_food('test food', 'test description', 1,1);
-create or replace function store_food(par_food_name varchar, par_description text, par_unit_cost float, par_resto_branch_id int)
+create or replace function store_food(par_food_name varchar, par_description text, par_unit_cost float, par_resto_id int)
 	returns bigint as
 	$$
 		declare
@@ -310,8 +310,8 @@ create or replace function store_food(par_food_name varchar, par_description tex
 
 			if local_food_name isnull
 			then
-				insert into Foods(food_name, description, unit_cost, resto_branch_id)
-					values (par_food_name, par_description, par_unit_cost, par_resto_branch_id);
+				insert into Foods(food_name, description, unit_cost, resto_id)
+					values (par_food_name, par_description, par_unit_cost, par_resto_id);
 
 				select into local_response currval(pg_get_serial_sequence('Foods','id'));
 
@@ -329,6 +329,21 @@ create or replace function store_food(par_food_name varchar, par_description tex
 		end;
 	$$
 	language 'plpgsql';
+
+
+--[GET] Retrieve all food of a specific restaurant
+--select show_foods(1)
+create or replace function show_foods(par_resto_id int, out bigint, out varchar, out text, out float, out boolean, out boolean, out varchar)
+  returns setof record as
+  $$
+
+    select Foods.id, food_name, description, unit_cost, is_available, is_active, url
+    from Foods
+    inner join Food_images on Foods.image_id = Food_images.id
+    where Foods.resto_id = par_resto_id;
+
+  $$
+    language 'sql';
 
 
 --[PUT] Update food image

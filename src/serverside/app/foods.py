@@ -17,7 +17,7 @@ def store_food(data):
     description = data['description']
     unit_cost = data['unit_cost']
     image_url = data['image_url']
-    resto_branch_id = data['resto_branch_id']
+    resto_id = data['resto_id']
 
 
     if (food_name == '' or description == '' or not unit_cost):
@@ -25,7 +25,7 @@ def store_food(data):
 
     else:
 
-        food = spcalls.spcall('store_food', (food_name, description, unit_cost, resto_branch_id), True)
+        food = spcalls.spcall('store_food', (food_name, description, unit_cost, resto_id), True)
 
         if 'Error' in str(food[0][0]):
             return jsonify({"status": "FAILED", "message": food[0][0]})

@@ -4,7 +4,7 @@ from os import sys
 from models import DBconn
 import json, flask
 import hashlib
-from flask.ext.httpauth import HTTPBasicAuth
+# from flask.ext.httpauth import HTTPBasicAuth
 from datetime import timedelta
 from itsdangerous import URLSafeTimedSerializer
 from spcalls import SPcalls
@@ -14,7 +14,7 @@ from users import *
 from app import app
 
 SECRET_KEY = "a_random_secret_key_$%#!@"
-auth = HTTPBasicAuth()
+# auth = HTTPBasicAuth()
 spcalls = SPcalls()
 
 login_serializer = URLSafeTimedSerializer(SECRET_KEY)
