@@ -40,3 +40,22 @@ def new_transaction(data):
                 return jsonify({"status": "OK", "message": address_id[0][0]})
 
         return jsonify({"status": "OK", "message": transaction[0][0]})
+
+
+def get_transaction_id(id):
+    transaction = spcalls.spcall('show_transaction_id', (id,))
+    entries = []
+
+    if len(transaction) == 0:
+        return jsonify({"status": "FAILED", "message": "No Transaction Found", "entries": []})
+
+    elif 'Error' in str(transaction[0][0]):
+        return jsonify({"status": "FAILED", "message": transaction[0][0]})
+
+    else:
+        r = transaction[0]
+        entries.append(
+            {'id': str(id), 'transaction_number': str(r[0]), 'transaction_date': str(r[1]), 'order_id': str(r[2]),
+             'total': str(r[3]), 'bldg_number': str(r[4]), 'street': str(r[5]), 'room_number': str(r[6]), 'is_paid': str(r[7])})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries})
