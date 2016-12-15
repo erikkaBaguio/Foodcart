@@ -57,3 +57,23 @@ def get_order_id(id):
             {'id': str(id), 'quantity': str(r[0]), 'food_id': str(r[1]), 'resto_branch_id': str(r[2]), 'is_done': str(r[3])})
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries})
+
+
+def show_all_orders():
+    order = spcalls.spcall('show_orders', ())
+    entries = []
+
+    if 'Error' in str(order[0][0]):
+        return jsonify({"status": "FAILED", "message": order[0][0]})
+
+    elif len(order) != 0:
+        for r in order:
+            entries.append(
+                {'id': str(id), 'quantity': str(r[0]), 'food_id': str(r[1]), 'resto_branch_id': str(r[2]),
+                 'is_done': str(r[3])})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    else:
+        return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
+
