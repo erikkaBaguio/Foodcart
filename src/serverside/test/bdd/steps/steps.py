@@ -202,9 +202,8 @@ def when_the_view_button_is_clicked(step):
 
 """Updating User"""
 
-
-@step(u'Given the details of user')
-def given_the_details_of_user(step):
+@step(u'And the old details of user')
+def and_the_old_details_of_the_food(step):
     world.user_oldInfo = step.hashes[0]
 
 
@@ -215,7 +214,7 @@ def and_the_new_details_of_user(step):
 
 @step(u'When  the update button is clicked')
 def when_the_update_button_is_clicked(step):
-    world.response = world.app.put('/api/foodcart/users/update/', data=json.dumps(world.user_updatedInfo))
+    world.response = world.app.put('/api/foodcart/users/update/3/', data=json.dumps(world.user_updatedInfo))
 
 
 """Search User"""
