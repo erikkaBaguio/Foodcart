@@ -39,3 +39,21 @@ def store_order(data):
                 return jsonify({"status": "OK", "message": order_food_id[0][0]})
 
         return jsonify({"status": "OK", "message": order[0][0]})
+
+
+def get_order_id(id):
+    order = spcalls.spcall('show_order_id', (id,))
+    entries = []
+
+    if len(order) == 0:
+        return jsonify({"status": "FAILED", "message": "No User Found", "entries": []})
+
+    elif 'Error' in str(order[0][0]):
+        return jsonify({"status": "FAILED", "message": order[0][0]})
+
+    else:
+        r = order[0]
+        entries.append(
+            {'id': str(id), 'quantity': str(r[0]), 'food_id': str(r[1]), 'resto_branch_id': str(r[2]), 'is_done': str(r[3])})
+
+        return jsonify({"status": "OK", "message": "OK", "entries": entries})
