@@ -792,4 +792,28 @@ create or replace function add_transaction(in par_transnum int, in par_orderID i
     language 'plpgsql';
 
 
+--[PUT] Update Transaction_address
+--select update_trans_address(5, '63', 'test street', '2');
+create or replace function update_trans_address(par_id int, in par_bldgNum varchar, in par_street varchar, in par_roomNum varchar)
+	 returns text as
+	$$
+
+		declare
+			local_response text;
+
+		begin
+			Update Transaction_address
+			set bldg_number = par_bldgNum,
+				street = par_street,
+				room_number = par_roomNum
+			where id = par_id;
+
+			local_response = 'OK';
+
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
+
+
 
