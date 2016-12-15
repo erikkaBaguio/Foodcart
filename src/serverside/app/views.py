@@ -248,23 +248,8 @@ def deactivate_food(food_id):
 def search_food():
     data = json.loads(request.data)
 
-    search_keyword = data['search']
-
-    foods = spcalls.spcall('search_food', (search_keyword,), True)
-    entries = []
-
-    if foods:
-        for f in foods:
-
-            if f[4] == True:
-                entries.append({"food_id": f[0],
-                                "food_name": f[1],
-                                "description": f[2],
-                                "unit_cost": f[3],
-                                "is_active": f[4]})
-            return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
-
-    return jsonify({"status": "FAILED", "message": "No results found", "entries": []})
+    response = food_search(data)
+    return response
 
 
 ###############

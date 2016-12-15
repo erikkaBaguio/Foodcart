@@ -128,3 +128,24 @@ def food_update(data, food_id):
 
                 else:
                     return jsonify({"status": "OK", "message": "OK"})
+
+
+def food_search(data):
+    search_keyword = data['search']
+
+    foods = spcalls.spcall('search_food', (search_keyword,), True)
+    entries = []
+
+    if foods:
+        for f in foods:
+            entries.append({"food_id": f[0],
+                            "food_name": f[1],
+                            "description": f[2],
+                            "unit_cost": f[3],
+                            "resto_id": f[4],
+                            "image_id": f[5],
+                            "is_available": f[6],
+                            "is_active": f[7]})
+            return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    return jsonify({"status": "FAILED", "message": "No results found", "entries": []})
