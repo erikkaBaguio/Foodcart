@@ -28,12 +28,13 @@ As a system administrator, I want to update users' details.
 
 
     Scenario: Update user
-             Given the details of user
-             | id | fname   |  mname  | lname | user_password | earned_points | contact_id | address_id | role_id | is_active |
-             | 3  | Kristel | Ahlaine |  Gem  |    asdasd     |      100      |      3     |      3     |    1    |    TRUE   |
+             Given the user with an id '3'
+			 And the old details of user
+		     | id | update_fname | update_mname | update_lname | update_user_password | update_earned_points | contact_id | address_id | role_id | is_active |
+             | 3  |    Kristel   |    Ahlaine   |      Gem     |         asdasd       |          100         |      3     |      3     |    1    |    TRUE   |
              And the new details of user
-             | id | fname   |  mname  |    lname     | user_password | earned_points |
-             | 3  | Kristel | Ahlaine |  Pabillaran  |    asdasd     |      100      |
+             | id | update_fname | update_mname | update_lname | update_user_password | update_earned_points |
+             | 3  |    Kristel   |    Ahlaine   |  Pabillaran  |        asdasd        |          100         |
 		     When  the update button is clicked
              Then  it should have a '200' response
              And   it should have a field 'status' containing 'OK'
