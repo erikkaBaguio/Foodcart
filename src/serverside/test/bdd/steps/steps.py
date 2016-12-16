@@ -93,8 +93,8 @@ def given_the_entered_keyword(step):
     world.restaurant_keyword = step.hashes[0]
 
 
-@step(u'When  the search button is clicked')
-def when_the_search_button_is_clicked(step):
+@step(u'When  the search button for restaurant is clicked')
+def when_the_search_button_for_restaurant_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/restaurants/search/', data=json.dumps(world.restaurant_keyword))
 
@@ -130,18 +130,22 @@ def when_the_view_button_for_food_is_clicked(step):
 
 
 """ Update Food """
+@step(u'Given the food with an id \'([^\']*)\'')
+def given_the_food_with_an_id_group1(step, food_id):
+    world.food_id = food_id
 
-@step(u'And the old details of the food')
+
+@step(u'And   the old details of the food')
 def and_the_old_details_of_the_food(step):
     world.food_oldInfo = step.hashes[0]
 
-@step(u'And the new details of food')
+@step(u'And   the new details of food')
 def and_the_new_details_of_food(step):
     world.food_updatedInfo = step.hashes[0]
 
-@step(u'When  the update button is clicked')
-def when_the_update_button_is_clicked(step):
-    world.response = world.app.put('/api/foodcart/foods/1', data=json.dumps(world.food_updatedInfo))
+@step(u'When  the update button for food is clicked')
+def when_the_update_button_for_food_is_clicked(step):
+    world.response = world.app.put('/api/foodcart/foods/{}'.format(world.food_id), data=json.dumps(world.food_updatedInfo))
 
 
 """ Deactivate Food """
@@ -158,8 +162,8 @@ def when_the_deactivate_button_is_clicked(step):
 
 """ Search Food """
 
-@step(u'Given the entered keyword')
-def given_the_entered_keyword(step):
+@step(u'Given the entered keyword for food')
+def given_the_entered_keyword_for_food(step):
     world.food_keyword = step.hashes[0]
 
 

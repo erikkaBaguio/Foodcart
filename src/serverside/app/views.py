@@ -198,25 +198,9 @@ def deactivate_restaurant(resto_id):
 @app.route('/api/foodcart/restaurants/search/', methods=['POST'])
 def search_restaurant():
     data = json.loads(request.data)
+    response = search_resto(data)
 
-    search_keyword = data['search']
-
-    restaurants = spcalls.spcall('search_restaurant', (search_keyword,), True)
-    entries = []
-
-    if restaurants:
-        for r in restaurants:
-            if r[5] == True:
-                entries.append({"restaurant_id": r[0],
-                                "restaurant_name": r[1],
-                                "minimum_order": r[2],
-                                "delivery_fee": r[3],
-                                "location": r[4],
-                                "is_active": r[5]})
-
-        return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
-
-    return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+    return response
 
 
 #############
@@ -265,23 +249,8 @@ def deactivate_food(food_id):
 def search_food():
     data = json.loads(request.data)
 
-    search_keyword = data['search']
-
-    foods = spcalls.spcall('search_food', (search_keyword,), True)
-    entries = []
-
-    if foods:
-        for f in foods:
-
-            if f[4] == True:
-                entries.append({"food_id": f[0],
-                                "food_name": f[1],
-                                "description": f[2],
-                                "unit_cost": f[3],
-                                "is_active": f[4]})
-            return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
-
-    return jsonify({"status": "FAILED", "message": "No results found", "entries": []})
+    response = food_search(data)
+    return response
 
 
 ###############

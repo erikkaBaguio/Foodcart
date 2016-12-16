@@ -103,7 +103,6 @@ def food_update(data, food_id):
     description = data['description']
     unit_cost = data['unit_cost']
     image_url = data['image_url']
-    resto_id = data['resto_id']
 
 
     if (food_name == '' or description == '' or not unit_cost):
@@ -111,18 +110,14 @@ def food_update(data, food_id):
 
     else:
 
-        food = spcalls.spcall('update_food', (food_id, food_name, description, unit_cost, resto_id), True)
+        food = spcalls.spcall('update_food', (food_id, food_name, description, unit_cost, ), True)
 
         if 'Error' in str(food[0][0]):
             return jsonify({"status": "FAILED", "message": food[0][0]})
 
         else:
-            food_id  = food[0][0]
 
-            if (food[0][0] == 'EXISTED'):
-                return jsonify({"status": "FAILED", "message": "EXISTED"})
-
-            elif 'Error' in str(food[0][0]):
+            if 'Error' in str(food[0][0]):
                 return jsonify({"status": "FAILED", "message": food[0][0]})
 
             else:
@@ -133,3 +128,24 @@ def food_update(data, food_id):
 
                 else:
                     return jsonify({"status": "OK", "message": "OK"})
+
+
+def food_search(data):
+    search_keyword = data['search']
+
+    foods = spcalls.spcall('search_food', (search_keyword,), True)
+    entries = []
+
+    if foods:
+        for f in foods:
+            entries.append({"food_id": f[0],
+                            "food_name": f[1],
+                            "description": f[2],
+                            "unit_cost": f[3],
+                            "resto_id": f[4],
+                            "image_id": f[5],
+                            "is_available": f[6],
+                            "is_active": f[7]})
+            return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
+
+    return jsonify({"status": "FAILED", "message": "No results found", "entries": []})
