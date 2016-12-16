@@ -58,10 +58,8 @@ function searchRestaurant(){
 
 					for (var i = 0; i < results.entries.length; i++) {
 						restaurant = '<tr>' +
-										'<td>' + results.entries[i].restaurant_name + results.entries[i].restaurant_id+ '</td>' +
+										'<td>' + results.entries[i].restaurant_name + '</td>' +
 										'<td>' + results.entries[i].minimum_order + '</td>' +
-										'<td>' + results.entries[i].delivery_fee + '</td>' +
-										'<td>' + results.entries[i].location + '</td>' +
 										'</tr>';
 
 						restaurant_row  += restaurant
