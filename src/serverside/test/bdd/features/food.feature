@@ -17,14 +17,14 @@ Scenario: Add food successfully.
   And   it should have a field 'message' containing 'OK'
 
 Scenario: View food
-  Given the restaurant id '1' and food id '2'
+  Given the restaurant id '1' and food id '1'
   When  the view button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
   And   the following details will be returned
-        | food_id | food_name	| description 										  | unit_cost  | is_active | is_available | image_url     |
-        | 1       | Tacorella   | A taste of famous Mexican taco delicacy in a pizza. |     299    | true      | true         | tacorella.jpg |
+        | food_id | food_name	| description 										 | unit_cost  | is_active | is_available | image_url  |
+        | 1       | Madcow      | The original hot and spicy pizza in the world.     |     299    | true      | true         | madcow.jpg |
 
 Scenario: Update food
   Given the food with an id '1'
@@ -42,17 +42,17 @@ Scenario: Update food
   And   it should have a field 'message' containing 'OK'
 
 Scenario: Search food
-  Given the entered keyword
-    |search                      |
-    |Madcow                      |
+  Given the entered keyword for food
+        |search                      |
+        |Madcow                      |
 
   When  the search button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
   And   the following details will be returned
-    | food_name   | description                                       | unit_cost  |
-    | Madcow      | The original hot and spicy pizza in the world.    |     299    |
+        | food_id | food_name	| description 										  | unit_cost  | resto_id | image_id | is_available | is_active |
+        | 1       | Madcow      | The original hot and spicy pizza in the world.      |     300    | true     | true     | true         | true      |
 
 
 ###############
@@ -117,11 +117,11 @@ Scenario: Deactivate food
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'SUCCESS'
 
-Scenario: Search food - the keyword do not match to any rastaurant
+Scenario: Search food - the keyword do not match to any food
   Given the entered keyword
         |search  |
         |q       |
   When  the search button is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
-  And   it should have a field 'message' containing 'No results found'
+  And   it should have a field 'message' containing 'No data matched your search'

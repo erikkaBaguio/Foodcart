@@ -162,8 +162,8 @@ def when_the_deactivate_button_is_clicked(step):
 
 """ Search Food """
 
-@step(u'Given the entered keyword')
-def given_the_entered_keyword(step):
+@step(u'Given the entered keyword for food')
+def given_the_entered_keyword_for_food(step):
     world.food_keyword = step.hashes[0]
 
 
