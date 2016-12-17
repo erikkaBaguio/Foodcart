@@ -46,7 +46,7 @@ Scenario: Search food
         |search                      |
         |Madcow                      |
 
-  When  the search button is clicked
+  When  the search button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'OK'
   And   it should have a field 'message' containing 'OK'
@@ -118,10 +118,10 @@ Scenario: Deactivate food
   And   it should have a field 'message' containing 'SUCCESS'
 
 Scenario: Search food - the keyword do not match to any food
-  Given the entered keyword
+  Given the entered keyword for food
         |search  |
         |q       |
-  When  the search button is clicked
+  When  the search button for food is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'No data matched your search'
