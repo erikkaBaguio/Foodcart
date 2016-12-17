@@ -154,8 +154,8 @@ def when_the_update_button_for_food_is_clicked(step):
 def given_the_food_id_group1_is_in_the_database(step, food_id):
     world.food_id = food_id
 
-@step(u'When  the deactivate button is clicked')
-def when_the_deactivate_button_is_clicked(step):
+@step(u'When  the deactivate button for food is clicked')
+def when_the_deactivate_button_for_food__is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.put('/api/foodcart/foods/deactivate/{}'.format(world.food_id))
 

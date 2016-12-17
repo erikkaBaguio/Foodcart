@@ -54,6 +54,13 @@ Scenario: Search food
         | food_id | food_name	| description 										  | unit_cost  | resto_id | image_id | is_available | is_active |
         | 1       | Madcow      | The original hot and spicy pizza in the world.      |     300    | true     | true     | true         | true      |
 
+Scenario: Deactivate food
+  Given the food id '1' is in the database
+  When  the deactivate button for food is clicked
+  Then  it should have a '200' response
+  And   it should have a field 'status' containing 'OK'
+  And   it should have a field 'message' containing 'SUCCESS'
+
 
 ###############
 # Rainy Cases #
@@ -109,13 +116,6 @@ Scenario: Update food - unit cost field is empty
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
   And   it should have a field 'message' containing 'Please fill the required fields'
-
-Scenario: Deactivate food
-  Given the food id '1' is in the database
-  When  the deactivate button is clicked
-  Then  it should have a '200' response
-  And   it should have a field 'status' containing 'OK'
-  And   it should have a field 'message' containing 'SUCCESS'
 
 Scenario: Search food - the keyword do not match to any food
   Given the entered keyword for food
