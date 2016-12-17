@@ -874,3 +874,34 @@ out varchar, out varchar, out varchar, out boolean) returns setof record as
     inner join Transaction_address on Transactions.address_id = Transaction_address.id
   $$
     language 'sql';
+
+
+
+-----------
+-- ROLES --
+-----------
+
+--[POST] Add Role
+--select store_role('System Admin');
+create or replace function store_role(par_rolename VARCHAR)
+	returns text as
+	$$
+		DECLARE
+			loc_rname TEXT;
+			loc_res TEXT;
+		BEGIN
+			SELECT INTO loc_rname rolename FROM Roles  WHERE rolename = par_rolename;
+
+			IF loc_rname ISNULL
+			THEN
+				INSERT INTO Roles(rolename) VALUES (par_rolename);
+				loc_res = 'OK';
+
+			ELSE
+				loc_res = 'EXISTED';
+
+			END IF;
+			RETURN loc_res;
+		END;
+	$$
+		language 'plpgsql';
