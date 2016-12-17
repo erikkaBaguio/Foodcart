@@ -148,4 +148,4 @@ def food_search(data):
                             "is_active": f[7]})
             return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
-    return jsonify({"status": "FAILED", "message": "No results found", "entries": []})
+    return jsonify({"status": "FAILED", "message": "No data matched your search", "entries": []})
