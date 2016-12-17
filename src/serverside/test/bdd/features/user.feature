@@ -17,14 +17,12 @@ As a system administrator, I want to update users' details.
             And   it should have a field 'status' containing 'OK'
 
     Scenario: View user's information
-            Given the user with an id '4'
+            Given the user with an id '1'
             When  view button is clicked
             Then  it should have a '200' response
-            And   it should have a field 'status' containing 'OK'
-            And   it should have a field 'message' containing 'OK'
             And   the following details will be returned:
             | id | fname   | mname | lname | earned_points |      user_email      | user_tel_number | user_mobile_number | user_bldg_number | user_street   | user_room_number | role_id |
-			| 4  |  James  |   M   | Reid  |       0       | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
+			| 1  |  James  |   M   | Reid  |       0       | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 
 
     Scenario: Update user
