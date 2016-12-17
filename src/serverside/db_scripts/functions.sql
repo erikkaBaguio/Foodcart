@@ -432,6 +432,25 @@ create or replace function search_food(in par_search text, out bigint, out varch
   $$
   language 'sql';
 
+
+--[DELETE] Deactivates restaurant_branch
+--select delete_food(1);
+create or replace function delete_food(in par_food_id bigint)
+	returns text as
+	$$
+		declare
+			local_response text;
+		begin
+			update Foods
+			set is_active = False
+			where id = par_food_id ;
+
+			local_response = 'SUCCESS';
+			return local_response;
+		end;
+	$$
+	language 'plpgsql';
+
 ------------
 --  USERS --
 ------------
