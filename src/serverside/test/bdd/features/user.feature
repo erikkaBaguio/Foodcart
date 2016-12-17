@@ -42,7 +42,7 @@ As a system administrator, I want to update users' details.
             Given the entered keyword
             | search |
             | James  |
-            When  the search button is clicked
+            When  the search user button is clicked
             Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
             And   it should have a field 'message' containing 'OK'
