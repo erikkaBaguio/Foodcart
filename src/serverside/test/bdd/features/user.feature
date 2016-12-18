@@ -39,10 +39,10 @@ As a system administrator, I want to update users' details.
 
 
     Scenario:  Search user
-            Given the entered keyword
+            Given the entered keyword for user
             | search |
             | James  |
-            When  the search user button is clicked
+            When  the search button for user is clicked
             Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
             And   it should have a field 'message' containing 'OK'

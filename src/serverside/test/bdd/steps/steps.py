@@ -32,74 +32,6 @@ def and_the_following_details_will_be_returned(step):
 
 
 
-""" Steps for Restaurant feature """
-
-""" Add Restaurant """
-
-@step(u'Given the system administrator have the following restaurant details:')
-def given_the_system_administrator_have_the_following_restaurant_details(step):
-    world.restaurant = step.hashes[0]
-
-@step(u'When  the system administrator clicks the add button')
-def when_the_system_administrator_clicks_the_add_button(step):
-    world.browser = TestApp(app)
-    world.response = world.app.post('/api/foodcart/restaurants/', data=json.dumps(world.restaurant))
-
-
-""" View Restaurant """
-
-@step(u'Given the restaurant with an id \'([^\']*)\'')
-def given_the_restaurant_with_an_id_group1(step, resto_id):
-    world.resto_id = resto_id
-    world.restaurant = world.app.get('/api/foodcart/restaurants/{}'.format(resto_id))
-    world.response_json = json.loads(world.restaurant.data)
-
-@step(u'When  the view button in restaurant feature is clicked')
-def when_the_view_button_in_restaurant_feature_is_clicked(step):
-    world.response = world.app.get('/api/foodcart/restaurants/{}'.format(world.resto_id))
-
-
-""" Update Restaurant """
-
-@step(u'And   the old details of the restuarant')
-def and_the_old_details_of_the_restuarant(step):
-    world.restaurant_oldInfo = step.hashes[0]
-
-@step(u'And   the new details of retaurant')
-def and_the_new_details_of_retaurant(step):
-    world.restaurant_updatedInfo = step.hashes[0]
-
-@step(u'When  the update button of restaurant is clicked')
-def when_the_update_button_of_restaurant_is_clicked(step):
-    world.response = world.app.put('/api/foodcart/restaurants/1', data=json.dumps(world.restaurant_updatedInfo))
-
-
-""" Deactivate Restaurant """
-
-@step(u'Given the restaurant id \'([^\']*)\' is in the database')
-def given_the_restaurant_id_group1_is_in_the_database(step, resto_id):
-    world.resto_id = resto_id
-
-@step(u'When  the deactivate button for restaurant is clicked')
-def when_the_deactivate_button_for_restaurant_is_clicked(step):
-    world.browser = TestApp(app)
-    world.response = world.app.put('/api/foodcart/restaurants/deactivate/{}'.format(world.resto_id))
-
-
-""" Search Restaurant """
-
-@step(u'Given the entered keyword')
-def given_the_entered_keyword(step):
-    world.restaurant_keyword = step.hashes[0]
-
-
-@step(u'When  the search button for restaurant is clicked')
-def when_the_search_button_for_restaurant_is_clicked(step):
-    world.browser = TestApp(app)
-    world.response = world.app.post('/api/foodcart/restaurants/search/', data=json.dumps(world.restaurant_keyword))
-
-
-
 
 """ Steps for Food feature """
 
@@ -174,6 +106,121 @@ def when_the_search_button_for_food_is_clicked(step):
 
 
 
+"""Log In"""
+
+@step(u'Given I have the following login details:')
+def given_login_details(step):
+    world.login = step.hashes[0]
+
+
+@step(u'When I click login button')
+def when_i_click_login_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/users/login/', data = json.dumps(world.login))
+
+@step(u'Then I get a \'(.*)\' response')
+def then_i_should_get_a_200_response(step, expected_status_code):
+    assert_equals(world.response.status_code, int(expected_status_code))
+
+
+@step(u'And a message "Successfully Logged In" is returned')
+def message_res(step):
+    world.respn = json.loads(world.response.data)
+    assert_equals(world.respn['message'], "Successfully Logged In")
+
+
+@step(u'And a message "Invalid email or password" is returned')
+def message_res(step):
+    world.respn = json.loads(world.response.data)
+    assert_equals(world.respn['message'], "Invalid email or password")
+
+
+
+
+
+"""Orders"""
+
+@step(u'Given I have the following order details:')
+def user_details(step):
+    world.orders = step.hashes[0]
+
+@step(u'When the user clicks the add button')
+def when_the_user_clicks_the_send_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/orders/', data=json.dumps(world.orders))
+
+
+
+
+""" Steps for Restaurant feature """
+
+""" Add Restaurant """
+
+@step(u'Given the system administrator have the following restaurant details:')
+def given_the_system_administrator_have_the_following_restaurant_details(step):
+    world.restaurant = step.hashes[0]
+
+@step(u'When  the system administrator clicks the add button')
+def when_the_system_administrator_clicks_the_add_button(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/restaurants/', data=json.dumps(world.restaurant))
+
+
+""" View Restaurant """
+
+@step(u'Given the restaurant with an id \'([^\']*)\'')
+def given_the_restaurant_with_an_id_group1(step, resto_id):
+    world.resto_id = resto_id
+    world.restaurant = world.app.get('/api/foodcart/restaurants/{}'.format(resto_id))
+    world.response_json = json.loads(world.restaurant.data)
+
+@step(u'When  the view button in restaurant feature is clicked')
+def when_the_view_button_in_restaurant_feature_is_clicked(step):
+    world.response = world.app.get('/api/foodcart/restaurants/{}'.format(world.resto_id))
+
+
+""" Update Restaurant """
+
+@step(u'And   the old details of the restuarant')
+def and_the_old_details_of_the_restuarant(step):
+    world.restaurant_oldInfo = step.hashes[0]
+
+@step(u'And   the new details of retaurant')
+def and_the_new_details_of_retaurant(step):
+    world.restaurant_updatedInfo = step.hashes[0]
+
+@step(u'When  the update button of restaurant is clicked')
+def when_the_update_button_of_restaurant_is_clicked(step):
+    world.response = world.app.put('/api/foodcart/restaurants/1', data=json.dumps(world.restaurant_updatedInfo))
+
+
+""" Deactivate Restaurant """
+
+@step(u'Given the restaurant id \'([^\']*)\' is in the database')
+def given_the_restaurant_id_group1_is_in_the_database(step, resto_id):
+    world.resto_id = resto_id
+
+@step(u'When  the deactivate button for restaurant is clicked')
+def when_the_deactivate_button_for_restaurant_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.put('/api/foodcart/restaurants/deactivate/{}'.format(world.resto_id))
+
+
+""" Search Restaurant """
+
+@step(u'Given the entered keyword for restaurant')
+def given_the_entered_keyword_for_restaurant(step):
+    world.restaurant_keyword = step.hashes[0]
+
+
+@step(u'When  the search button for restaurant is clicked')
+def when_the_search_button_for_restaurant_is_clicked(step):
+    world.browser = TestApp(app)
+    world.response = world.app.post('/api/foodcart/restaurants/search/', data=json.dumps(world.restaurant_keyword))
+
+
+
+
 """Steps for User feature"""
 
 """Adding User"""
@@ -224,13 +271,13 @@ def when_the_update_button_is_clicked(step):
 
 """Search User"""
 
-@step(u'Given the entered keyword')
-def given_the_entered_keyword(step):
+@step(u'Given the entered keyword for user')
+def given_the_entered_keyword_for_user(step):
     world.user_keyword = step.hashes[0]
 
 
-@step(u'When  the search user button is clicked')
-def when_the_search_user_button_is_clicked(step):
+@step(u'When  the search button for user is clicked')
+def when_the_search_button_for_user_is_clicked(step):
     world.browser = TestApp(app)
     world.response = world.app.post('/api/foodcart/users/search/', data=json.dumps(world.user_keyword))
 

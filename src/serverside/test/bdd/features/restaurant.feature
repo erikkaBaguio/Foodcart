@@ -54,7 +54,7 @@ Scenario: Deactivate restaurant
   And   it should have a field 'message' containing 'SUCCESS'
 
 Scenario: Search restaurant
-  Given the entered keyword
+  Given the entered keyword for restaurant
         |search                      |
         |Flamoo Flame Grilled Burgers|
   When  the search button for restaurant is clicked
@@ -222,10 +222,10 @@ Scenario: Update restaurant - mobile number field is empty
   And   it should have a field 'message' containing 'Please fill the required fields'
 
 Scenario: Search restaurant - the keyword do not match to any restaurant
-  Given the entered keyword
+  Given the entered keyword for restaurant
         |search  |
         |q       |
   When  When  the search button for restaurant is clicked
   Then  it should have a '200' response
   And   it should have a field 'status' containing 'FAILED'
-  And   it should have a field 'message' containing 'No Restaurant Found'
+  And   it should have a field 'message' containing 'No data matched your search'
