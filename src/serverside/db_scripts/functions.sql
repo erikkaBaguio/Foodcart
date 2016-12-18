@@ -802,6 +802,25 @@ create or replace function show_orders(out bigint, out int, out int, out boolean
     language 'sql';
 
 
+--[PUT] Update order
+--select update_order(1, true);
+create or replace function update_order(par_id int, par_done boolean) returns text as
+  $$
+    declare
+      local_response text;
+    begin
+      Update Orders
+      set is_done = par_done
+      where id = par_id;
+
+      local_response = 'OK';
+
+			return local_response;
+		end;
+  $$
+    language 'plpgsql';
+
+
 ------------------
 -- TRANSACTIONS --
 ------------------
