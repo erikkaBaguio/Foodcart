@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 	<link href="css/style.css" media="all" rel="stylesheet" type="text/css"><!-- Custom Theme files -->
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<script type="application/x-javascript">
-	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+	   addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 	</script><!--webfont-->
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'><!--Animation-->
@@ -22,7 +22,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 	</script>
 	<link href="css/animate.css" rel='stylesheet' type='text/css'>
 	<script>
-	   new WOW().init();
+	      new WOW().init();
 	</script>
 	<script src="js/simpleCart.min.js">
 	</script>
@@ -31,12 +31,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 	<script src="js/easing.js" type="text/javascript">
 	</script>
 	<script type="text/javascript">
-	           jQuery(document).ready(function($) {
-	               $(".scroll").click(function(event){
-	                   event.preventDefault();
-	                   $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
-	               });
-	           });
+	              jQuery(document).ready(function($) {
+	                  $(".scroll").click(function(event){
+	                      event.preventDefault();
+	                      $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+	                  });
+	              });
 	</script>
 </head>
 <body>
@@ -45,10 +45,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 		<div class="container">
 			<div class="top-header">
 				<!-- <div class="logo">
-					<a href="index.html"><img alt="" class="img-responsive" src="images/logo.png"></a>
-				</div> -->
+                    <a href="index.html"><img alt="" class="img-responsive" src="images/logo.png"></a>
+                </div> -->
 				<div class="logo">
-					<h1 class="img-responsive"><a href="index.html" style="font-family: 'Stint Ultra Condensed', cursive; font-size:2em; color:#E88010">Foodcart</a></h1>
+					<h1><a href="index.html" style="font-family: 'Stint Ultra Condensed', cursive; font-size:2em; color:#E24425">Food</a><a style="font-family: 'Stint Ultra Condensed', cursive; font-size:2em; color:#5BBD50">cart</a></h1>
 				</div>
 				<div class="queries">
 					<p>Questions? Message us!<span>foodcart@gmail.com</span> <label>(11AM to 11PM)</label></p>
@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 		</div>
 		<div class="menu-bar">
 			<div class="container">
-				<div id="top-menu-admin" class="top-menu" style="display:none">
+				<div class="top-menu" id="top-menu-admin" style="display:none">
 					<ul>
 						<li class="active">
 							<a class="scroll" href="#Home">Home</a>
@@ -98,32 +98,55 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 			</div>
 		</div>
 		<div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+			<!-- login form -->
 			<div class="container">
+				<div class="login-page" id="login" style="display:none">
+					<div class="account_grid">
+						<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+							<h3 style="color:#fff">NEW CUSTOMERS</h3>
+							<p style="color:#fff">By creating an account with our store, you will be able to move through the checkout process faster, view and track your orders in your account and more.</p><a class="acount-btn" href="register.html">Create an Account</a>
+						</div>
+						<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+							<h3 style="color:#fff">REGISTERED CUSTOMERS</h3>
+							<p style="color:#fff">If you have an account with us, please log in.</p>
+							<form>
+								<div>
+									<span style="color:#fff">Email Address<label>*</label></span> <input type="text">
+								</div>
+								<div>
+									<span style="color:#fff">Password<label>*</label></span> <input type="text">
+								</div><input type="submit" value="Login">
+							</form>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
 			</div>
+			<!-- end of login form -->
 		</div>
-	</div>
-	<!-- header-section-ends -->
-	<!-- footer-section-starts -->
+	</div><!-- header-section-ends -->
+	<div class="content">
+		<div class="container"></div>
+	</div><!-- footer-section-starts -->
 	<div class="footer">
 		<div class="container">
-			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
+			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014 All rights Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
-	</div>
-	<!-- footer-section-ends -->
+	</div><!-- footer-section-ends -->
 	<script type="text/javascript">
-       $(document).ready(function() {
-           /*
-           var defaults = {
-               containerID: 'toTop', // fading element id
-               containerHoverID: 'toTopHover', // fading element hover id
-               scrollSpeed: 1200,
-               easingType: 'linear'
-           };
-           */
+	      $(document).ready(function() {
+	          /*
+	          var defaults = {
+	              containerID: 'toTop', // fading element id
+	              containerHoverID: 'toTopHover', // fading element hover id
+	              scrollSpeed: 1200,
+	              easingType: 'linear'
+	          };
+	          */
 
-           $().UItoTop({ easingType: 'easeOutQuart' });
+	          $().UItoTop({ easingType: 'easeOutQuart' });
 
-       });
+	      });
 	</script> <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
 </body>
 </html>
