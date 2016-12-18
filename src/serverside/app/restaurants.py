@@ -202,4 +202,4 @@ def search_resto(data):
 
         return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
-    return jsonify({"status": "FAILED", "message": "No Restaurant Found", "entries": []})
+    return jsonify({"status": "FAILED", "message": "No data matched your search", "entries": []})
