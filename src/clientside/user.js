@@ -23,7 +23,7 @@ function signup(){
     var bldg_number = $('#user_bldg_number').val();
     var street = $('#user_street').val();
     var room_number = $('#user_room_number').val();
-	var role_id = $('#role_id').val();
+	var role_id = $('#registration-role_id').val();
 	var earned_points = $('#earned_points').val();
 
 	var data = JSON.stringify({ 'fname' : fname,
@@ -36,11 +36,13 @@ function signup(){
 								'user_bldg_number' : bldg_number,
                                 'user_street' : street,
                                 'user_room_number' : room_number,
-								'role_id' : role_id,
+								'registration-role_id' : role_id,
 								'earned_points' : earned_points
 							});
 
-	$.ajax({
+    if(user_role == 1){
+
+		$.ajax({
 	    	type:"POST",
 	    	url: "http://localhost:5000/api/foodcart/users/signup/",
 	    	contentType:"application/json; charset=utf-8",
@@ -50,37 +52,49 @@ function signup(){
 			success: function(results){
 				if (results.status == 'OK'){
 
-					$('#add-user-alert').html(
-						'<div class="alert alert-success"><strong>Success ' +
-						 '!</strong>' + results.message +'</div>');
+					$('#add-user-form').show();
 
-					$("#add-user-alert").fadeTo(2000, 500).slideUp(500);
+					$('#welcome-alert-admin').html(
+							'<div class="alert alert-success"><strong>Successfully added ' +
+							fname + lname +
+							 '!</strong> with role id: '+ role_id +'</div>');
+					$("#welcome-alert-admin").fadeTo(2000, 500).slideUp(500);
 
-					$("#add-user-form").hide();
-
-					clearSignupForm();
+					var form = document.getElementById("register");
+					form.reset();
 
 				}
 
 				if(results.status == 'FAILED'){
+					$('#add-user-form').show();
 
-					$('#add-user-alert').html(
-						'<div class="alert alert-danger"><strong>Failed ' +
-						 '!</strong>' + results.message +'</div>');
-
-					$("#add-user-alert").fadeTo(2000, 500).slideUp(500);
-
+					$('#welcome-alert-admin').html(
+							'<div class="alert alert-danger"><strong>Failed to add ' +
+							fname + lname +
+							 '!</strong>'+ results.message +'</div>');
+					$("#welcome-alert-admin").fadeTo(2000, 500).slideUp(500);
 				}
+
 			},
-			error: function(e){
-				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+
+			error: function(e, stats, err){
+				console.log(err);
+				console.log(stats);
 			},
+
 			beforeSend: function (xhrObj){
 
 	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
 
 	        }
-	    });
+
+		});
+	}
+
+	else{
+		alert("UNAUTHORIZE ACCESS");
+	}
+
 }
 
 
