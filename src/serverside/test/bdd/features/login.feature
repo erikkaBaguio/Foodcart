@@ -12,7 +12,6 @@ Feature: Login
       | minho@gmail.com |    asd   |
       When I click login button
       Then I get a '200' response
-#      And a message "Successfully Logged In" is returned
       And   it should have a field 'status' containing 'OK'
       And   it should have a field 'message' containing 'Successfully logged in'
 
