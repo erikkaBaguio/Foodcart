@@ -169,7 +169,7 @@ function viewAllRestaurant(){
 														'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].minimum_order +' </p>'+
                                 						'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].delivery_fee +' </p>' + '</td>' +
 												'<td>' + '<div class="col-md-2 buy">' +
-                                    			'<a class="morebtn hvr-rectangle-in" href="#" style="background-color:#d13517" onclick="deactivateRestaurant(results.entries[i].restaurant_id);">deactivate</a></div>' + '</td>'
+                                    			'<a class="morebtn hvr-rectangle-in" href="#" style="background-color:#d13517" onclick="deactivateRestaurant(' + results.entries[i].restaurant_id + ');">deactivate</a></div>' + '</td>'
                                                '</tr>';
 
                                 restaurant_row  += restaurant
