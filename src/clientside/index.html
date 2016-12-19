@@ -28,29 +28,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!--//web-fonts-->
 <!--animate-->
+	<title>Tasty Food a Hotel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title><!--mobile apps-->
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="Tasty Food Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free Webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" name="keywords">
+	<script type="application/x-javascript">
+	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+	</script><!--mobile apps-->
+	<!--Custom Theme files -->
+	<link href="css/bootstrap.css" media="all" rel="stylesheet" type="text/css">
+	<link href="css/style.css" media="all" rel="stylesheet" type="text/css">
+	<link href="css/flexslider.css" media="screen" rel="stylesheet" type="text/css"><!-- //Custom Theme files -->
+	<!-- js -->
 
-<link href="assets/web/css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="assets/web/js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
+	<script src="js/jquery-1.11.1.min.js">
+	</script><!-- //js -->
+	<!--web-fonts-->
+	<link href='//fonts.googleapis.com/css?family=Stint+Ultra+Condensed' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'><!--//web-fonts-->
+	<!--animate-->
+	<link href="css/animate.css" media="all" rel="stylesheet" type="text/css">
+	<script src="js/wow.min.js">
 	</script>
-<!--//end-animate-->
-<!-- start-smooth-scrolling-->
-<script type="text/javascript" src="assets/web/js/move-top.js"></script>
-<script type="text/javascript" src="assets/web/js/easing.js"></script>
-<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$(".scroll").click(function(event){
-				event.preventDefault();
-				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-			});
-		});
-</script>
-<!--//end-smooth-scrolling-->
+	<script>
+	        new WOW().init();
+	</script><!--//end-animate-->
+	<!-- start-smooth-scrolling-->
+
+	<script src="js/move-top.js" type="text/javascript">
+	</script>
+	<script src="js/easing.js" type="text/javascript">
+	</script>
+	<script type="text/javascript">
+	       jQuery(document).ready(function($) {
+	           $(".scroll").click(function(event){
+	               event.preventDefault();
+	               $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+	           });
+	       });
+	</script><!--//end-smooth-scrolling-->
 </head>
 <body>
-	<div class="customer-container">
-
 	<!--banner-->
 	<div class="banner">
 		<div class="container">
@@ -60,48 +78,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h1 class="wow zoomIn animated" data-wow-delay=".5s"><a href="index.html">Foodcart</a></h1>
 				</div>
 				<div class="top-nav">
-					<span class="menu"><img src="assets/web/images/menu.png" alt=""/></span>
+					<span class="menu"><img alt="" src="images/menu.png"></span>
+					<!-- script-for-menu -->
 					<ul>
-						<li class="wow slideInDown animated" data-wow-delay=".5s"><a class="active" href="index.html">Home</a></li>
-						<li class="wow slideInDown" data-wow-delay=".6s"><a href="">About</a></li>
-						<li class="wow slideInDown" data-wow-delay=".7s"><a href="#"></a></li>
-						<li class="wow slideInDown" data-wow-delay=".8s"><a href="#">Contact</a></li>
-						<li class="wow slideInDown" data-wow-delay=".9s"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-
-					</ul>
-					<!-- script-for-menu -->
+						<li class="wow slideInDown animated" data-wow-delay=".5s">
+							<a class="active" href="index.html">Home</a>
+						</li>
+						<li class="wow slideInDown" data-wow-delay=".6s">
+							<a href="about.html">About</a>
+						</li>
+						<li class="wow slideInDown" data-wow-delay=".7s">
+							<a href="#"></a>
+						</li>
+						<li class="wow slideInDown" data-wow-delay=".7s">
+							<a href="#"></a>
+						</li>
+						<li class="wow slideInDown" data-wow-delay=".8s">
+							<a href="blog.html">Contact</a>
+						</li>
+						<li class="wow slideInDown" data-wow-delay=".9s">
+							<a href="contact.html">Login</a>
+						</li>
+					</ul><!-- script-for-menu -->
 					<script>
-						$("span.menu").click(function(){
-							$(".top-nav ul").slideToggle("slow" , function(){
-							});
-						});
-					</script>
-					<!-- script-for-menu -->
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<!--//header Restaurant Search-->
 
-			<section id="resto-search-box" class="content" style="margin-top: 10px">
-			<div class="bnr-text wow slideInUp animated" data-wow-delay=".5s">
-				<div class="col-lg-3" id="resto-search-alert"></div>
-				<div class="col-lg-6" id="resto-search-box">
-                    <!-- search form -->
-                    <form method="get" class="sidebar-form" onsubmit="return false">
-                        <div class="input-group">
-                            <input id="resto-search" type="text" name="q" class="form-control" placeholder="Search for Restaurant">
-                            <span class="input-group-btn">
-                                <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();"><i class="fa fa-search">Search</i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
+	                   $("span.menu").click(function(){
+	                       $(".top-nav ul").slideToggle("slow" , function(){
+	                       });
+	                   });
+					</script> <!-- script-for-menu -->
 				</div>
-            	<div class="col-lg-3"></div>
+				<div class="clearfix"></div>
 			</div>
-
-			<div class="box-header with-border" style="display:none">
+			<!--//header-->
+			<section class="content" id="resto-search-box" style="margin-top: 10px">
+				<div class="container" style="margin-top: 5%;">
+				<div class="box-header with-border" style="display:none">
                     <h3 class="box-title" style="padding: 5px">Search Results</h3>
                 </div>
                 <!-- /.box-header -->
@@ -121,13 +133,55 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <!-- /.row -->
-                </div>
+				        <!-- Search Form -->
+				        <form role="form">
+				        <!-- Search Field -->
+				            <div class="row">
+				                <div class="form-group">
+				                    <div class="input-group">
+				                        <input class="form-control" type="text" name="search" placeholder="Search restaurant" required/>
+				                        <span class="input-group-btn">
+				                            <button class="btn" type="submit" style="background-color:#E88010"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:#fff">Search</span></button>
+				                        </span>
+				                    </div>
+				                </div>
+				            </div>
+
+				        </form>
+				        <!-- End of Search Form -->
+    				</div>
+				</div>
 			</section>
-	</div>
-	<!--//banner-->
-	<!--menu-form-->
+		</div>
+	</div><!--//banner-->
+	<!--welcome-->
+	<div class="welcome">
+		<div class="container">
+			<h3 class="title wow fadeInDown animated" data-wow-delay=".5s">Restaurants</h3>
+			<div class="welcome-info">
+				<div class="col-md-4 welcome-left w3l wow slideInLeft animated" data-wow-delay=".5s"></div>
+				<div class="col-md-8 welcome-right w3l">
+					<div class="welcome-text wow fadeInDown animated" data-wow-delay=".7s">
+						<div class="col-md-2 wtext-left w3l">
+							<span aria-hidden="true" class="glyphicon glyphicon-list-alt"></span>
+						</div>
+						<div class="col-md-10 wtext-right">
+							<h4>Sccusamus et</h4>
+							<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p>
+						</div>
+						<div class="clearfix"></div>
+						<div class="welcome-bars">
+							<label class="bar2">82%</label>
+							<div class="progress">
+								<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="82" class="progress-bar" role="progressbar" style="width: 82%;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div><!--//welcome--><!--menu-form-->
 	<div class="menu-form">
 		<div class="menu-info">
 			<h3 class="title wow fadeInDown animated" data-wow-delay=".5s" id="" style="display:none">Restaurants</h3>
@@ -140,67 +194,67 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="menu-right">
 						<h5>$18</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 				<div class="menu-grids menu-grids-mdl wow fadeInDown animated" data-wow-delay=".6s">
 					<div class="menu-left">
-						<h4>Fried rice </h4>
+						<h4>Fried rice</h4>
 						<p>Vestibulum porttitor eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
 					</div>
 					<div class="menu-right">
 						<h5>$12</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 				<div class="menu-grids wow fadeInDown animated" data-wow-delay=".7s">
 					<div class="menu-left">
-						<h4> Salads </h4>
+						<h4>Salads</h4>
 						<p>Dignissimos porttitor vestibulum eu nisl ducimus qui blanditiis praesentium voluptatum</p>
 					</div>
 					<div class="menu-right">
 						<h5>$14</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 				<div class="menu-grids menu-grids-mdl">
 					<div class="menu-left">
-						<h4> Ham hock </h4>
+						<h4>Ham hock</h4>
 						<p>Porttitor vestibulum eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
 					</div>
 					<div class="menu-right">
 						<h5>$20</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 				<div class="menu-grids">
 					<div class="menu-left">
-						<h4> Calamari </h4>
+						<h4>Calamari</h4>
 						<p>Vestibulum porttitor eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
 					</div>
 					<div class="menu-right">
 						<h5>$25</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 				<div class="menu-grids menu-grids-mdl">
 					<div class="menu-left">
-						<h4> Twinkies </h4>
+						<h4>Twinkies</h4>
 						<p>Dignissimos porttitor vestibulum eu nisl ducimus qui blanditiis praesentium voluptatum</p>
 					</div>
 					<div class="menu-right">
 						<h5>$20</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 				<div class="menu-grids">
 					<div class="menu-left">
-						<h4> Beignets </h4>
+						<h4>Beignets</h4>
 						<p>Porttitor vestibulum eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
 					</div>
 					<div class="menu-right">
 						<h5>$11</h5>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
@@ -236,77 +290,77 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           </div>
         </div>
 	<!--//login-->
-
 	<!--footer-->
-	<div class="footer" id="footer">
+	<div class="footer">
 		<div class="container">
 			<div class="footer-info w3agile">
-				<div class="col-md-4 footer-grids footer-address">
-					<h3 class="wow fadeInDown animated" data-wow-delay=".5s">Contact Us:</h3>
+				<div class="col-md-6 footer-grids footer-address">
+					<h3>Contact Us:</h3>
 					<ul>
-						<li class="wow slideInLeft animated" data-wow-delay=".5s"><i class="glyphicon glyphicon-send"></i> Tibanga, Iligan City <span> </span></li>
-						<li class="wow slideInLeft animated" data-wow-delay=".5s"><i class="glyphicon glyphicon-phone"></i> +11 222 3333 <span> +00 1111 222 </span></li>
-						<li class="wow slideInLeft animated" data-wow-delay=".5s"><i class="glyphicon glyphicon-envelope"></i> <a href="mailto:example@mail.com"> foodcart@gmail.com</a></li>
+						<li><i class="glyphicon glyphicon-send"></i> Tibanga <span>Iligan City.</span></li>
+						<li><i class="glyphicon glyphicon-phone"></i> +11 222 3333 <span>+00 1111 222</span></li>
+						<li>
+							<i class="glyphicon glyphicon-envelope"></i> <a href="mailto:example@mail.com">erikka.baguio@gmail.com</a><span><a href="mailto:example@mail.com">kristelahlainegem@gmail.com</a></span>
+						</li>
 					</ul>
 				</div>
-				<div class="col-md-4 footer-grids">
-
-				</div>
-				<div class="col-md-4 footer-grids">
-					<h3 class="wow fadeInDown animated" data-wow-delay=".5s">Newsletter</h3>
-					<div class="subscribe wow slideInRight animated" data-wow-delay=".5s">
+				<div class="col-md-6 footer-grids">
+					<h3>Newsletter</h3>
+					<div class="subscribe wow slideInRight animated">
 						<form>
-							<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-							<input type="submit" value="Go">
+							<input onblur="if (this.value == '') {this.value = 'Email';}" onfocus="this.value = '';" required="" type="text" value="Email"> <input type="submit" value="Go">
 						</form>
-						<div class="clearfix"> </div>
+						<div class="clearfix"></div>
 					</div>
-					<div class="social-icons wow slideInRight animated" data-wow-delay=".5s">
+					<div class="social-icons">
 						<ul>
-							<li><a href="#"> </a></li>
-							<li><a href="#" class="fb"> </a></li>
-							<li><a href="#" class="in"> </a></li>
-							<li><a href="#" class="dott"> </a></li>
+							<li>
+								<a href="#"></a>
+							</li>
+							<li>
+								<a class="fb" href="#"></a>
+							</li>
+							<li>
+								<a class="in" href="#"></a>
+							</li>
+							<li>
+								<a class="dott" href="#"></a>
+							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="clearfix"> </div>
+				<div class="clearfix"></div>
 			</div>
-			<div class="footer-copy wow slideInUp animated" data-wow-delay=".5s">
+			<div>
 				<p>© 2016 Tasty Food. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 			</div>
 		</div>
-	</div>
-	<!--//footer-->
-	<!--smooth-scrolling-of-move-up-->
+	</div><!--//footer--><!--smooth-scrolling-of-move-up-->
 	<script type="text/javascript">
-		$(document).ready(function() {
+	       $(document).ready(function() {
 
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
+	           var defaults = {
+	               containerID: 'toTop', // fading element id
+	               containerHoverID: 'toTopHover', // fading element hover id
+	               scrollSpeed: 1200,
+	               easingType: 'linear'
+	           };
 
-			$().UItoTop({ easingType: 'easeOutQuart' });
+	           $().UItoTop({ easingType: 'easeOutQuart' });
 
-		});
+	       });
+	</script> <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a> <!--//smooth-scrolling-of-move-up-->
+	 <!--scrolling js-->
+
+	<script src="js/jquery.nicescroll.js">
 	</script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	<!--//smooth-scrolling-of-move-up-->
-	<!--scrolling js-->
-	<script src="assets/web/js/jquery.nicescroll.js"></script>
-	<script src="assets/web/js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap core JavaScript
+	<script src="js/scripts.js">
+	</script> <!--//scrolling js-->
+	 <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/web/js/bootstrap.js"></script>
-	<script src="main.js"></script>
-    <script src="restaurant.js"></script>
-    <script src="food.js"></script>
-    <script src="user.js"></script>
-	</div>
+	 <!-- Placed at the end of the document so the pages load faster -->
+
+	<script src="js/bootstrap.js">
+	</script>
 </body>
 </html>
