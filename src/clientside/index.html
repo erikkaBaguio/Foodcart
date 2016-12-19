@@ -71,9 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     <!-- top-menu-personnel-starts -->
                     <div class="top-menu" id="top-menu-personnel" style="display: none">
                         <ul>
-                            <li class="active"><a href="#">Home</a></li>|
-                            <li><a href="#">Foods</a></li>|
-                            <li><a href="#">Restaurant Account</a></li>
+                            <li class="active"><a href="#">Home</a></li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -198,14 +196,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box').show();">Add Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();">Add Restaurant</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
                         <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box').show();$('#add-resto-form').hide();">View Restaurant</a></li>
                     </ul>
                 </div>
-                <div class="col-md-9" style="display:none;background-color:#fff" id="box">
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box-admin">
                    <!-- add-restaurant-form-starts-->
                    <section class="content" id="add-resto-form" style="display:none">
                         <div class="container">
@@ -318,14 +316,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- BUSINESS PERSONNEL PAGE STARTS -->
     <div id="personnel-page">
-        <section class="banner wow fadeInUp" data-wow-delay="0.4s" style="display:none">
-            <div class="container" id="personnel-menu">
-                <div class="col-md-7 buy">
-                    <span>$45</span>
-                    <a class="morebtn hvr-rectangle-in" href="orders-list.html">Add Restaurant</a>
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="personnel-menu" style="display:none">
+            <div class="container">
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Add Food</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">View Food</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box-personnel">
+
                 </div>
             </div>
         </section>
+
     </div>
     <!-- BUSINESS PERSONNEL PAGE ENDS -->
 
