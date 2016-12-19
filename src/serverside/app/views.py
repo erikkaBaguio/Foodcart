@@ -23,11 +23,11 @@ login_serializer = URLSafeTimedSerializer(SECRET_KEY)
 
 
 # Users
-def get_auth_token(username, password):
+def get_auth_token(email, password):
     """
     Encode a secure token for cookie
     """
-    data = [username, password]
+    data = [email, password]
     return login_serializer.dumps(data)
 
 
@@ -49,6 +49,11 @@ def load_token(token):
     return data[0] + ':' + data[1]
 
 
+def get_password(email):
+    spcall = SPcalls()
+    return spcalls.spcall("get_password", (email,))[0][0]
+
+
 @app.route('/decrypt', methods=['POST'])
 def decr():
     credentials = json.loads(request.data)
@@ -65,24 +70,27 @@ def authentication():
 
     pw_hash = hashlib.md5(password.encode())
 
-    login = spcalls.spcall("user_login", (data['email_add'], pw_hash.hexdigest()))
+    spcall = SPcalls()
 
-    if data['email_add'] == '' or not password:
-        return jsonify({'status': 'FAILED', 'message': 'Invalid email or password'})
+    login = spcalls.spcall('check_email_password', (email, pw_hash.hexdigest()))
 
-    if login[0][0] == 'ERROR':
-        status = False
-        return jsonify({'status': status, 'message': 'error'})
+    if not email or not password:
+        return jsonify ({'status': 'FAILED', 'message': 'Invalid email or password'})
+
+    if login[0][0] == 'FAILED':
+        return jsonify ({'status': 'FAILED', 'message': 'Invalid email or password'})
 
     if login[0][0] == 'OK':
-
         user = spcalls.spcall('show_user_email', (email,))
         entry = []
 
         for u in user:
             entry.append({'fname': u[1], 'mname': u[2], 'lname': u[3], 'email': u[10], 'role': u[8]})
 
-        return jsonify({'status': 'OK', 'message': 'Successfully logged in', 'data': entry})
+        token = get_auth_token(email, pw_hash.hexdigest())
+
+        return jsonify({'status': 'OK', 'message': 'Successfully logged in', 'token': token, 'data': entry})
+
     else:
         return jsonify({'status': 'ERROR', 'message': '404'})
 
