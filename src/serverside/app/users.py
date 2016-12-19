@@ -115,15 +115,20 @@ def store_user(data):
                 return jsonify({"status": "FAILED", "message": address[0][0]})
 
             else:
-                return jsonify({"status": "OK", "message": address[0][0]})
+                # return jsonify({"status": "OK", "message": address[0][0]})
+                return jsonify({"status": "OK", "message": user[0][0]})
 
-        return jsonify({"status": "OK", "message": user[0][0]})
+    elif check_email_exist[0][0] == 'EXISTED':
+        return jsonify({'status': 'FAILED', 'message': 'Email already exists'})
 
     elif (data['fname'] == '' or data['mname'] == '' or data['lname'] == '' or data['user_password'] == '' or not data['role_id'] or
         data['user_email'] == '' or data['user_tel_number'] == '' or data['user_mobile_number'] == ''
         or data['user_bldg_number'] == '' or data['user_street'] == '' or data['user_room_number'] == ''):
 
         return jsonify({"status": "FAILED", "message": "Please fill the required fields"})
+
+    else:
+        return jsonify({"status": "OK", "message": "OK"})
 
 
 def get_user_id(id):
