@@ -201,7 +201,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box-admin').show();$('#add-resto-form').hide();">View Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box-admin').show();$('#add-resto-form').hide();">View Restaurants</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9" style="display:none;background-color:#fff" id="box-admin">
@@ -322,7 +322,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                 <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Add Food</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#add-food-form').show();">Add Food</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
@@ -330,7 +330,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                 </div>
                 <div class="col-md-9" style="display:none;background-color:#fff" id="box-personnel">
-
+                    <!-- ADD FOOD FORM -->
+                        <section class="content" id="add-food-form" style="display:none">
+                            <div class="box box-primary">
+                            <div id="add-food-alert">
+                            </div>
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="padding: 5px">Add Food</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form id="food-form" class="bootstrap-form-with-validation">
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Food Name</label>
+                                                <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Description</label>
+                                                <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Unit Cost</label>
+                                                <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearFoodForm();">Clear</button>
+                                <button type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeFood();">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </div>
+                        <!-- /.box -->
+                        </section>
+                        <!-- END OF ADD FOOD FORM -->
                 </div>
             </div>
         </section>

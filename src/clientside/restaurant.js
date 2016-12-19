@@ -158,7 +158,6 @@ function viewAllRestaurant(){
 		success: function(results)
 		{
 			if(results.status == 'OK'){
-				console.log(results)
 				$('#view-resto-table-body').html(function(){
                     var restaurant_row = '';
                             var restaurant;
