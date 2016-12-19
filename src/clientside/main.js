@@ -28,19 +28,19 @@ function eraseCookie(name) {
 	$('#top-menu-admin').hide();
 	$('#top-menu-personnel').hide();
 
-	var form = document.getElementById("registration-form");
+	var form = document.getElementById("registration");
 	form.reset();
 
-	var loginForm = document.getElementById("login-form");
+	var loginForm = document.getElementById("login");
 	loginForm.reset();
-
-	clearAssessmentForm();
 
 	$('#log-in-alert').html(
 		'<div class="alert alert-success" role="alert"><strong>Success ' +
 		 '!</strong> Successfully logged out.</div>');
 
-	$('#footer').hide();
+	$("#top-right").show();
+	$("#logout").hide();
+
 }
 
 
