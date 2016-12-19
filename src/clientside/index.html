@@ -102,6 +102,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                     <div class="clearfix"></div>
                     <div id="login-alert"></div>
+                    <div id="deactivate-resto-alert"></div>
                 </div>
             </div>
             <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
@@ -196,11 +197,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();">Add Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();$('#view-all-resto').hide()">Add Restaurant</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box').show();$('#add-resto-form').hide();">View Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box-admin').show();$('#add-resto-form').hide();">View Restaurant</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9" style="display:none;background-color:#fff" id="box-admin">

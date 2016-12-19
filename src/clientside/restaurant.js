@@ -170,7 +170,7 @@ function viewAllRestaurant(){
 														'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].minimum_order +' </p>'+
                                 						'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].delivery_fee +' </p>' + '</td>' +
 												'<td>' + '<div class="col-md-2 buy">' +
-                                    			'<a class="morebtn hvr-rectangle-in" href="#" style="background-color:#d13517">deactivate</a></div>' + '</td>'
+                                    			'<a class="morebtn hvr-rectangle-in" href="#" style="background-color:#d13517" onclick="deactivateRestaurant(results.entries[i].restaurant_id);">deactivate</a></div>' + '</td>'
                                                '</tr>';
 
                                 restaurant_row  += restaurant
@@ -252,6 +252,36 @@ function updateRestaurant(restaurant_branch_id){
 						 '!</strong>' + results.message +'</div>');
 
 					$("#update-resto-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
+
+
+function deactivateRestaurant(restaurant_id){
+	$.ajax({
+		type: "PUT",
+		url: "http://localhost:5000/api/foodcart/restaurants/deactivate/" + restaurant_id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#deactivate-resto-alert').html(
+						'<div class="view-resto-alert"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#deactivate-resto-alert").fadeTo(2000, 500).slideUp(500);
 
 				}
 			},
