@@ -84,12 +84,6 @@ function signup(){
 }
 
 
-function clearSignupForm(){
-	var user_form = document.getElementById("user-form");
-	user_form.reset();
-}
-
-
 function login(){
 	var email = $('#email_add').val();
 	var password = $('#password').val();
@@ -158,6 +152,11 @@ function login(){
 	});
 }
 
+
+function clearSignupForm(){
+	var user_form = document.getElementById("user-form");
+	user_form.reset();
+}
 
 function viewAllUser(){
 
