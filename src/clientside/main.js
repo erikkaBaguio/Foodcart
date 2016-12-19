@@ -44,6 +44,39 @@ function eraseCookie(name) {
 }
 
 
+function decryptCookie(){
+
+	var myCookie = readCookie('user_tk');
+	var data = JSON.stringify({'token':myCookie});
+
+    $('#login-loading-image').show();
+
+	$.ajax({
+
+		type:"POST",
+	    url:"http://localhost:8051/decrypt",
+	    contentType: "application/json; charset=utf-8",
+	    data:data,
+	    dataType:"json",
+
+	    success: function(results){
+	    	auth_user = results.token;
+	    	home();
+	    	$('#login-loading-image').hide();
+
+	    },
+
+	    error: function(e, stats, err){
+	    	$('#log-in-page').show();
+	    	$('#login-loading-image').hide();
+	    	$('#landing-page-header').show();
+	    }
+
+	});
+
+}
+
+
 function deactivateRestaurant(restaurant_id){
 	$.ajax({
 		type: "PUT",
