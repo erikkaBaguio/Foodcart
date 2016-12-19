@@ -54,7 +54,7 @@ function decryptCookie(){
 	$.ajax({
 
 		type:"POST",
-	    url:"http://localhost:8051/decrypt",
+	    url:"http://localhost:5000/decrypt",
 	    contentType: "application/json; charset=utf-8",
 	    data:data,
 	    dataType:"json",
@@ -67,10 +67,78 @@ function decryptCookie(){
 	    },
 
 	    error: function(e, stats, err){
-	    	$('#log-in-page').show();
-	    	$('#login-loading-image').hide();
-	    	$('#landing-page-header').show();
+	    	$('#login').show();
+	    	$('#main-division').show();
 	    }
+
+	});
+
+}
+
+
+function home(){
+
+	 var myCookie = readCookie('user_tk');
+
+	$.ajax({
+
+		type:"GET",
+	    url:"http://localhost:5000/api/foodcart/home/" + myCookie,
+	    dataType:"json",
+
+	    success: function(results){
+
+	    	$('#login-form').hide();
+	    	$('#footer').show();
+	    	$('#landing-page-header').hide();
+
+	    	if(results.status == 'OK'){
+				var token = results.token;
+				//user_tk is abbrev of user_token
+				document.cookie = "user_tk=" + token;
+
+				$('#log-in-page').hide(0);
+
+				if(results.data[0].role == 1){
+					$('#admin-page').show(0);
+
+					user_role = results.data[0].role;
+
+				}
+
+				if(results.data[0].role == 2){
+					$('#doctor-page').show(0);
+					$('#doctor-name').html(results.data[0].fname + ' ' + results.data[0].lname);
+					user_role = results.data[0].role;
+					getNotification();
+				}
+
+				if(results.data[0].role == 3){
+					$('#nurse-page').show();
+					user_role = results.data[0].role;
+					$('#nurse-name').html(results.data[0].fname + ' ' + results.data[0].lname);
+				}
+			}
+
+			if(results.status == 'FAILED'){
+				console.log('FAILED');
+			}
+
+	    },
+
+	    error: function(e, stats, err){
+	    	console.log(err);
+	    	console.log(stats);
+			eraseCookie();
+	    	$('#login-form').show();
+	    	$('#footer').hide();
+	    },
+
+	    beforeSend: function (xhrObj){
+
+      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+        }
 
 	});
 

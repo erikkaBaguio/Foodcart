@@ -105,19 +105,42 @@ function login(){
 		dataType:"json",
 
 		success: function(results){
-			console.log(results);
+
 			if(results.status == 'OK'){
 				var token = results.token;
 				//user_tk is abbrev of user_token
 				document.cookie = "user_tk=" + token;
+
+				if(results.data[0].role == 1){
+					$('#top-menu-admin').show();
+					$('#top-menu-personnel').hide(0);
+					$('#top-menu-customer').hide(0);
+					$("#order").hide();
+				}
+
+				if(results.data[0].role == 2){
+					$('#top-menu-admin').hide(0);
+					$('#top-menu-personnel').show();
+					$('#top-menu-customer').hide(0);
+					$("#order").hide();
+				}
+
+				if(results.data[0].role == 3){
+					$('#top-menu-admin').hide(0);
+					$('#top-menu-personnel').hide(0);
+					$('#top-menu-customer').show();
+				}
+
+				$("#login").hide();
+				$("#top-right").hide();
+				$('#logout').show();
+
 				$('#login-alert').html(
 						'<div class="alert alert-success"><strong>Welcome ' +
 						results.data[0].fname +
 						 '!</strong> Successfully logged in.</div>');
 
 					$("#login-alert").fadeTo(2000, 500).slideUp(500);
-
-					$("#login-form").hide();
 				}
 
 			if(results.status == 'FAILED'){

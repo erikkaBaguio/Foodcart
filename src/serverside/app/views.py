@@ -96,6 +96,24 @@ def authentication():
 
 
 
+@app.route('/api/foodcart/home/<string:token>', methods=['GET'])
+def index(token):
+    days = timedelta(days=14)
+    max_age = days.total_seconds()
+
+    # Decrypt the Security Token, data = [username, hashpass]
+    email = login_serializer.loads(token, max_age=max_age)
+
+    user = spcalls.spcall('show_user_email', (email,))
+    entry = []
+
+    for u in user:
+        entry.append({'fname': u[1], 'mname': u[2], 'lname': u[3], 'email': u[10], 'role': u[8]})
+
+    return jsonify({'status': 'OK', 'message': 'Welcome user', 'data': entry})
+
+
+
 @app.route('/api/foodcart/users/signup/', methods=['POST'])
 def store_new_user():
     data = json.loads(request.data)
