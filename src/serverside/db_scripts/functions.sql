@@ -539,6 +539,49 @@ create or replace function check_email(in par_email varchar) returns text as
     language 'plpgsql';
 
 
+--[GET] Get password of a specific user
+--select get_password('minho@gmail.com');
+create or replace function get_password(par_email varchar) returns text as
+  $$
+    declare
+      loc_password text;
+    begin
+      select into loc_password Users.user_password
+      from Users, User_contacts
+      where User_contacts.email = par_email;
+
+      if loc_password isnull then
+        loc_password = 'null';
+      end if;
+      return loc_password;
+    end;
+  $$
+    language 'plpgsql';
+
+
+--check email and password
+create or replace function check_email_password(in par_email varchar, in par_password varchar) returns text as
+  $$
+    declare
+      local_response text;
+    begin
+      select into local_response email
+      from Users, User_contacts
+      where User_contacts.email = par_email
+      and Users.user_password = par_password;
+
+      if local_response isnull then
+        local_response = 'FAILED';
+      else
+        local_response = 'OK';
+      end if;
+
+      return local_response;
+    end;
+  $$
+    language 'plpgsql';
+
+
 --[GET] Show user details using email
 --select * from show_user_email('james@gmail.com	');
 create or replace function show_user_email(in par_email varchar, out bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
