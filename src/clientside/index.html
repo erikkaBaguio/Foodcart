@@ -413,6 +413,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- CUSTOMER PAGE STARTS -->
     <div id="customer-page">
+        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+		    <div class="container">
+				<div class="banner-info">
+					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
+						<h1>Network of Restaurants</h1>
+						<div class="line">
+							<h2> To Order Online</h2>
+						</div>
+					</div>
+					<div class="form-list wow fadeInRight" data-wow-delay="0.5s">
+						<!-- Search Form -->
+                        <div class="col-md-3" id="food-search-alert"></div>
+                        <div class="col-md-6" id="food-search-box">
+                            <!-- search form -->
+                            <form method="get" class="sidebar-form" onsubmit="return false">
+                                <div class="input-group">
+                                    <input id="food-search" type="text" name="q" class="form-control" placeholder="Enter food">
+                                    <span class="input-group-btn">
+                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();"><i class="fa fa-search">Search</i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /.search form -->
+                        </div>
+                        <div class="col-md-3"></div> <br>
+                        <!-- End of Search Form -->
+					</div>
+
+					<!-- start search-->
+				</div>
+			</div>
+		</div>
         <div class="content">
             <div class="ordering-section" id="order">
                 <div class="container">
@@ -459,6 +492,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                 </div>
             </div>
         </div>
+
+
     </div>
     <!-- CUSTOMER PAGE ENDS -->
 
