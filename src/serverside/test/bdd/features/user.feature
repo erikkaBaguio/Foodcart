@@ -11,7 +11,7 @@ As a system administrator, I want to update users' details.
 	Scenario: Adding user
 			Given I have the following user details:
 			|    fname    |  mname |    lname   | user_password |  user_email      | user_tel_number | user_mobile_number | user_bldg_number |   user_street    | user_room_number | role_id |
-			| Ma. Erikka  | Baguio |    Aron    |      asd      |  maron@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
+			| 	  Min     |   Ho   |    Lee     |      asd      |  minho@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
@@ -69,8 +69,8 @@ As a system administrator, I want to update users' details.
 			|   James |   M   |    Reid    |      asd      | james@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
-            And   it should have a field 'status' containing 'OK'
-            And   it should have a field 'message' containing 'OK'
+            And   it should have a field 'status' containing 'FAILED'
+            And   it should have a field 'message' containing 'Email already exists'
 
 
 	Scenario: Add user - fname field empty
@@ -80,7 +80,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
 
 
     Scenario: Add user - mname field empty
@@ -90,7 +89,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
 
 
     Scenario: Add user - lname field empty
@@ -100,7 +98,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
 
 
     Scenario: Add user - user_password field empty
@@ -110,7 +107,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 	Scenario: Add user - email field empty
@@ -119,6 +115,7 @@ As a system administrator, I want to update users' details.
 			|   James |   M   |    Reid    |      asd      |                 |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
+			And   it should have a field 'status' containing 'FAILED'
 
 
 	Scenario: Add user - tel_number field empty
@@ -128,7 +125,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-		    And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 	Scenario: Add user - mobile_number field empty
@@ -138,7 +134,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-		    And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 	Scenario: Add user - bldg_number field empty
@@ -148,7 +143,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-		    And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 	Scenario: Add user - street field empty
@@ -158,7 +152,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-		    And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 	Scenario: Add user - room_number field empty
@@ -168,7 +161,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-		    And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 
@@ -179,7 +171,6 @@ As a system administrator, I want to update users' details.
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'FAILED'
-            And   it should have a field 'message' containing 'Please fill the required fields'
 
 
 
