@@ -516,6 +516,29 @@ create or replace function user_login(in par_email varchar, in par_password varc
   language 'plpgsql';
 
 
+--Check if user exists via email
+create or replace function check_email(in par_email varchar) returns text as
+  $$
+    declare
+      local_response text;
+      local_id bigint;
+    begin
+      select into local_id id
+      from User_contacts
+      where User_contacts.email = par_email;
+
+      if local_id isnull then
+        local_response = 'OK';
+      else
+        local_response = 'ALREADY EXISTS';
+      end if;
+
+      return local_response;
+    end;
+  $$
+    language 'plpgsql';
+
+
 --[GET] Show user details using email
 --select * from show_user_email('james@gmail.com	');
 create or replace function show_user_email(in par_email varchar, out bigint, out varchar, out varchar, out varchar, out varchar, out float, out int, out int, out int, out boolean, out varchar, out varchar, out varchar, out varchar, out varchar, out varchar) returns setof record as
@@ -803,14 +826,17 @@ create or replace function show_orders(out bigint, out int, out int, out boolean
 
 
 --[PUT] Update order
---select update_order(1, true);
-create or replace function update_order(par_id int, par_done boolean) returns text as
+--select update_order(1, 2, true);
+create or replace function update_order(par_id int, par_quantity int, par_done boolean) returns text as
   $$
     declare
       local_response text;
     begin
       Update Orders
-      set is_done = par_done
+      set Order_foods.quantity = par_quantity,
+          is_done = par_done
+      from Order_foods
+      inner join Order_foods on Orders.order_food_id = Order_foods.id
       where id = par_id;
 
       local_response = 'OK';
