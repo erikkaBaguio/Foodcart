@@ -7,6 +7,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 <head>
     <title>Foodcart</title>
     <link href="assets/food/css/bootstrap.css" rel='stylesheet' type='text/css'><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+
 
     <script src="assets/food/js/jquery.min.js">
     </script><!-- Custom Theme files -->
@@ -102,7 +104,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                     <div class="clearfix"></div>
                     <div id="login-alert"></div>
-
                 </div>
             </div>
             <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
@@ -173,7 +174,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                 </div>
                 <!-- end of register form -->
-            </div>
+            </section>
         </div>
     </div>
     <!-- header-section-ends -->
@@ -184,32 +185,74 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     <!-- SYSTEM ADMIN PAGE STARTS-->
     <div id="admin-page">
     <!-- content-section-starts -->
-    <!-- view-restaurant-starts -->
-    <div class="Popular-Restaurants-content" style="display: none">
-        <div class="Popular-Restaurants-grids">
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="admin-menu" style="display: none">
             <div class="container">
-                <div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
-                    <div class="col-md-3 restaurent-logo">
-                        <img src="assets/food/images/restaurent-logo1.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="col-md-2 restaurent-title">
-                        <div class="logo-title">
-                            <h4><a href="#" id="resto_name"></a></h4>
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Add User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">View User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Update User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Deactivate User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Add Restaurant</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">View Restaurant</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Update  Restaurant</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Deactivate Restaurant</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    <!-- view-restaurant-starts -->
+        <div class="Popular-Restaurants-content" style="display: none">
+            <div class="Popular-Restaurants-grids">
+                <div class="container">
+                    <div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+                        <div class="col-md-3 restaurent-logo">
+                            <img src="assets/food/images/restaurent-logo1.jpg" class="img-responsive" alt="" />
                         </div>
-                        <div class="ratings">
-                            <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee : </p>
-                            <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">service fee : </p>
+                        <div class="col-md-2 restaurent-title">
+                            <div class="logo-title">
+                                <h4><a href="#" id="resto_name"></a></h4>
+                            </div>
+                            <div class="ratings">
+                                <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee : </p>
+                                <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">service fee : </p>
+                            </div>
                         </div>
+                        <div class="col-md-7 buy">
+                            <a class="morebtn hvr-rectangle-in" href="orders-list.html">order</a>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="col-md-7 buy">
-                        <a class="morebtn hvr-rectangle-in" href="orders-list.html">order</a>
-                    </div>
-                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
-    </div>
     <!-- view-restaurant-ends -->
+
+
+
     <!-- content-section-ends -->
     </div>
     <!-- SYSTEM ADMIN PAGE ENDS-->
@@ -218,9 +261,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- BUSINESS PERSONNEL PAGE STARTS -->
     <div id="personnel-page">
-        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" style="display:none">
             <div class="container" id="personnel-menu">
-
+                <div class="col-md-7 buy">
+                    <span>$45</span>
+                    <a class="morebtn hvr-rectangle-in" href="orders-list.html">Add Restaurant</a>
+                </div>
             </div>
         </section>
     </div>
@@ -283,7 +329,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- footer-section-starts -->
     <div class="contact-section" id="contact">
-                    <div class="container">
+        <div class="container">
             <div class="contact-section-grids">
                 <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
                     <h4>Site Links</h4>

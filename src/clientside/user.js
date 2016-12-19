@@ -116,6 +116,9 @@ function login(){
 					$('#top-menu-personnel').hide(0);
 					$('#top-menu-customer').hide(0);
 					$("#order").hide();
+					$("#Home").hide();
+					$('#admin-page').show();
+					$('#admin-menu').show();
 				}
 
 				if(results.data[0].role == 2){
