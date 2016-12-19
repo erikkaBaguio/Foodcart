@@ -969,3 +969,11 @@ create or replace function store_role(par_rolename VARCHAR)
 		END;
 	$$
 		language 'plpgsql';
+
+
+
+
+------------------------------------------------------------- QUERIES --------------------------------------------------------------
+select store_role('System Admin');
+select store_role('Business Manager');
+select store_role('Customer');

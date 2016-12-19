@@ -1,312 +1,335 @@
-<!--
-Author: W3layouts
+<!-- Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+License URL: http://creativecommons.org/licenses/by/3.0/ -->
 <!DOCTYPE html>
 <html>
 <head>
-<title>Foodcart | Home</title>
-<!--mobile apps-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tasty Food Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-	Smartphone Compatible web template, free Webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--mobile apps-->
-<!--Custom Theme files -->
-<link href="assets/web/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="assets/web/css/style.css" type="text/css" rel="stylesheet" media="all">
-<link rel="stylesheet" href="assets/web/css/flexslider.css" type="text/css" media="screen" />
-<!-- //Custom Theme files -->
-<!-- js -->
-<script src="assets/web/js/jquery-1.11.1.min.js"></script>
-<!-- //js -->
-<!--web-fonts-->
-<link href='//fonts.googleapis.com/css?family=Stint+Ultra+Condensed' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<!--//web-fonts-->
-<!--animate-->
+    <title>Foodcart</title>
+    <link href="assets/food/css/bootstrap.css" rel='stylesheet' type='text/css'><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-<link href="assets/web/css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="assets/web/js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
-	</script>
-<!--//end-animate-->
-<!-- start-smooth-scrolling-->
-<script type="text/javascript" src="assets/web/js/move-top.js"></script>
-<script type="text/javascript" src="assets/web/js/easing.js"></script>
-<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$(".scroll").click(function(event){
-				event.preventDefault();
-				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-			});
-		});
-</script>
-<!--//end-smooth-scrolling-->
+    <script src="assets/food/js/jquery.min.js">
+    </script><!-- Custom Theme files -->
+    <link href="assets/food/css/style.css" media="all" rel="stylesheet" type="text/css"><!-- Custom Theme files -->
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <script type="application/x-javascript">
+       addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script><!--webfont-->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'><!--Animation-->
+
+    <script src="assets/food/js/wow.min.js">
+    </script>
+    <link href="assets/food/css/animate.css" rel='stylesheet' type='text/css'>
+    <script>
+          new WOW().init();
+    </script>
+    <script src="assets/food/js/simpleCart.min.js">
+    </script>
+    <script src="assets/food/js/move-top.js" type="text/javascript">
+    </script>
+    <script src="assets/food/js/easing.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+                  jQuery(document).ready(function($) {
+                      $(".scroll").click(function(event){
+                          event.preventDefault();
+                          $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+                      });
+                  });
+    </script>
 </head>
 <body>
-	<div class="customer-container">
-
-	<!--banner-->
-	<div class="banner">
-		<div class="container">
-			<!--header-->
-			<div class="header">
-				<div class="logo">
-					<h1 class="wow zoomIn animated" data-wow-delay=".5s"><a href="index.html">Foodcart</a></h1>
-				</div>
-				<div class="top-nav">
-					<span class="menu"><img src="assets/web/images/menu.png" alt=""/></span>
-					<ul>
-						<li class="wow slideInDown animated" data-wow-delay=".5s"><a class="active" href="index.html">Home</a></li>
-						<li class="wow slideInDown" data-wow-delay=".6s"><a href="">About</a></li>
-						<li class="wow slideInDown" data-wow-delay=".7s"><a href="#"></a></li>
-						<li class="wow slideInDown" data-wow-delay=".8s"><a href="#">Contact</a></li>
-						<li class="wow slideInDown" data-wow-delay=".9s"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-
-					</ul>
-					<!-- script-for-menu -->
-					<script>
-						$("span.menu").click(function(){
-							$(".top-nav ul").slideToggle("slow" , function(){
-							});
-						});
-					</script>
-					<!-- script-for-menu -->
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<!--//header Restaurant Search-->
-
-			<section id="resto-search-box" class="content" style="margin-top: 10px">
-			<div class="bnr-text wow slideInUp animated" data-wow-delay=".5s">
-				<div class="col-lg-3" id="resto-search-alert"></div>
-				<div class="col-lg-6" id="resto-search-box">
-                    <!-- search form -->
-                    <form method="get" class="sidebar-form" onsubmit="return false">
-                        <div class="input-group">
-                            <input id="resto-search" type="text" name="q" class="form-control" placeholder="Search for Restaurant">
-                            <span class="input-group-btn">
-                                <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();"><i class="fa fa-search">Search</i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
-				</div>
-            	<div class="col-lg-3"></div>
-			</div>
-
-			<div class="box-header with-border" style="display:none">
-                    <h3 class="box-title" style="padding: 5px">Search Results</h3>
+    <!-- MAIN DIVISIONS STARTS -->
+    <div id="main-division">
+        <!-- header-section-starts -->
+        <div class="header">
+            <div class="container">
+                <div class="top-header">
+                    <div class="logo">
+                        <h1><a href="index.html" style="font-family: 'Stint Ultra Condensed', cursive; font-size:2em; color:#E24425">Food</a><a style="font-family: 'Stint Ultra Condensed', cursive; font-size:2em; color:#5BBD50">cart</a></h1>
+                    </div>
+                    <div class="queries">
+                        <p>Questions? Message us!<span>foodcart@gmail.com</span> <label>(11AM to 11PM)</label></p>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <!-- /.box-header -->
-                <div id="search-alert">
+            </div>
+            <div class="menu-bar" id="menu-admin">
+                <div class="container">
+                    <!-- top-menu-admin-starts -->
+                    <div class="top-menu" id="top-menu-admin" style="display: none">
+                        <ul>
+                            <li class="active"><a href="#">Home</a></li>|
+                            <li><a href="#">Restaurants</a></li>|
+                            <li><a href="#">Users</a></li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <!-- top-menu-admin-ends -->
+
+                    <!-- top-menu-personnel-starts -->
+                    <div class="top-menu" id="top-menu-personnel" style="display: none">
+                        <ul>
+                            <li class="active"><a href="#">Home</a></li>|
+                            <li><a href="#">Foods</a></li>|
+                            <li><a href="#">Restaurant Account</a></li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <!-- top-menu-personnel-ends -->
+
+                    <!-- top-menu-customer-starts -->
+                    <div class="top-menu" id="top-menu-customer">
+                        <ul>
+                            <li class="active"><a href="#">Home</a></li>|
+                            <li><a href="#">About</a></li>|
+                            <li><a href="#">Contact Us</a></li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <!-- top-menu-customer-ends -->
+                    <div class="login-section">
+                        <ul>
+                            <li><a href="#" onclick="$('#login').show(); $('#register').hide();">Login</a>  </li> |
+                            <li><a href="#" onclick="$('#register').show(); $('#login').hide();">Register</a> </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="box-body" style="display:none">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Restaurant Name</th>
-                                        <th>Minimum Order</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="search-resto-table-body">
-                                </tbody>
-                            </table>
+            </div>
+            <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
+                <!-- login form -->
+                <div class="container">
+                    <div class="login-page" id="login" style="display:none">
+                        <div class="account_grid">
+                            <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+                                <h3 style="color:#fff">NEW CUSTOMERS</h3>
+                                <p style="color:#fff">By creating an account with our store, you will be able to move through the checkout process faster, view and track your orders in your account and more.</p><a class="acount-btn" href="#" onclick="$('#register').show(); $('#login').hide();">Create an Account</a>
+                            </div>
+                            <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+                                <h3 style="color:#fff">REGISTERED CUSTOMERS</h3>
+                                <p style="color:#fff">If you have an account with us, please log in.</p>
+                                <form>
+                                    <div>
+                                        <span style="color:#fff">Email Address<label>*</label></span> <input type="text">
+                                    </div>
+                                    <div>
+                                        <span style="color:#fff">Password<label>*</label></span> <input type="text">
+                                    </div><input type="submit" value="Login">
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!-- /.row -->
                 </div>
-			</section>
-	</div>
-	<!--//banner-->
-	<!--menu-form-->
-	<div class="menu-form">
-		<div class="menu-info">
-			<h3 class="title wow fadeInDown animated" data-wow-delay=".5s" id="" style="display:none">Restaurants</h3>
-			<div class="scrollbar scrollbar1" style="display:none">
-				<div class="menu-grids agile wow fadeInDown animated" data-wow-delay=".5s">
-					<div class="menu-left" style="display:none">
-						<h4>Sandwich</h4>
-						<p>Porttitor vestibulum eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$18</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="menu-grids menu-grids-mdl wow fadeInDown animated" data-wow-delay=".6s">
-					<div class="menu-left">
-						<h4>Fried rice </h4>
-						<p>Vestibulum porttitor eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$12</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="menu-grids wow fadeInDown animated" data-wow-delay=".7s">
-					<div class="menu-left">
-						<h4> Salads </h4>
-						<p>Dignissimos porttitor vestibulum eu nisl ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$14</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="menu-grids menu-grids-mdl">
-					<div class="menu-left">
-						<h4> Ham hock </h4>
-						<p>Porttitor vestibulum eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$20</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="menu-grids">
-					<div class="menu-left">
-						<h4> Calamari </h4>
-						<p>Vestibulum porttitor eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$25</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="menu-grids menu-grids-mdl">
-					<div class="menu-left">
-						<h4> Twinkies </h4>
-						<p>Dignissimos porttitor vestibulum eu nisl ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$20</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="menu-grids">
-					<div class="menu-left">
-						<h4> Beignets </h4>
-						<p>Porttitor vestibulum eu nisl dignissimos ducimus qui blanditiis praesentium voluptatum</p>
-					</div>
-					<div class="menu-right">
-						<h5>$11</h5>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--//menu-form-->
-
-        <!--login-->
-        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-                <div class="col-md-12">
-				    <div class="loginmodal-container">
-                        <button type="button" class="close" data-dismiss="modal">x</button>
-					    <h1>Login to Your Account</h1><br>
-				    <form id="login-form" class="login-card" method="post" onsubmit="return false">
-                        <div id="login-alert"></div>
-					    <div class="form-group">
-                            <label class="control-label" for="text-input">Email Address</label>
-                            <input id="email_add" name="email" type="text" placeholder="Email">
+                <!-- end of login form -->
+                <!-- register form -->
+                <div class="container">
+                    <div class="register" id="register" style="display:none">
+                        <form>
+                            <div class="register-top-grid">
+                                <h3 style="color:#fff">PERSONAL INFORMATION</h3>
+                                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                                    <span style="color:#fff">First Name<label>*</label></span> <input type="text">
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <span style="color:#fff">Last Name<label>*</label></span> <input type="text">
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <span style="color:#fff">Email Address<label>*</label></span> <input type="text">
+                                </div>
+                                <div class="clearfix"></div><a class="news-letter" href="#"></a>
+                            </div>
+                            <div class="register-bottom-grid">
+                                <h3 style="color:#fff">LOGIN INFORMATION</h3>
+                                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                                    <span style="color:#fff">Password<label>*</label></span> <input type="text">
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <span style="color:#fff">Confirm Password<label>*</label></span> <input type="text">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div class="register-but">
+                            <form>
+                                <input type="submit" value="submit">
+                                <div class="clearfix"></div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label" for="text-input">Password</label>
-                            <input id="password" name="password" type="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-					        <button onclick="login();" class="btn btn-primary btn-block btn-lg btn-signin">Log In</button>
-                        </div>
-				    </form>
-				  <!--<div class="login-help">-->
-                    <!--<a href="#" data-toggle="modal" data-target="#modal-register">Register</a>-->
-				  <!--</div>-->
                     </div>
-              </div>
-          </div>
+                </div>
+                <!-- end of register form -->
+            </div>
         </div>
-	<!--//login-->
+    </div>
+    <!-- header-section-ends -->
 
-	<!--footer-->
-	<div class="footer" id="footer">
-		<div class="container">
-			<div class="footer-info w3agile">
-				<div class="col-md-4 footer-grids footer-address">
-					<h3 class="wow fadeInDown animated" data-wow-delay=".5s">Contact Us:</h3>
-					<ul>
-						<li class="wow slideInLeft animated" data-wow-delay=".5s"><i class="glyphicon glyphicon-send"></i> Tibanga, Iligan City <span> </span></li>
-						<li class="wow slideInLeft animated" data-wow-delay=".5s"><i class="glyphicon glyphicon-phone"></i> +11 222 3333 <span> +00 1111 222 </span></li>
-						<li class="wow slideInLeft animated" data-wow-delay=".5s"><i class="glyphicon glyphicon-envelope"></i> <a href="mailto:example@mail.com"> foodcart@gmail.com</a></li>
-					</ul>
-				</div>
-				<div class="col-md-4 footer-grids">
+    <!-- MAIN DIVISIONS ENDS -->
 
-				</div>
-				<div class="col-md-4 footer-grids">
-					<h3 class="wow fadeInDown animated" data-wow-delay=".5s">Newsletter</h3>
-					<div class="subscribe wow slideInRight animated" data-wow-delay=".5s">
-						<form>
-							<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-							<input type="submit" value="Go">
-						</form>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="social-icons wow slideInRight animated" data-wow-delay=".5s">
-						<ul>
-							<li><a href="#"> </a></li>
-							<li><a href="#" class="fb"> </a></li>
-							<li><a href="#" class="in"> </a></li>
-							<li><a href="#" class="dott"> </a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="footer-copy wow slideInUp animated" data-wow-delay=".5s">
-				<p>© 2016 Tasty Food. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-			</div>
-		</div>
-	</div>
-	<!--//footer-->
-	<!--smooth-scrolling-of-move-up-->
-	<script type="text/javascript">
-		$(document).ready(function() {
 
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
+    <!-- SYSTEM ADMIN PAGE STARTS-->
+    <div id="admin-page">
+    <!-- content-section-starts -->
+    <!-- view-restaurant-starts -->
+    <div class="Popular-Restaurants-content" style="display: none">
+        <div class="Popular-Restaurants-grids">
+            <div class="container">
+                <div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+                    <div class="col-md-3 restaurent-logo">
+                        <img src="assets/food/images/restaurent-logo1.jpg" class="img-responsive" alt="" />
+                    </div>
+                    <div class="col-md-2 restaurent-title">
+                        <div class="logo-title">
+                            <h4><a href="#" id="resto_name"></a></h4>
+                        </div>
+                        <div class="ratings">
+                            <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee : </p>
+                            <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">service fee : </p>
+                        </div>
+                    </div>
+                    <div class="col-md-7 buy">
+                        <a class="morebtn hvr-rectangle-in" href="orders-list.html">order</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- view-restaurant-ends -->
+    <!-- content-section-ends -->
+    </div>
+    <!-- SYSTEM ADMIN PAGE ENDS-->
 
-			$().UItoTop({ easingType: 'easeOutQuart' });
 
-		});
-	</script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	<!--//smooth-scrolling-of-move-up-->
-	<!--scrolling js-->
-	<script src="assets/web/js/jquery.nicescroll.js"></script>
-	<script src="assets/web/js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/web/js/bootstrap.js"></script>
-	<script src="main.js"></script>
-    <script src="restaurant.js"></script>
-    <script src="food.js"></script>
-    <script src="user.js"></script>
-	</div>
+
+    <!-- BUSINESS PERSONNEL PAGE STARTS -->
+    <div id="personnel-page">
+
+    </div>
+    <!-- BUSINESS PERSONNEL PAGE ENDS -->
+
+
+
+    <!-- CUSTOMER PAGE STARTS -->
+    <div id="customer-page">
+        <div class="content">
+            <div class="ordering-section" id="Order">
+                <div class="container">
+                    <div class="ordering-section-head text-center wow bounceInRight" data-wow-delay="0.4s">
+                        <h3>Ordering food was never so easy</h3>
+                        <div class="dotted-line">
+                            <h4>Just 4 steps to follow </h4>
+                        </div>
+                    </div>
+                    <div class="ordering-section-grids">
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="one"></i><br>
+                                <i class="one-icon"></i>
+                                <p>Choose <span>Your Restaurant</span></p>
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="two"></i><br>
+                                <i class="two-icon"></i>
+                                <p>Order  <span>Your Cuisine</span></p>
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="three"></i><br>
+                                <i class="three-icon"></i>
+                                <p>Pay   <span> on delivery</span></p>
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="four"></i><br>
+                                <i class="four-icon"></i>
+                                <p>Enjoy <span>your food </span></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CUSTOMER PAGE ENDS -->
+
+
+
+    <!-- footer-section-starts -->
+    <div class="contact-section" id="contact">
+                    <div class="container">
+            <div class="contact-section-grids">
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+                    <h4>Site Links</h4>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#">About Us</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#">Contact Us</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+                    <h4>Follow Us On...</h4>
+                    <ul>
+                        <li><i class="fb"></i></li>
+                        <li class="data"> <a href="#">  Facebook</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="tw"></i></li>
+                        <li class="data"> <a href="#">Twitter</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="gp"></i></li>
+                        <li class="data"><a href="#">Google Plus</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
+                    <h4>Subscribe Newsletter</h4>
+                    <p>To get latest updates and food deals every week</p>
+                    <input type="text" class="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                    <input type="submit" value="submit">
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014 All rights Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
+        </div>
+    </div>
+    <!-- footer-section-ends -->
+    <script type="text/javascript">
+          $(document).ready(function() {
+              /*
+              var defaults = {
+                  containerID: 'toTop', // fading element id
+                  containerHoverID: 'toTopHover', // fading element hover id
+                  scrollSpeed: 1200,
+                  easingType: 'linear'
+              };
+              */
+
+              $().UItoTop({ easingType: 'easeOutQuart' });
+
+          });
+    </script> <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
 </body>
 </html>

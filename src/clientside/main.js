@@ -7,6 +7,76 @@ $(document).ready(function(){
 
 });
 
+
+function readCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+
+function eraseCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+	stop();
+	$('#admin-page').hide(0);
+	$('#personnel-page').hide(0);
+	$('#customer-page').hide(0);
+	$('#add-user-form').hide(0);
+	$('#main-division').show();
+	$('#top-menu-customer').show();
+	$('#top-menu-admin').hide();
+	$('#top-menu-personnel').hide();
+
+	var form = document.getElementById("registration-form");
+	form.reset();
+
+	var loginForm = document.getElementById("login-form");
+	loginForm.reset();
+
+	clearAssessmentForm();
+
+	$('#log-in-alert').html(
+		'<div class="alert alert-success" role="alert"><strong>Success ' +
+		 '!</strong> Successfully logged out.</div>');
+
+	$('#footer').hide();
+}
+
+
+function decryptCookie(){
+
+	var myCookie = readCookie('user_tk');
+	var data = JSON.stringify({'token':myCookie});
+
+    $('#login-loading-image').show();
+
+	$.ajax({
+
+		type:"POST",
+	    url:"http://localhost:8051/decrypt",
+	    contentType: "application/json; charset=utf-8",
+	    data:data,
+	    dataType:"json",
+
+	    success: function(results){
+	    	auth_user = results.token;
+	    	home();
+	    	$('#login-loading-image').hide();
+
+	    },
+
+	    error: function(e, stats, err){
+	    	$('#log-in-page').show();
+	    	$('#login-loading-image').hide();
+	    	$('#landing-page-header').show();
+	    }
+
+	});
+
+}
+
+
 function deactivateRestaurant(restaurant_id){
 	$.ajax({
 		type: "PUT",
