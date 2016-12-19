@@ -1572,6 +1572,15 @@ i.mail{
 	font-size:0.8125em;
 	padding: 0.5em;
 }
+
+.login-right input[type="password"] {
+	border: 1px solid #EEE;
+	outline-color:#fb4d01;
+	width: 96%;
+	font-size:0.8125em;
+	padding: 0.5em;
+}
+
 .login-right input[type="submit"] {
 	background: #E24425;
 	color: #FFF;
