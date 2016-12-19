@@ -98,7 +98,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                     <div class="login-section" id="logout" style="display: none">
                         <ul>
-                            <li><a href="#" onclick="$('#register').hide(); $('#login').hide();">Logout</a> </li>
+                            <li><a href="#" onclick="eraseCookie('user_tk');">Logout</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -206,7 +206,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Add Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();">Add Restaurant</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
@@ -223,12 +223,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                 </div>
                 <div class="col-md-9" style="background-color:#fff">
                    <!-- add-restaurant-form-starts-->
-                   <section class="content" id="add-resto-form">
+                   <section class="content" id="add-resto-form" style="display:none">
                         <div class="container">
                             <div class="box box-primary">
-                            <div id="add-resto-alert"></div>
                             <div class="box-header with-border">
                                 <h3 class="box-title" style="padding: 5px">Add Restaurant</h3>
+                                <div class="col-md-6" id="add-resto-alert"></div>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -294,6 +294,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
         </section>
 
     <!-- view-restaurant-starts -->
+        <section id="view-resto">
         <div class="Popular-Restaurants-content" style="display: none">
             <div class="Popular-Restaurants-grids">
                 <div class="container">
@@ -303,7 +304,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         </div>
                         <div class="col-md-2 restaurent-title">
                             <div class="logo-title">
-                                <h4><a href="#" id="resto_name"></a></h4>
+                                <h4><a href="#" id="view-resto-name"></a></h4>
                             </div>
                             <div class="ratings">
                                 <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee : </p>
@@ -318,6 +319,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                 </div>
             </div>
         </div>
+        </section>
     <!-- view-restaurant-ends -->
 
 

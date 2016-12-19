@@ -47,12 +47,10 @@ function storeRestaurant(){
 				if (results.status == 'OK'){
 
 					$('#add-resto-alert').html(
-						'<div class="alert alert-success"><strong>Success ' +
+						'<br><br><div class="alert alert-success"><strong>Success ' +
 						 '!</strong>' + results.message +'</div>');
 
 					$("#add-resto-alert").fadeTo(2000, 500).slideUp(500);
-
-					$("#add-resto-form").hide();
 
 					clearRestaurantForm();
 
