@@ -90,7 +90,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     <div class="login-section" id="top-right">
                         <ul>
                             <li><a href="#" onclick="$('#Home').show(); $('#login').show(); $('#register').hide();">Login</a>  </li> |
-                            <li><a href="#" onclick="$('#add-user_form').show(); $('#login').hide();">Register</a> </li>
+                            <li><a href="#" onclick="$('#register').show(); $('#login').hide();">Register</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -136,7 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                 </div>
                 <!-- end of login form -->
-                <!-- register form -->
+                <!-- register customer form -->
                 <div class="container">
                     <div class="register" id="register" style="display:none">
                         <form id="add-user-form" class="bootstrap-form-with-validation">
@@ -182,18 +182,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                                     <label for="text-input"><span style="color:#fff">Room Number*</span></label>
                                     <input class="form-control" type="text" name="text-input" id="user_room_number" required>
                                 </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <div class="col-sm-4 label-column">
-                                        <label for="text-input"><span style="color:#fff">User Role*</span></label>
-                                        <select id="registration-role_id" name="role_id">
-                                            <option value="1"> System Administrator </option>
-                                            <option value="2"> Business Manager </option>
-                                            <option value="3"> Customer </option>
-                                        </select>
-                                    </div>
+                                    <input class="form-control" type="hidden" name="text-input" id="role_id" value="3" required>
                                 </div>
                                 <div class="clearfix"></div><a class="news-letter" href="#"></a>
                             </div>
@@ -207,7 +200,72 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         </div>
                     </div>
                 </div>
-                <!-- end of register form -->
+                <!-- end of register customer form -->
+                <!-- register personnel form -->
+                <div class="container">
+                    <div class="register" id="register" style="display:none">
+                        <form id="add-user-form" class="bootstrap-form-with-validation">
+                            <div class="register-top-grid">
+                                <h3 style="color:#fff">PERSONAL INFORMATION</h3>
+                                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">First Name*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="fname" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Middle Name*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="mname" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Last Name*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="lname" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Password*</span></label>
+                                    <input class="form-control" type="password" name="text-input" id="user_password" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Email Address*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_email" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Telephone Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_tel_number" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Mobile Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_mobile_number" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Building Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_bldg_number" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Street*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_street" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Room Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_room_number" required>
+                                </div>
+                                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <input class="form-control" type="hidden" name="text-input" id="role_id" value="2" required>
+                                </div>
+                                <div class="clearfix"></div><a class="news-letter" href="#"></a>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div class="register-but">
+                            <form>
+                                <input type="submit" value="submit" onclick="signup();">
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of register personnel form -->
             </div>
         </div>
     </div>
@@ -312,7 +370,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
             </div>
         </div>
     </div>
-    <!-- CUSTOMER PAGE ENDS -->
+<!-- CUSTOMER PAGE ENDS -->
+
+
 
 
 
