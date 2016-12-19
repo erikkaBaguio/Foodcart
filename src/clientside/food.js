@@ -74,7 +74,7 @@ function viewAllFood(){
 
 	$.ajax({
 		type:"GET",
-		url: "http://localhost:5000/api/foodcart/foods/",
+		url: "http://localhost:5000/api/foodcart/foods/1",
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
 
