@@ -7,6 +7,14 @@ $(document).ready(function(){
 
 });
 
+
+function readCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+
 function deactivateRestaurant(restaurant_id){
 	$.ajax({
 		type: "PUT",
