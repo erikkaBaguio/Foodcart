@@ -185,7 +185,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     <!-- SYSTEM ADMIN PAGE STARTS-->
     <div id="admin-page">
     <!-- content-section-starts -->
-        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="admin-menu" style="display: none">
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="admin-menu" style="display:none">
             <div class="container">
                 <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
                     <ul>
@@ -198,30 +198,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Update User</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box').show();">Add Restaurant</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Deactivate User</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();">Add Restaurant</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#view-resto').show();$('#add-resto-form').hide();">View Restaurant</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Update  Restaurant</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Deactivate Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box').show();$('#add-resto-form').hide();">View Restaurant</a></li>
                     </ul>
                 </div>
-                <div class="col-md-9" style="background-color:#fff">
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box">
                    <!-- add-restaurant-form-starts-->
                    <section class="content" id="add-resto-form" style="display:none">
                         <div class="container">
@@ -289,38 +273,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         </div>
                     </section>
                     <!-- add-restaurant-form-ends-->
+
+                    <!-- view-all-restaurant-starts -->
+                    <hr class="my-2">
+                    <div id="view-resto-alert"></div>
+                    <section class="content" id="view-all-resto" style="display:none">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div id="message-alert">
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="view-resto-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </section>
+                    <!-- view-all-restaurant-ends -->
+
                 </div>
             </div>
         </section>
-
-    <!-- view-restaurant-starts -->
-        <section id="view-resto">
-        <div class="Popular-Restaurants-content" style="display: none">
-            <div class="Popular-Restaurants-grids">
-                <div class="container">
-                    <div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
-                        <div class="col-md-3 restaurent-logo">
-                            <img src="assets/food/images/restaurent-logo1.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <div class="col-md-2 restaurent-title">
-                            <div class="logo-title">
-                                <h4><a href="#" id="view-resto-name"></a></h4>
-                            </div>
-                            <div class="ratings" id="view-resto-fees">
-                            </div>
-                        </div>
-                        <div class="col-md-7 buy">
-                            <a class="morebtn hvr-rectangle-in" href="orders-list.html">order</a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </section>
-    <!-- view-restaurant-ends -->
-
-
 
     <!-- content-section-ends -->
     </div>
