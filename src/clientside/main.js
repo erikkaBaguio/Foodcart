@@ -27,7 +27,9 @@ function eraseCookie(name) {
 	$('#top-menu-customer').show();
 	$('#top-menu-admin').hide();
 	$('#top-menu-personnel').hide();
-	$("#order").show();
+	$('#order').show();
+	$('#top-right').show();
+	$('#logout').hide();
 
 
 	var form = document.getElementById("registration");
@@ -40,9 +42,6 @@ function eraseCookie(name) {
 		'<div class="alert alert-success" role="alert"><strong>Success ' +
 		 '!</strong> Successfully logged out.</div>');
 
-	$("#top-right").show();
-	$("#logout").hide();
-
 }
 
 
@@ -51,7 +50,7 @@ function decryptCookie(){
 	var myCookie = readCookie('user_tk');
 	var data = JSON.stringify({'token':myCookie});
 
-    $('#login-loading-image').show();
+    $('#main-division').show();
 
 	$.ajax({
 
