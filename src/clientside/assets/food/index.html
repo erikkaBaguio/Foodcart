@@ -56,55 +56,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		<div class="menu-bar">
+		<div class="menu-bar" id="menu-admin">
 			<div class="container">
-				<div class="top-menu" id="top-menu-admin" style="display:none">
+				<div class="top-menu" id="top-menu-admin">
+				<!-- <div class="top-menu" id="top-menu-admin" style="display:none"> -->
 					<ul>
-						<li class="active">
-							<a class="scroll" href="#Home">Home</a>
-						</li>
-						<li style="list-style: none">|</li>
-						<li>
-							<a href="popular-restaurents.html">Restaurants</a>
-						</li>
-						<li style="list-style: none">|</li>
-						<li>
-							<a href="order.html">Users</a>
-						</li>
-						<li style="list-style: none; display: inline">
-							<div class="clearfix"></div>
-						</li>
+						<li class="active"><a href="#">Home</a></li>|
+						<li><a href="#">Restaurants</a></li>|
+						<li><a href="#">Users</a></li>
+						<div class="clearfix"></div>
 					</ul>
 				</div>
 				<div class="login-section">
 					<ul>
-						<li>
-							<a href="login.html">Login</a>
-						</li>
-						<li style="list-style: none">|</li>
-						<li>
-							<a href="register.html">Register</a>
-						</li>
-						<li style="list-style: none">|</li>
-						<li>
-							<a href="#">Help</a>
-						</li>
-						<li style="list-style: none; display: inline">
-							<div class="clearfix"></div>
-						</li>
+						<li><a href="#" onclick="$('#login').show(); $('#register').hide();">Login</a>  </li> |
+						<li><a href="#" onclick="$('#register').show(); $('#login').hide();">Register</a> </li>
+						<div class="clearfix"></div>
 					</ul>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		<div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+		<div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
 			<!-- login form -->
 			<div class="container">
 				<div class="login-page" id="login" style="display:none">
 					<div class="account_grid">
 						<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
 							<h3 style="color:#fff">NEW CUSTOMERS</h3>
-							<p style="color:#fff">By creating an account with our store, you will be able to move through the checkout process faster, view and track your orders in your account and more.</p><a class="acount-btn" href="register.html">Create an Account</a>
+							<p style="color:#fff">By creating an account with our store, you will be able to move through the checkout process faster, view and track your orders in your account and more.</p><a class="acount-btn" href="#" onclick="$('#register').show(); $('#login').hide();">Create an Account</a>
 						</div>
 						<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 							<h3 style="color:#fff">REGISTERED CUSTOMERS</h3>
@@ -161,15 +141,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 			</div>
 			<!-- end of register form -->
 		</div>
-	</div><!-- header-section-ends -->
-	<div class="content">
-		<div class="container"></div>
-	</div><!-- footer-section-starts -->
+	</div>
+	<!-- header-section-ends -->
+
+	<!-- content-section-starts -->
+	<!-- view-restaurant-starts -->
+	<div class="Popular-Restaurants-content">
+		<div class="Popular-Restaurants-grids">
+			<div class="container">
+				<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+					<div class="col-md-3 restaurent-logo">
+						<img src="images/restaurent-logo1.jpg" class="img-responsive" alt="" />
+					</div>
+					<div class="col-md-2 restaurent-title">
+						<div class="logo-title">
+							<h4><a href="#" id="resto_name"></a></h4>
+						</div>
+						<div class="ratings">
+							<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee : </p>
+							<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">service fee : </p>
+						</div>
+					</div>
+					<div class="col-md-7 buy">
+						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- view-restaurant-ends -->
+	<!-- content-section-ends -->
+
+	<!-- footer-section-starts -->
 	<div class="footer">
 		<div class="container">
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014 All rights Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
-	</div><!-- footer-section-ends -->
+	</div>
+	<!-- footer-section-ends -->
 	<script type="text/javascript">
 	      $(document).ready(function() {
 	          /*
