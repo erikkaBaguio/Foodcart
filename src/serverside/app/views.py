@@ -4,7 +4,7 @@ from os import sys
 from models import DBconn
 import json, flask
 import hashlib
-# from flask.ext.httpauth import HTTPBasicAuth
+from flask.ext.httpauth import HTTPBasicAuth
 from datetime import timedelta
 from itsdangerous import URLSafeTimedSerializer
 from spcalls import SPcalls
@@ -16,7 +16,7 @@ from transactions import *
 from app import app
 
 SECRET_KEY = "a_random_secret_key_$%#!@"
-# auth = HTTPBasicAuth()
+auth = HTTPBasicAuth()
 spcalls = SPcalls()
 
 login_serializer = URLSafeTimedSerializer(SECRET_KEY)
@@ -60,6 +60,7 @@ def decr():
 @app.route('/api/foodcart/users/login/', methods=['POST'])
 def authentication():
     data = json.loads(request.data)
+    email = data['email_add']
     password = data['password']
 
     pw_hash = hashlib.md5(password.encode())
@@ -72,9 +73,19 @@ def authentication():
     if login[0][0] == 'ERROR':
         status = False
         return jsonify({'status': status, 'message': 'error'})
+
+    if login[0][0] == 'OK':
+
+        user = spcalls.spcall('show_user_email', (email,))
+        entry = []
+
+        for u in user:
+            entry.append({'fname': u[1], 'mname': u[2], 'lname': u[3], 'email': u[10], 'role': u[8]})
+
+        return jsonify({'status': 'OK', 'message': 'Successfully logged in', 'data': entry})
     else:
-        status = True
-        return jsonify({'status': status, 'message': 'Successfully Logged In'})
+        return jsonify({'status': 'ERROR', 'message': '404'})
+
 
 
 @app.route('/api/foodcart/users/signup/', methods=['POST'])
