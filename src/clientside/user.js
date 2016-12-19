@@ -124,17 +124,18 @@ function login(){
 				if(results.data[0].role == 2){
 					$('#top-menu-admin').hide(0);
 					$('#top-menu-personnel').show();
-					$('#box-personnel').show();
 					$('#personnel-page').show();
 					$('#personnel-menu').show();
 					$('#top-menu-customer').hide(0);
 					$("#order").hide();
+					$("#Home").hide();
 				}
 
 				if(results.data[0].role == 3){
 					$('#top-menu-admin').hide(0);
 					$('#top-menu-personnel').hide(0);
 					$('#top-menu-customer').show();
+					$("#Home").hide();
 				}
 
 				$("#login").hide();

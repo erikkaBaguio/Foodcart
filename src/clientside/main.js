@@ -27,6 +27,8 @@ function eraseCookie(name) {
 	$('#top-menu-customer').show();
 	$('#top-menu-admin').hide();
 	$('#top-menu-personnel').hide();
+	$("#order").show();
+
 
 	var form = document.getElementById("registration");
 	form.reset();
