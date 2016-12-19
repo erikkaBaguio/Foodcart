@@ -326,7 +326,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">View Food</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#add-food-form').show();">View Food</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9" style="display:none;background-color:#fff" id="box-personnel">
@@ -374,7 +374,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         <!-- /.box -->
                         </section>
                     <!-- add-food-form-ends -->
-
+                    <!-- view-all-food-starts -->
+                    <section class="content" id="view-all-food" style="display:none">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="padding: 5px">Foods</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div id="view-food-alert">
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="view-food-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </section>
+                    <!-- view-all-food-ends -->
                 </div>
             </div>
         </section>
