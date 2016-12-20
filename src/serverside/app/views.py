@@ -235,6 +235,7 @@ def deactivate_restaurant(resto_id):
 @app.route('/api/foodcart/restaurants/search/', methods=['POST'])
 def search_restaurant():
     data = json.loads(request.data)
+
     response = search_resto(data)
 
     return response
