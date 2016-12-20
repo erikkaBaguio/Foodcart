@@ -7,6 +7,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 <head>
     <title>Foodcart</title>
     <link href="assets/food/css/bootstrap.css" rel='stylesheet' type='text/css'><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+
 
     <script src="assets/food/js/jquery.min.js">
     </script><!-- Custom Theme files -->
@@ -69,9 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     <!-- top-menu-personnel-starts -->
                     <div class="top-menu" id="top-menu-personnel" style="display: none">
                         <ul>
-                            <li class="active"><a href="#">Home</a></li>|
-                            <li><a href="#">Foods</a></li>|
-                            <li><a href="#">Restaurant Account</a></li>
+                            <li class="active"><a href="#">Home</a></li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -96,13 +96,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                     <div class="login-section" id="logout" style="display: none">
                         <ul>
-                            <li><a href="#" onclick="$('#register').hide(); $('#login').hide();">Logout</a> </li>
+                            <li><a href="#" onclick="eraseCookie('user_tk');$('#logout').hide();$('#top-right').show();">Logout</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
                     <div id="login-alert"></div>
-
+                    <div id="deactivate-resto-alert"></div>
                 </div>
             </div>
             <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
@@ -265,8 +265,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         </div>
                     </div>
                 </div>
-                <!-- end of register personnel form -->
-            </div>
+                <!-- end of register form -->
+            </section>
         </div>
     </div>
     <!-- header-section-ends -->
@@ -277,32 +277,131 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     <!-- SYSTEM ADMIN PAGE STARTS-->
     <div id="admin-page">
     <!-- content-section-starts -->
-    <!-- view-restaurant-starts -->
-    <div class="Popular-Restaurants-content" style="display: none">
-        <div class="Popular-Restaurants-grids">
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="admin-menu" style="display:none">
             <div class="container">
-                <div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
-                    <div class="col-md-3 restaurent-logo">
-                        <img src="assets/food/images/restaurent-logo1.jpg" class="img-responsive" alt="" />
-                    </div>
-                    <div class="col-md-2 restaurent-title">
-                        <div class="logo-title">
-                            <h4><a href="#" id="resto_name"></a></h4>
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">Add User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">View User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();$('#view-all-resto').hide()">Add Restaurant</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box-admin').show();$('#add-resto-form').hide();">View Restaurants</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box-admin">
+                   <!-- add-restaurant-form-starts-->
+                   <section class="content" id="add-resto-form" style="display:none">
+                        <div class="container">
+                            <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="padding: 5px">Add Restaurant</h3>
+                                <div class="col-md-6" id="add-resto-alert"></div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <form id="restaurant-form" class="bootstrap-form-with-validation">
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Restaurant Name</label>
+                                                <input class="form-control" type="text" name="text-input" id="resto_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Minimum Order</label>
+                                                <input class="form-control" type="number" name="text-input" id="min_order" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Delivery Fee</label>
+                                                <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Image</label>
+                                                <input class="form-control" type="text" name="text-input" id="image_url" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Email</label>
+                                                <input class="form-control" type="email" name="text-input" id="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Telephone No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="tel_number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Mobile No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="mobile_number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Building No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="bldg_number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Street</label>
+                                                <input class="form-control" type="text" name="text-input" id="street" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Room No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="room_number" required>
+                                            </div>
+                                        </form>
+                                        <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                                <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeRestaurant();">Submit</button>
+
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <div class="ratings">
-                            <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee : </p>
-                            <p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">service fee : </p>
+                        <!-- /.box -->
                         </div>
-                    </div>
-                    <div class="col-md-7 buy">
-                        <a class="morebtn hvr-rectangle-in" href="orders-list.html">order</a>
-                    </div>
-                    <div class="clearfix"></div>
+                    </section>
+                    <!-- add-restaurant-form-ends-->
+
+                    <!-- view-all-restaurant-starts -->
+                    <hr class="my-2">
+                    <div id="view-resto-alert"></div>
+                    <section class="content" id="view-all-resto" style="display:none">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div id="message-alert">
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="view-resto-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </section>
+                    <!-- view-all-restaurant-ends -->
+
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- view-restaurant-ends -->
+        </section>
+
     <!-- content-section-ends -->
     </div>
     <!-- SYSTEM ADMIN PAGE ENDS-->
@@ -311,11 +410,95 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- BUSINESS PERSONNEL PAGE STARTS -->
     <div id="personnel-page">
-        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home" style="display:none">
-            <div class="container" id="personnel-menu">
-
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="personnel-menu" style="display:none">
+            <div class="container">
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#add-food-form').show();">Add Food</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#view-all-food').show();$('#add-food-form').hide();viewAllFood();">View Food</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box-personnel">
+                    <!-- add-food-form-starts -->
+                        <section class="content" id="add-food-form" style="display:none">
+                            <div class="box box-primary">
+                            <div id="add-food-alert">
+                            </div>
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="padding: 5px">Add Food</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form id="food-form" class="bootstrap-form-with-validation">
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Food Name</label>
+                                                <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Description</label>
+                                                <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Unit Cost</label>
+                                                <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Image</label>
+                                                <input class="form-control" type="text" name="text-input" id="image_url" required>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearFoodForm();">Clear</button>
+                                <button type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeFood();">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </div>
+                        <!-- /.box -->
+                        </section>
+                    <!-- add-food-form-ends -->
+                    <!-- view-all-food-starts -->
+                    <section class="content" id="view-all-food" style="display:none">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="padding: 5px">Foods</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div id="view-food-alert">
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="view-food-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </section>
+                    <!-- view-all-food-ends -->
+                </div>
             </div>
         </section>
+
     </div>
     <!-- BUSINESS PERSONNEL PAGE ENDS -->
 
@@ -323,6 +506,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- CUSTOMER PAGE STARTS -->
     <div id="customer-page">
+        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+		    <div class="container">
+				<div class="banner-info">
+					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
+						<h1>Network of Restaurants</h1>
+						<div class="line">
+							<h2> To Order Online</h2>
+						</div>
+					</div>
+					<div class="form-list wow fadeInRight" data-wow-delay="0.5s">
+						<!-- Search Form -->
+                        <div class="col-md-3" id="food-search-alert"></div>
+                        <div class="col-md-6" id="food-search-box">
+                            <!-- search form -->
+                            <form method="get" class="sidebar-form" onsubmit="return false">
+                                <div class="input-group">
+                                    <input id="food-search" type="text" name="q" class="form-control" placeholder="Enter food">
+                                    <span class="input-group-btn">
+                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();"><i class="fa fa-search">Search</i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /.search form -->
+                        </div>
+                        <div class="col-md-3"></div> <br>
+                        <!-- End of Search Form -->
+					</div>
+
+					<!-- start search-->
+				</div>
+			</div>
+		</div>
         <div class="content">
             <div class="ordering-section" id="order">
                 <div class="container">
@@ -369,6 +585,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                 </div>
             </div>
         </div>
+
+
     </div>
 <!-- CUSTOMER PAGE ENDS -->
 
@@ -378,7 +596,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- footer-section-starts -->
     <div class="contact-section" id="contact">
-                    <div class="container">
+        <div class="container">
             <div class="contact-section-grids">
                 <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
                     <h4>Site Links</h4>

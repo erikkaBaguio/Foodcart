@@ -47,12 +47,10 @@ function storeRestaurant(){
 				if (results.status == 'OK'){
 
 					$('#add-resto-alert').html(
-						'<div class="alert alert-success"><strong>Success ' +
+						'<br><br><div class="alert alert-success"><strong>Success ' +
 						 '!</strong>' + results.message +'</div>');
 
 					$("#add-resto-alert").fadeTo(2000, 500).slideUp(500);
-
-					$("#add-resto-form").hide();
 
 					clearRestaurantForm();
 
@@ -161,26 +159,24 @@ function viewAllRestaurant(){
 		{
 			if(results.status == 'OK'){
 				$('#view-resto-table-body').html(function(){
-					var restaurant_row = '';
-					var restaurant;
+                    var restaurant_row = '';
+                            var restaurant;
 
-					for (var i = 0; i < results.entries.length; i++) {
-						restaurant = '<tr>' +
-										'<td>' + results.entries[i].restaurant_name + '</td>' +
-										'<td>' + results.entries[i].minimum_order + '</td>' +
-										'<td>' + results.entries[i].delivery_fee + '</td>' +
-										'<td>' + results.entries[i].bldg_number + ' ' +  results.entries[i].street + ' ' + results.entries[i].room_number  + '</td>' +
-										'<td>' + results.entries[i].image_url + '</td>' +
-                                        '<td>'+'<button onclick="viewRestaurantById('+ results.entries[i].restaurant_id +'); $(\'#view-resto\').show();$(\'#view-all-resto\').hide()" class="btn btn-info">View</button>'+'</td>'+
-										'<td>'+'<button onclick="updateRestaurant('+ results.entries[i].restaurant_id +'); $(\'#update-resto-form\').show();$(\'#view-all-resto\').hide()" class="btn btn-info">Update</button>'+'</td>'+
-										'<td>'+'<button onclick="deactivateRestaurant('+ results.entries[i].restaurant_id +'); $(\'#update-resto-form\').hide();" class="btn btn-danger">Deactivate</button>'+'</td>'+
-									 '</tr>';
+                            for (var i = 0; i < results.entries.length; i++) {
+                                restaurant = '<tr>' +
+                                                '<td>' + '<img src="assets/food/images/'+results.entries[i].image_url+'" class="img-responsive" alt="" /></td>' +
+                                                '<td>' +'<div class="logo-title"><h4><a href="#" id="view-resto-name"></a></h4>' + results.entries[i].restaurant_name +'</div>'+
+														'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].minimum_order +' </p>'+
+                                						'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].delivery_fee +' </p>' + '</td>' +
+												'<td>' + '<div class="col-md-2 buy">' +
+                                    			'<a class="morebtn hvr-rectangle-in" href="#" style="background-color:#d13517" onclick="deactivateRestaurant(' + results.entries[i].restaurant_id + ');">deactivate</a></div>' + '</td>'
+                                               '</tr>';
 
-						restaurant_row  += restaurant
-					}
+                                restaurant_row  += restaurant
+                            }
 
-					return restaurant_row;
-				})
+                            return restaurant_row;
+                })
 
 				$('#add-resto-form').hide();
 			}
@@ -255,6 +251,36 @@ function updateRestaurant(restaurant_branch_id){
 						 '!</strong>' + results.message +'</div>');
 
 					$("#update-resto-alert").fadeTo(2000, 500).slideUp(500);
+
+				}
+			},
+			error: function(e){
+				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
+			},
+			beforeSend: function (xhrObj){
+
+	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
+
+	        }
+	    });
+}
+
+
+function deactivateRestaurant(restaurant_id){
+	$.ajax({
+		type: "PUT",
+		url: "http://localhost:5000/api/foodcart/restaurants/deactivate/" + restaurant_id,
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+
+		success: function(results){
+				if (results.status == 'OK'){
+
+					$('#deactivate-resto-alert').html(
+						'<div class="view-resto-alert"><strong>Success ' +
+						 '!</strong>' + results.message +'</div>');
+
+					$("#deactivate-resto-alert").fadeTo(2000, 500).slideUp(500);
 
 				}
 			},

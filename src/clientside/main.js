@@ -27,20 +27,21 @@ function eraseCookie(name) {
 	$('#top-menu-customer').show();
 	$('#top-menu-admin').hide();
 	$('#top-menu-personnel').hide();
+	$('#order').show();
+	$('#top-right').show();
+	$('#logout').hide();
 
-	var form = document.getElementById("registration-form");
+
+	var form = document.getElementById("registration");
 	form.reset();
 
-	var loginForm = document.getElementById("login-form");
+	var loginForm = document.getElementById("login");
 	loginForm.reset();
-
-	clearAssessmentForm();
 
 	$('#log-in-alert').html(
 		'<div class="alert alert-success" role="alert"><strong>Success ' +
 		 '!</strong> Successfully logged out.</div>');
 
-	$('#footer').hide();
 }
 
 
@@ -49,7 +50,7 @@ function decryptCookie(){
 	var myCookie = readCookie('user_tk');
 	var data = JSON.stringify({'token':myCookie});
 
-    $('#login-loading-image').show();
+    $('#main-division').show();
 
 	$.ajax({
 
@@ -142,36 +143,6 @@ function home(){
 
 	});
 
-}
-
-
-function deactivateRestaurant(restaurant_id){
-	$.ajax({
-		type: "PUT",
-		url: "http://localhost:5000/api/foodcart/restaurants/deactivate/" + restaurant_id,
-		contentType:"application/json; charset=utf-8",
-		dataType:"json",
-
-		success: function(results){
-				if (results.status == 'OK'){
-
-					$('#update-alert').html(
-						'<div class="view-resto-alert"><strong>Success ' +
-						 '!</strong>' + results.message +'</div>');
-
-					$("#update-alert").fadeTo(2000, 500).slideUp(500);
-
-				}
-			},
-			error: function(e){
-				alert("THIS IS NOT COOL. SOMETHING WENT WRONG: " + e);
-			},
-			beforeSend: function (xhrObj){
-
-	      		xhrObj.setRequestHeader("Authorization", "Basic " + btoa( auth_user ));
-
-	        }
-	    });
 }
 
 

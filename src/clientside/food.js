@@ -16,11 +16,15 @@ function storeFood(){
 	var food_name = $('#food_name').val();
 	var description = $('#description').val();
 	var unit_cost = $('#unit_cost').val();
+	var image_url = $('#image_url').val();
 
 	var data = JSON.stringify({ 'food_name' : food_name,
 								'description' : description,
 								'unit_cost' : unit_cost,
+								'image_url': image_url,
+								'resto_id' : 1,
 							});
+	console.log(data);
 
 	$.ajax({
 	    	type:"POST",
@@ -70,7 +74,7 @@ function viewAllFood(){
 
 	$.ajax({
 		type:"GET",
-		url: "http://localhost:5000/api/foodcart/foods/",
+		url: "http://localhost:5000/api/foodcart/foods/1",
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
 
