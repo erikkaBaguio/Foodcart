@@ -159,26 +159,27 @@ function searchRestaurant(){
 			dataType:"json",
 
 			success: function(results){
-				if (results.status == 'OK'){
+	    		console.log(results);
+				if(results.status == 'OK'){
+				$('#search-resto-table-body').html(function(){
+                    var restaurant_row = '';
+                            var restaurant;
 
-					$('#search-resto-table-body').html(function(){
-					var restaurant_row = '';
-					var restaurant;
+                            for (var i = 0; i < results.entries.length; i++) {
+                                restaurant = '<tr>' +
+                                                '<td>' + '<img src="assets/food/images/'+results.entries[i].image_url+'" class="img-responsive" alt="" /></td>' +
+                                                '<td>' +'<div class="logo-title"><h4><a href="#" id="view-resto-name"></a></h4>' + results.entries[i].restaurant_name +'</div>'+
+														'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].minimum_order +' </p>'+
+                                						'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].delivery_fee +' </p>' + '</td>' +
+												'<td>' + '<div class="col-md-2 buy">' +
+                                    			'</tr>';
 
-					for (var i = 0; i < results.entries.length; i++) {
-						restaurant = '<tr>' +
-										'<td>' + results.entries[i].restaurant_name + '</td>' +
-										'<td>' + results.entries[i].minimum_order + '</td>' +
-										'</tr>';
+                                restaurant_row  += restaurant
+                            }
 
-						restaurant_row  += restaurant
-					}
-
-					return restaurant_row;
-				})
-
-				}
-
+                            return restaurant_row;
+                })
+			}
 				if(results.status == 'FAILED'){
 
 					$('#resto-search-alert').html(
