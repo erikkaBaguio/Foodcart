@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "nrel/CentOS-6.5-x86_64"
+  config.vm.box = "spantree/Centos-6.5_x86-64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.host_name = "Foodcart"
+  config.vm.host_name = "localhost"
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000
   config.vm.network "forwarded_port", guest: 8000, host: 8085
@@ -79,11 +79,13 @@ Vagrant.configure("2") do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
-  config.vm.provision :shell, :path => "provision/setup.sh"
+  config.vm.provision :shell, :path => "bootstrap.sh"
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.module_path = "puppet/modules"
-    puppet.manifest_file  = "standalone.pp"
+    puppet.manifest_file  = "init.pp"
+    puppet.hiera_config_path = "hiera.yaml"
+
   end
 end
