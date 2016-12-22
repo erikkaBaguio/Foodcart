@@ -4,10 +4,10 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 	returns bigint as
 	$$
 		DECLARE
-			local_name	varchar;
+			local_name varchar;
 			local_response int;
 		BEGIN
-			if (check_restaurant(parfoodcart_restoName) = 0)
+			if (check_restaurant(par_restoName) = 0)
 			then
 				insert into Restaurants(resto_name, min_order)
 				values (par_restoName, par_minOrder);
@@ -15,7 +15,7 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 				select into local_response currval(pg_get_serial_sequence('Restaurants','id'));
 
 		        update Restaurants
-		          set image_id = local_response
+		        set image_id = local_response
 		        where id = local_response;
 
 			else

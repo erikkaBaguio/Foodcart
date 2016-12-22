@@ -165,6 +165,8 @@ function login(){
 				$('#login-alert').html(
 					'<div class="alert alert-danger"><strong>FAILED ' +
 					 '!</strong> Invalid username or password.</div>');
+
+				$("#login-alert").fadeTo(2000, 500).slideUp(500);
 			}
 
 
