@@ -96,6 +96,32 @@ class python {
   }
 }
 
+#variables
+$postgres_password = 'temporary'
+
+# Edit local /etc/hosts files to resolve some hostnames used on your application.
+host { 'localhost.localdomain':
+    ensure => 'present',
+    target => '/etc/hosts',
+    ip => '127.0.0.1',
+    host_aliases => ['localhost', 'vagrant-test.my']
+}
+
+
+
+
+# Adding EPEL repo. We'll use later to install Redis class.
+# class { 'epel': }
+
+
+# Miscellaneous packages.
+package { ['vim-enhanced','nc','zip','unzip','git', 'mlocate']: ensure => latest }
+
+service { 'iptables':
+  ensure => 'stopped',
+  enable => 'false',
+}
+
 # Install PostgreSQL 9.4 server from the PGDG repository
  class {'postgresql::globals':
   encoding => 'UTF8',
@@ -129,3 +155,7 @@ postgresql::server::database { 'foodcart':
   dbname => 'foodcart',
   template => 'template1',
 }
+
+class { 'apache': }
+
+include ::scl::collections::python27
