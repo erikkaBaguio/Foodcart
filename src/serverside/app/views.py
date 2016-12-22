@@ -23,6 +23,10 @@ spcalls = SPcalls()
 
 login_serializer = URLSafeTimedSerializer(SECRET_KEY)
 
+@app.route('/')
+def hello():
+    return 'IT WOOOOOOOORKS!'
+
 
 # Users
 def get_auth_token(email, password):
@@ -363,4 +367,4 @@ def add_cors(resp):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", debug=True)
