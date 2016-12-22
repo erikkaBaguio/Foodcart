@@ -1,5 +1,5 @@
 import json
-from app import *
+# from app import *
 from models import DBconn
 from flask import request
 import re

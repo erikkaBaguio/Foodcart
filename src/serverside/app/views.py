@@ -13,7 +13,9 @@ from foods import *
 from users import *
 from orders import *
 from transactions import *
-from app import app
+# from app import app
+
+app = Flask(__name__)
 
 SECRET_KEY = "a_random_secret_key_$%#!@"
 auth = HTTPBasicAuth()
@@ -358,3 +360,7 @@ def add_cors(resp):
     if app.debug:
         resp.headers["Access-Control-Max-Age"] = '1'
     return resp
+
+
+if __name__ == '__main__':
+    app.run()
