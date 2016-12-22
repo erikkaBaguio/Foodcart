@@ -3,7 +3,6 @@ sudo pip install flask
 sudo pip install sqlalchemy
 sudo pip install lettuce
 yum -y install httpd
-yum -y install postgresql
 
 yum -y install lettuce
 if ! [ -L /var/www ]; then
