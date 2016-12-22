@@ -11,7 +11,7 @@ As a system administrator, I want to update users' details.
 	Scenario: Adding user
 			Given I have the following user details:
 			|    fname    |  mname |    lname   | user_password |  user_email      | user_tel_number | user_mobile_number | user_bldg_number |   user_street    | user_room_number | role_id |
-			| 	  Mint     |   Ho   |    Lee     |      admin      |  mintho@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
+			| 	  Min     |   Ho   |    Lee     |      asd      |  minho@gmail.com |  225-1234  |  09090090909  |      12     | Street Shop |      4B     |    1    |
 			When  the user clicks the send button
 			Then  it should have a '200' response
             And   it should have a field 'status' containing 'OK'
@@ -29,10 +29,10 @@ As a system administrator, I want to update users' details.
              Given the user with an id '3'
 			 And the old details of user
 		     | id | update_fname | update_mname | update_lname | update_user_password | update_earned_points | contact_id | address_id | role_id | is_active |
-             | 3  |    Kristel   |    Ahlaine   |      Gem     |         admin        |          100         |      3     |      3     |    1    |    TRUE   |
+             | 3  |    Kristel   |    Ahlaine   |      Gem     |         admin      |          100         |      3     |      3     |    1    |    TRUE   |
              And the new details of user
              | id | update_fname | update_mname | update_lname | update_user_password | update_earned_points |
-             | 3  |    Kristel   |    Ahlaine   |  Pabillaran  |        admin         |          100         |
+             | 3  |    Kristel   |    Ahlaine   |  Pabillaran  |        admin 		  |          100         |
 		     When  the update button is clicked
              Then  it should have a '200' response
              And   it should have a field 'status' containing 'OK'
