@@ -1,3 +1,67 @@
+#variables
+$postgres_password = 'temporary'
+
+# Edit local /etc/hosts files to resolve some hostnames used on your application.
+host { 'localhost.localdomain':
+    ensure => 'present',
+    target => '/etc/hosts',
+    ip => '127.0.0.1',
+    host_aliases => ['localhost', 'vagrant-test.my']
+}
+
+
+
+
+# Adding EPEL repo. We'll use later to install Redis class.
+# class { 'epel': }
+
+
+# Miscellaneous packages.
+package { ['vim-enhanced','nc','zip','unzip','git', 'mlocate']: ensure => latest }
+
+service { 'iptables':
+  ensure => 'stopped',
+  enable => 'false',
+}
+
+# Install PostgreSQL 9.4 server from the PGDG repository
+ class {'postgresql::globals':
+  encoding => 'UTF8',
+  locale  => 'it_IT.utf8',
+  manage_package_repo => true,
+  version => '9.4',
+}->
+
+
+class { 'postgresql::server':
+  listen_addresses => '*',
+  ip_mask_allow_all_users    => '0.0.0.0/0',
+  postgres_password => 'temporary',
+}
+
+# Install contrib modules
+class { 'postgresql::server::contrib':}
+
+class { 'postgresql::lib::devel':}
+
+class { 'postgresql::server::plpython':}
+
+postgresql::server::role{'ppg':
+  password_hash => 'foodcart',
+  username => 'ppg',
+  createdb => true,
+  superuser => true,
+}
+
+postgresql::server::database { 'foodcart':
+  dbname => 'foodcart',
+  template => 'template1',
+}
+
+class { 'apache': }
+
+include ::scl::collections::python27
+
 define source_install($prefix, $tarball, $tmpdir, $flags) {
   exec { "retrieve-$name":
     command => "wget $tarball",
@@ -96,66 +160,3 @@ class python {
   }
 }
 
-#variables
-$postgres_password = 'temporary'
-
-# Edit local /etc/hosts files to resolve some hostnames used on your application.
-host { 'localhost.localdomain':
-    ensure => 'present',
-    target => '/etc/hosts',
-    ip => '127.0.0.1',
-    host_aliases => ['localhost', 'vagrant-test.my']
-}
-
-
-
-
-# Adding EPEL repo. We'll use later to install Redis class.
-# class { 'epel': }
-
-
-# Miscellaneous packages.
-package { ['vim-enhanced','nc','zip','unzip','git', 'mlocate']: ensure => latest }
-
-service { 'iptables':
-  ensure => 'stopped',
-  enable => 'false',
-}
-
-# Install PostgreSQL 9.4 server from the PGDG repository
- class {'postgresql::globals':
-  encoding => 'UTF8',
-  locale  => 'it_IT.utf8',
-  manage_package_repo => true,
-  version => '9.4',
-}->
-
-
-class { 'postgresql::server':
-  listen_addresses => '*',
-  ip_mask_allow_all_users    => '0.0.0.0/0',
-  postgres_password => 'temporary',
-}
-
-# Install contrib modules
-class { 'postgresql::server::contrib':}
-
-class { 'postgresql::lib::devel':}
-
-class { 'postgresql::server::plpython':}
-
-postgresql::server::role{'ppg':
-  password_hash => 'foodcart',
-  username => 'ppg',
-  createdb => true,
-  superuser => true,
-}
-
-postgresql::server::database { 'foodcart':
-  dbname => 'foodcart',
-  template => 'template1',
-}
-
-class { 'apache': }
-
-include ::scl::collections::python27

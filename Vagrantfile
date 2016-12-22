@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.host_name = "localhost"
+  #config.vm.host_name = "localhost"
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000
   config.vm.network "forwarded_port", guest: 8000, host: 8085
@@ -45,6 +45,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "./src", "/src", :mount_options => ["dmode=777,fmode=777"]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -81,11 +82,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, :path => "bootstrap.sh"
 
-  config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "puppet/manifests"
-    puppet.module_path = "puppet/modules"
-    puppet.manifest_file  = "init.pp"
-    puppet.hiera_config_path = "hiera.yaml"
-
+  config.vm.provision :puppet,
+    :facter => { "fqdn" => "vagrant.vagrantup.com" }  do |puppet|
+       puppet.manifests_path = "puppet/manifests"
+       puppet.manifest_file = "init.pp"
+       puppet.module_path = "puppet/modules"
+       puppet.hiera_config_path = "hiera.yaml"
+       puppet.working_directory = "./"
   end
 end

@@ -6,7 +6,7 @@ connection = 'local' #or change it to local if you're running on local machine
 if connection == 'local':
 	class DBconn:
 	    def __init__(self):
-	        engine = create_engine("postgresql://ppg:foodcart@127.0.0.1:5432/foodcart")
+	        engine = create_engine("postgresql://postgres:template1@127.0.0.1:5432/foodcart")
 	        self.conn = engine.connect()
 	        self.trans = self.conn.begin()
 

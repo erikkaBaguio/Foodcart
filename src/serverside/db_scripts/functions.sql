@@ -4,7 +4,7 @@ create or replace function store_restaurant(par_restoName varchar, par_minOrder 
 	returns bigint as
 	$$
 		DECLARE
-			local_name	varchar;
+			local_name varchar;
 			local_response int;
 		BEGIN
 			if (check_restaurant(par_restoName) = 0)
@@ -60,7 +60,7 @@ create or replace function check_restaurant(par_restoName varchar)
 		language 'plpgsql';
 
 --Checks if restaurant branch already exist or not
---select check_restaurant_branch('1','st','5',3);
+--select check_restaurant_branch('','Tibanga, Iligan City','',1);
 create or replace function check_restaurant_branch(par_bldg varchar, par_street varchar, par_room varchar,  par_restoID bigint)
   returns boolean as
   $$
@@ -312,7 +312,7 @@ create or replace function store_food(par_food_name varchar, par_description tex
 	returns bigint as
 	$$
 		declare
-			local_food_name	varchar;
+			local_food_name varchar;
 			local_response bigint;
 
 		begin
