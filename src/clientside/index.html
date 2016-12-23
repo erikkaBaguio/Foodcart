@@ -97,7 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                     <div class="login-section" id="logout" style="display: none">
                         <ul>
-                            <li><a href="#" onclick="eraseCookie('user_tk');$('#logout').hide();$('#top-right').show();">Logout</a> </li>
+                            <li><a href="#" onclick="$('#top-right').show();$('#order').show();$('#customer-menu').show();eraseCookie('user_tk');$('#logout').hide();">Logout</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -225,7 +225,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                 <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">Add User</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#register').show();">Add User</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
@@ -467,7 +467,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                                 <div class="input-group">
                                     <input id="resto-search" type="text" name="q" class="form-control" placeholder="Enter restaurant" style="width:300%">
                                     <span class="input-group-btn">
-                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();$('#search-resto-table').show();" style="background-color:#5BBD50"><i class="fa fa-search">Search</i>
+                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();$('#search-all-resto').show();" style="background-color:#5BBD50"><i class="fa fa-search">Search</i>
                                         </button>
                                     </span>
                                 </div>
@@ -482,26 +482,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 				</div>
 			</div>
 		</div>
-        <div class="content">
-            <div class="ordering-section">
+        <!-- search-all-restaurant-starts -->
+        <hr class="my-2">
+        <div id="search-resto-alert"></div>
+        <section class="content" id="search-all-resto" style="display:none">
+            <div class="box-header with-border">
+                <h3 class="box-title" style="padding: 5px">Restaurant</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-                    <table class="table" id="search-resto-table" style="display:none">
-		                <thead>
-		                    <tr>
-		                        <th></th>
-		                        <th></th>
-		                        <th></th>
-		                        <th></th>
-		                    </tr>
-		                </thead>
-		                <tbody id="search-resto-table-body" style="display:none">
-		                </tbody>
-		            </table>
-		        </div>
-		    </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="search-resto-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.row -->
             </div>
-        </div>
+        </section>
+        <!-- search-all-restaurant-ends -->
         <div class="content">
             <div class="ordering-section" id="order">
                 <div class="container">

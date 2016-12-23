@@ -21,7 +21,7 @@ function eraseCookie(name) {
 	stop();
 	$('#admin-page').hide(0);
 	$('#personnel-page').hide(0);
-	$('#customer-page').hide(0);
+	// $('#customer-page').hide(0);
 	$('#add-user-form').hide(0);
 	$('#main-division').show();
 	$('#top-menu-customer').show();
@@ -29,18 +29,24 @@ function eraseCookie(name) {
 	$('#top-menu-personnel').hide();
 	$('#order').show();
 	$('#top-right').show();
+	$('#customer-menu').show();
+	$('#admin-menu').hide();
+	$('#personnel-menu').hide();
 	$('#logout').hide();
 
 
-	var form = document.getElementById("registration");
+	var form = document.getElementById("register");
 	form.reset();
 
 	var loginForm = document.getElementById("login");
 	loginForm.reset();
 
-	$('#log-in-alert').html(
-		'<div class="alert alert-success" role="alert"><strong>Success ' +
-		 '!</strong> Successfully logged out.</div>');
+	$('#login-alert').html(
+						'<div class="alert alert-success"><strong>Success ' +
+						results.data[0].fname +
+						 '!</strong> Successfully logged out.</div>');
+
+					$("#login-alert").fadeTo(2000, 500).slideUp(500);
 
 }
 
@@ -159,7 +165,7 @@ function searchRestaurant(){
 			dataType:"json",
 
 			success: function(results){
-	    		console.log(results);
+	    		console.log(results.entries[0].restaurant_id);
 				if(results.status == 'OK'){
 				$('#search-resto-table-body').html(function(){
                     var restaurant_row = '';
@@ -167,11 +173,13 @@ function searchRestaurant(){
 
                             for (var i = 0; i < results.entries.length; i++) {
                                 restaurant = '<tr>' +
-                                                '<td>' + '<img src="assets/food/images/'+results.entries[i].image_url+'" class="img-responsive" alt="" /></td>' +
+                                                '<td>' + '<img src="assets/food/images/'+results.entries[i].image_id + '" class="img-responsive" alt="" /></td>' +
                                                 '<td>' +'<div class="logo-title"><h4><a href="#" id="view-resto-name"></a></h4>' + results.entries[i].restaurant_name +'</div>'+
 														'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].minimum_order +' </p>'+
                                 						'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].delivery_fee +' </p>' + '</td>' +
 												'<td>' + '<div class="col-md-2 buy">' +
+												'<a class="morebtn hvr-rectangle-in" href="#" onclick="viewAllFood(' + results.entries[i].restaurant_id + ');">order</a></div>' + '</td>'
+
                                     			'</tr>';
 
                                 restaurant_row  += restaurant

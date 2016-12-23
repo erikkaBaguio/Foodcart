@@ -70,11 +70,11 @@ function storeFood(){
 }
 
 
-function viewAllFood(){
+function viewAllFood(resto_id){
 
 	$.ajax({
 		type:"GET",
-		url: "http://localhost:5000/api/foodcart/foods/1",
+		url: "http://localhost:5000/api/foodcart/foods/" + resto_id,
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
 
