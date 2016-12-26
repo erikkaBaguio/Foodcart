@@ -72,34 +72,38 @@ function storeFood(){
 
 function viewAllFood(resto_id){
 
+	$('#search-all-resto').hide();
+	$('#search-food-resto-results').show();
+
 	$.ajax({
 		type:"GET",
-		url: "http://localhost:5000/api/foodcart/foods/" + resto_id,
+		url: "http://localhost:5000/api/foodcart/foods/",
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
 
 		success: function(results)
 		{
 			if(results.status == 'OK'){
-				$('#view-food-table-body').html(function(){
-					var food_row = '';
-					var food;
+				$('#search-all-food-results-table-body').html(function(){
+                    var food_row = '';
+                            var food;
 
-					for (var i = 0; i < results.entries.length; i++) {
-						food = '<tr>' +
-										'<td>' + results.entries[i].food_name + '</td>' +
-										// '<td>' + results.entries[i].description + '</td>' +
-										// '<td>' + results.entries[i].unit_cost + '</td>' +
-										'<td>'+'<button onclick="viewFoodById('+ results.entries[i].food_id +'); $(\'#view-food\').show();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-info">Details</button>'+'</td>'+
-										'<td>'+'<button onclick="updateFood('+ results.entries[i].food_id +'); $(\'#update-food-form\').show();$(\'#view-food\').hide();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-info">Update</button>'+'</td>'+
-										'<td>'+'<button onclick="deactivateFood('+ results.entries[i].food_id +'); $(\'#update-food-form\').hide();$(\'#view-food\').hide();$(\'#view-resto\').hide();$(\'#view-all-resto\').hide()" class="btn btn-danger">Delete</button>'+'</td>'+
-										'</tr>';
+                            for (var i = 0; i < results.entries.length; i++) {
+                                food = '<tr>' +
+                                                '<td>' + '<img src="assets/food/images/'+results.entries[i].image_url + '" class="img-responsive" alt="" /></td>' +
+                                                '<td>' +'<div class="logo-title"><h4><a href="#" id="view-food-name"></a></h4>' + results.entries[i].food_name +'</div>'+
+                                                        '<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].description +' </p>'+
+                                                        '<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].unit_cost +' </p>' + '</td>' +
+                                                '<td>' + '<div class="col-md-2 buy">' +
+                                                '<a class="morebtn hvr-rectangle-in" href="#" onclick="viewAllFood(' + results.entries[i].food_id + ');">add to cart</a></div>' + '</td>'
 
-						food_row  += food
-					}
+                                                '</tr>';
 
-					return food_row;
-				})
+                                food_row  += food
+                            }
+
+                            return food_row;
+                })
 
 				$('#add-food-form').hide();
 			}

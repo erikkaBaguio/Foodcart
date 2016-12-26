@@ -165,7 +165,6 @@ function searchRestaurant(){
 			dataType:"json",
 
 			success: function(results){
-	    		console.log(results.entries[0].restaurant_id);
 				if(results.status == 'OK'){
 				$('#search-resto-table-body').html(function(){
                     var restaurant_row = '';
@@ -178,7 +177,7 @@ function searchRestaurant(){
 														'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">minimum order :'+ results.entries[i].minimum_order +' </p>'+
                                 						'<p style="line-height:1; font-size:1em; color:#6b6969; font-weight:400">delivery fee :'+ results.entries[i].delivery_fee +' </p>' + '</td>' +
 												'<td>' + '<div class="col-md-2 buy">' +
-												'<a class="morebtn hvr-rectangle-in" href="#" onclick="viewAllFood(' + results.entries[i].restaurant_id + ');">order</a></div>' + '</td>'
+												'<a class="morebtn hvr-rectangle-in" onclick="viewAllFood(' + results.entries[i].restaurant_id + ');">order</a></div>' + '</td>'
 
                                     			'</tr>';
 
