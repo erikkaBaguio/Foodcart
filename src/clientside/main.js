@@ -39,6 +39,34 @@ function eraseCookie(name) {
 }
 
 
+function decryptCookie(){
+
+	var myCookie = readCookie('user_tk');
+	var data = JSON.stringify({'token':myCookie});
+
+	$.ajax({
+
+		type:"POST",
+	    url:"http://localhost:5000/decrypt",
+	    contentType: "application/json; charset=utf-8",
+	    data:data,
+	    dataType:"json",
+
+	    success: function(results){
+	    	auth_user = results.token;
+	    },
+
+	    error: function(e, stats, err){
+	    	$('#Home').show();
+	    	$('#login').show();
+	    	$('#top-right').show();
+	    }
+
+	});
+
+}
+
+
 
 function login(){
 	var email = $('#email_add').val();
