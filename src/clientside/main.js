@@ -4,8 +4,16 @@ var timer = 0;
 
 $(document).ready(function(){
 
+	decryptCookie();
 
 });
+
+
+function readCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
 
 
 function login(){
@@ -32,37 +40,24 @@ function login(){
 
 				// for system admin
 				if(results.data[0].role == 1){
-					$('#top-menu-admin').show();
-					$('#top-menu-personnel').hide(0);
-					$('#top-menu-customer').hide(0);
-					$('#order').hide();
-					$('#Home').hide();
-					$('#search-resto-table-body').hide();
-					$('#search-resto-table').hide();
-					$('#admin-page').show();
-					$('#admin-menu').show();
 
+					
+					user_role = results.data[0].role;
 				}
 
 
 				// for business personnel
 				if(results.data[0].role == 2){
-					$('#top-menu-admin').hide(0);
-					$('#top-menu-personnel').show();
-					$('#personnel-page').show();
-					$('#personnel-menu').show();
-					$('#top-menu-customer').hide(0);
-					$('#order').hide();
-					$('#Home').hide();
+
+
+					user_role = results.data[0].role;					
 				}
 
 
 				// for customer
 				if(results.data[0].role == 3){
-					$('#top-menu-admin').hide(0);
-					$('#top-menu-personnel').hide(0);
-					$('#top-menu-customer').show();
-					$('#Home').hide();
+
+					user_role = results.data[0].role;					
 				}
 
 				$('#login').hide();
