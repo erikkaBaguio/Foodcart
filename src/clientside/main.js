@@ -16,6 +16,30 @@ function readCookie(name) {
 }
 
 
+function eraseCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+	stop();
+	$('#admin-page').hide(0);
+	$('#personnel-page').hide(0);
+	$('#custommer-page').hide(0);
+	$('#main-division').show();
+	$('#login').show();
+
+	var form = document.getElementById("registration-form");
+	form.reset();
+
+	var loginForm = document.getElementById("login-form");
+	loginForm.reset();
+
+	$('#log-in-alert').html(
+		'<div class="alert alert-success" role="alert"><strong>Success ' +
+		 '!</strong> Successfully logged out.</div>');
+
+}
+
+
+
 function login(){
 	var email = $('#email_add').val();
 	var password = $('#password').val();
