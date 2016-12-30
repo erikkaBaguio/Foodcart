@@ -6,14 +6,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 <html>
 <head>
     <title>Foodcart</title>
-    <link href="assets/food/css/bootstrap.css" rel='stylesheet' type='text/css'><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css'><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <link href="assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-    <link href="assets/food/css/font-awsome.min.css" type="text/css" rel="stylesheet" media="all">
+    <link href="assets/font/font-awesome.min.css" type="text/css" rel="stylesheet" media="all">
 
 
-    <script src="assets/food/js/jquery.min.js">
+    <script src="assets/js/jquery.min.js">
     </script><!-- Custom Theme files -->
-    <link href="assets/food/css/style.css" media="all" rel="stylesheet" type="text/css"><!-- Custom Theme files -->
+    <link href="assets/css/style.css" media="all" rel="stylesheet" type="text/css"><!-- Custom Theme files -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <script type="application/x-javascript">
        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
@@ -21,17 +21,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'><!--Animation-->
 
-    <script src="assets/food/js/wow.min.js">
+    <script src="assets/js/wow.min.js">
     </script>
-    <link href="assets/food/css/animate.css" rel='stylesheet' type='text/css'>
+    <link href="assets/css/animate.css" rel='stylesheet' type='text/css'>
     <script>
           new WOW().init();
     </script>
-    <script src="assets/food/js/simpleCart.min.js">
+    <script src="assets/js/simpleCart.min.js">
     </script>
-    <script src="assets/food/js/move-top.js" type="text/javascript">
+    <script src="assets/js/move-top.js" type="text/javascript">
     </script>
-    <script src="assets/food/js/easing.js" type="text/javascript">
+    <script src="assets/js/easing.js" type="text/javascript">
     </script>
     <script type="text/javascript">
                   jQuery(document).ready(function($) {
@@ -43,7 +43,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     </script>
 </head>
 <body>
-    <!-- MAIN DIVISIONS STARTS -->
+
+        <!-- MAIN DIVISIONS STARTS -->
     <div id="main-division">
         <!-- header-section-starts -->
         <div class="header">
@@ -60,26 +61,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
             </div>
             <div class="menu-bar" id="menu-admin">
                 <div class="container">
-                    <!-- top-menu-admin-starts -->
-                    <div class="top-menu" id="top-menu-admin" style="display: none">
-                        <ul>
-                            <li class="active"><a href="#">Home</a></li>
-                            <div class="clearfix"></div>
-                        </ul>
-                    </div>
-                    <!-- top-menu-admin-ends -->
 
-                    <!-- top-menu-personnel-starts -->
-                    <div class="top-menu" id="top-menu-personnel" style="display: none">
-                        <ul>
-                            <li class="active"><a href="#">Home</a></li>
-                            <div class="clearfix"></div>
-                        </ul>
-                    </div>
-                    <!-- top-menu-personnel-ends -->
-
-                    <!-- top-menu-customer-starts -->
-                    <div class="top-menu" id="top-menu-customer">
+                    <!-- top-menu-starts -->
+                    <div class="top-menu">
                         <ul>
                             <li class="active"><a href="#">Home</a></li>|
                             <li><a href="#">About</a></li>|
@@ -87,17 +71,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                             <div class="clearfix"></div>
                         </ul>
                     </div>
-                    <!-- top-menu-customer-ends -->
+                    <!-- top-menu-ends -->
+
                     <div class="login-section" id="top-right">
                         <ul>
                             <li><a href="#" onclick="$('#Home').show(); $('#login').show();$('#customer-menu').hide(); $('#register').hide();$('#search-resto-table-body').hide();$('#search-resto-table').hide();">Login</a>  </li> |
-                            <li><a href="#" onclick="$('#add-user_form').show(); $('#login').hide();">Register</a> </li>
+                            <li><a href="#" onclick="$('#Home').show();$('#register').show(); $('#login').hide();">Register</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
                     <div class="login-section" id="logout" style="display: none">
                         <ul>
-                            <li><a href="#" onclick="$('#top-right').show();$('#order').show();$('#customer-menu').show();eraseCookie('user_tk');$('#logout').hide();">Logout</a> </li>
+                            <li><a href="#" onclick="eraseCookie('user_tk');">Logout</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -121,23 +106,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                                 <form id="login-form" class="login-right" method="post" onsubmit="return false">
                                     <div class="form-group">
                                         <label for="text-input"><span style="color:#fff">Email Address</span></label>
-			                            <input id="email_add" name="email" type="text" placeholder="Email">
-			                        </div>
+                                  <input id="email_add" name="email" type="text" placeholder="Email">
+                              </div>
                                     <div class="form-group">
-			                            <label for="text-input"><span style="color:#fff">Password</span></label>
-			                            <input id="password" name="password" type="password" placeholder="Password">
-			                        </div>
-			                        <div class="form-group">
-								        <a class="acount-btn" onclick="login();">Log In</a>
-			                        </div>
-							    </form>
+                                  <label for="text-input"><span style="color:#fff">Password</span></label>
+                                  <input id="password" name="password" type="password" placeholder="Password">
+                              </div>
+                              <div class="form-group">
+                        <a class="acount-btn" onclick="login();">Log In</a>
+                              </div>
+                  </form>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
                 <!-- end of login form -->
-                <!-- register form -->
+                <!-- signup-form-starts -->
                 <div class="container">
                     <div class="register" id="register" style="display:none">
                         <form id="add-user-form" class="bootstrap-form-with-validation">
@@ -186,16 +171,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
                                 </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <div class="col-sm-4 label-column">
-                                        <label for="text-input"><span style="color:#fff">User Role*</span></label>
-                                        <select id="registration-role_id" name="role_id">
-                                            <option value="1"> System Administrator </option>
-                                            <option value="2"> Business Manager </option>
-                                            <option value="3"> Customer </option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="clearfix"></div><a class="news-letter" href="#"></a>
                             </div>
                         </form>
@@ -208,7 +183,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         </div>
                     </div>
                 </div>
-                <!-- end of register form -->
+                <!-- signup-form-ends -->
             </section>
         </div>
     </div>
@@ -216,378 +191,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- MAIN DIVISIONS ENDS -->
 
-
-    <!-- SYSTEM ADMIN PAGE STARTS-->
-    <div id="admin-page">
-    <!-- content-section-starts -->
-        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="admin-menu" style="display:none">
-            <div class="container">
-                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#register').show();">Add User</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff">View User</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();$('#view-all-resto').hide();$('#customer-menu').hide();">Add Restaurant</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box-admin').show();$('#add-resto-form').hide();">View Restaurants</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-9" style="display:none;background-color:#fff" id="box-admin">
-                   <!-- add-restaurant-form-starts-->
-                   <section class="content" id="add-resto-form" style="display:none">
-                        <div class="container">
-                            <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title" style="padding: 5px">Add Restaurant</h3>
-                                <div class="col-md-6" id="add-resto-alert"></div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <form id="restaurant-form" class="bootstrap-form-with-validation">
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Restaurant Name</label>
-                                                <input class="form-control" type="text" name="text-input" id="resto_name" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Minimum Order</label>
-                                                <input class="form-control" type="number" name="text-input" id="min_order" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Delivery Fee</label>
-                                                <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Image</label>
-                                                <input class="form-control" type="text" name="text-input" id="image_url" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Email</label>
-                                                <input class="form-control" type="email" name="text-input" id="email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Telephone No.</label>
-                                                <input class="form-control" type="text" name="text-input" id="tel_number" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Mobile No.</label>
-                                                <input class="form-control" type="text" name="text-input" id="mobile_number" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Building No.</label>
-                                                <input class="form-control" type="text" name="text-input" id="bldg_number" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Street</label>
-                                                <input class="form-control" type="text" name="text-input" id="street" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Room No.</label>
-                                                <input class="form-control" type="text" name="text-input" id="room_number" required>
-                                            </div>
-                                        </form>
-                                        <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
-                                <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeRestaurant();">Submit</button>
-
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                        </div>
-                    </section>
-                    <!-- add-restaurant-form-ends-->
-
-                    <!-- view-all-restaurant-starts -->
-                    <hr class="my-2">
-                    <div id="view-resto-alert"></div>
-                    <section class="content" id="view-all-resto" style="display:none">
-                        <div class="box-header with-border">
-                            <h3 class="box-title" style="padding: 5px">Restaurant</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div id="message-alert">
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="view-resto-table-body">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </section>
-                    <!-- view-all-restaurant-ends -->
-
-                </div>
-            </div>
-        </section>
-
-    <!-- content-section-ends -->
-    </div>
-    <!-- SYSTEM ADMIN PAGE ENDS-->
-
-
-
-    <!-- BUSINESS PERSONNEL PAGE STARTS -->
-    <div id="personnel-page">
-        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="personnel-menu" style="display:none">
-            <div class="container">
-                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#add-food-form').show();">Add Food</a></li>
-                    </ul>
-                    <ul>
-                        <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#view-all-food').show();$('#add-food-form').hide();viewAllFood();">View Food</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-9" style="display:none;background-color:#fff" id="box-personnel">
-                    <!-- add-food-form-starts -->
-                        <section class="content" id="add-food-form" style="display:none">
-                            <div class="box box-primary">
-                            <div id="add-food-alert">
-                            </div>
-                            <div class="box-header with-border">
-                                <h3 class="box-title" style="padding: 5px">Add Food</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <form id="food-form" class="bootstrap-form-with-validation">
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Food Name</label>
-                                                <input class="form-control" type="text" name="text-input" id="food_name" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Description</label>
-                                                <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Unit Cost</label>
-                                                <input class="form-control" type="number" name="text-input" id="unit_cost" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label" for="text-input">Image</label>
-                                                <input class="form-control" type="text" name="text-input" id="image_url" required>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearFoodForm();">Clear</button>
-                                <button type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeFood();">Submit</button>
-                            </div>
-                            <!-- /.box-footer -->
-                        </div>
-                        <!-- /.box -->
-                        </section>
-                    <!-- add-food-form-ends -->
-                    <!-- view-all-food-starts -->
-                    <section class="content" id="view-all-food" style="display:none">
-                        <div class="box-header with-border">
-                            <h3 class="box-title" style="padding: 5px">Foods</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div id="view-food-alert">
-                        </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="view-food-table-body">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </section>
-                    <!-- view-all-food-ends -->
-                </div>
-            </div>
-        </section>
-
-    </div>
-    <!-- BUSINESS PERSONNEL PAGE ENDS -->
-
-
-
-    <!-- CUSTOMER PAGE STARTS -->
-    <div id="customer-page">
-        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="customer-menu">
-		    <div class="container">
-				<div class="banner-info">
-					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
-						<h1>Network of Restaurants</h1>
-						<div class="line">
-							<h2> To Order Online</h2>
-						</div>
-					</div>
-					<div class="form-list wow fadeInRight" data-wow-delay="0.5s">
-						<!-- Search Form -->
-                        <div class="col-md-3" id="food-search-alert"></div>
-                        <div class="col-md-6" id="food-search-box">
-                            <!-- search form -->
-                            <form method="post" class="sidebar-form" onsubmit="return false">
-                                <div class="input-group">
-                                    <input id="resto-search" type="text" name="q" class="form-control" placeholder="Enter restaurant" style="width:300%">
-                                    <span class="input-group-btn">
-                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();$('#search-all-resto').show();" style="background-color:#5BBD50"><i class="fa fa-search">Search</i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                            <!-- /.search form -->
-                        </div>
-                        <div class="col-md-3"></div> <br>
-                        <!-- End of Search Form -->
-					</div>
-
-					<!-- start search-->
-				</div>
-			</div>
-		</div>
-        <!-- search-all-restaurant-starts -->
-        <hr class="my-2">
-        <div id="search-resto-alert"></div>
-        <section class="content" id="search-all-resto" style="display:none">
-            <div class="box-header with-border">
-                <h3 class="box-title" style="padding: 5px">Restaurant</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="search-resto-table-body">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div>
-        </section>
-        <!-- search-all-restaurant-ends -->
-        <!--view-all-food-starts-->
-        <section class="content" id="search-food-resto-results" style="display:none">
-            <div class="box-header with-border">
-                <h3 class="box-title" style="padding: 5px">Restaurant</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="search-all-food-results-table-body">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div>
-        </section>
-        <!--view-all-food-ends-->
-        <div class="content">
-            <div class="ordering-section" id="order">
-                <div class="container">
-                    <div class="ordering-section-head text-center wow bounceInRight" data-wow-delay="0.4s">
-                        <h3>Ordering food was never so easy</h3>
-                        <div class="dotted-line">
-                            <h4>Just 4 steps to follow </h4>
-                        </div>
-                    </div>
-                    <div class="ordering-section-grids">
-                        <div class="col-md-3 ordering-section-grid">
-                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
-                                <i class="one"></i><br>
-                                <i class="one-icon"></i>
-                                <p>Choose <span>Your Restaurant</span></p>
-                                <label></label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 ordering-section-grid">
-                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
-                                <i class="two"></i><br>
-                                <i class="two-icon"></i>
-                                <p>Order  <span>Your Cuisine</span></p>
-                                <label></label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 ordering-section-grid">
-                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
-                                <i class="three"></i><br>
-                                <i class="three-icon"></i>
-                                <p>Pay   <span> on delivery</span></p>
-                                <label></label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 ordering-section-grid">
-                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
-                                <i class="four"></i><br>
-                                <i class="four-icon"></i>
-                                <p>Enjoy <span>your food </span></p>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    <!-- CUSTOMER PAGE ENDS -->
 
 
 
@@ -641,6 +244,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
         </div>
     </div>
     <!-- footer-section-ends -->
+
     <script type="text/javascript">
           $(document).ready(function() {
               /*
