@@ -8,6 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     <title>Foodcart</title>
     <link href="assets/food/css/bootstrap.css" rel='stylesheet' type='text/css'><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <link href="assets/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="assets/food/css/font-awsome.min.css" type="text/css" rel="stylesheet" media="all">
 
 
     <script src="assets/food/js/jquery.min.js">
@@ -89,8 +90,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     <!-- top-menu-customer-ends -->
                     <div class="login-section" id="top-right">
                         <ul>
-                            <li><a href="#" onclick="$('#Home').show(); $('#login').show(); $('#register').hide();">Login</a>  </li> |
-                            <li><a href="#" onclick="$('#register').show(); $('#login').hide();">Register</a> </li>
+                            <li><a href="#" onclick="$('#Home').show(); $('#login').show();$('#customer-menu').hide(); $('#register').hide();$('#search-resto-table-body').hide();$('#search-resto-table').hide();">Login</a>  </li> |
+                            <li><a href="#" onclick="$('#add-user_form').show(); $('#login').hide();">Register</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -290,7 +291,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
-                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();$('#view-all-resto').hide()">Add Restaurant</a></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();$('#view-all-resto').hide();$('#customer-menu').hide();">Add Restaurant</a></li>
                     </ul>
                     <ul>
                         <li><i class="point"></i></li>
@@ -506,7 +507,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
     <!-- CUSTOMER PAGE STARTS -->
     <div id="customer-page">
-        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="customer-menu">
 		    <div class="container">
 				<div class="banner-info">
 					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
@@ -520,11 +521,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         <div class="col-md-3" id="food-search-alert"></div>
                         <div class="col-md-6" id="food-search-box">
                             <!-- search form -->
-                            <form method="get" class="sidebar-form" onsubmit="return false">
+                            <form method="post" class="sidebar-form" onsubmit="return false">
                                 <div class="input-group">
-                                    <input id="food-search" type="text" name="q" class="form-control" placeholder="Enter food">
+                                    <input id="resto-search" type="text" name="q" class="form-control" placeholder="Enter restaurant" style="width:300%">
                                     <span class="input-group-btn">
-                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();"><i class="fa fa-search">Search</i>
+                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();$('#search-resto-table').show();" style="background-color:#5BBD50"><i class="fa fa-search">Search</i>
                                         </button>
                                     </span>
                                 </div>
@@ -539,6 +540,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 				</div>
 			</div>
 		</div>
+        <div class="content">
+            <div class="ordering-section">
+                <div class="row">
+                    <div class="col-md-12">
+                    <table class="table" id="search-resto-table" style="display:none">
+		                <thead>
+		                    <tr>
+		                        <th></th>
+		                        <th></th>
+		                        <th></th>
+		                        <th></th>
+		                    </tr>
+		                </thead>
+		                <tbody id="search-resto-table-body" style="display:none">
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+            </div>
+        </div>
         <div class="content">
             <div class="ordering-section" id="order">
                 <div class="container">

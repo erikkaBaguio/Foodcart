@@ -109,10 +109,13 @@ function login(){
 					$('#top-menu-admin').show();
 					$('#top-menu-personnel').hide(0);
 					$('#top-menu-customer').hide(0);
-					$("#order").hide();
-					$("#Home").hide();
+					$('#order').hide();
+					$('#Home').hide();
+					$('#search-resto-table-body').hide();
+					$('#search-resto-table').hide();
 					$('#admin-page').show();
 					$('#admin-menu').show();
+
 				}
 
 				if(results.data[0].role == 2){
@@ -121,19 +124,19 @@ function login(){
 					$('#personnel-page').show();
 					$('#personnel-menu').show();
 					$('#top-menu-customer').hide(0);
-					$("#order").hide();
-					$("#Home").hide();
+					$('#order').hide();
+					$('#Home').hide();
 				}
 
 				if(results.data[0].role == 3){
 					$('#top-menu-admin').hide(0);
 					$('#top-menu-personnel').hide(0);
 					$('#top-menu-customer').show();
-					$("#Home").hide();
+					$('#Home').hide();
 				}
 
-				$("#login").hide();
-				$("#top-right").hide();
+				$('#login').hide();
+				$('#top-right').hide();
 				$('#logout').show();
 
 				$('#login-alert').html(
