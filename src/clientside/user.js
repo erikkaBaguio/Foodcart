@@ -13,18 +13,18 @@ $(document).ready(function(){
 
 
 function signup(){
-	var fname = $('#fname').val();
-	var mname = $('#mname').val();
-	var lname = $('#lname').val();
-	var user_password = $('#user_password').val();
-	var email = $('#user_email').val();
-    var tel_number = $('#user_tel_number').val();
-	var mobile_number = $('#user_mobile_number').val();
-    var bldg_number = $('#user_bldg_number').val();
-    var street = $('#user_street').val();
-    var room_number = $('#user_room_number').val();
-	var role_id = $('#registration-role_id').val();
-	var earned_points = $('#earned_points').val();
+	var fname = $('#customer_fname').val();
+	var mname = $('#customer_mname').val();
+	var lname = $('#customer_lname').val();
+	var user_password = $('#customer_password').val();
+	var email = $('#customer_email').val();
+    var tel_number = $('#customer_tel_number').val();
+	var mobile_number = $('#customer_mobile_number').val();
+    var bldg_number = $('#customer_bldg_number').val();
+    var street = $('#customer_street').val();
+    var room_number = $('#customer_room_number').val();
+    var earned_points = $('#customer_earned_points').val();
+	var role_id = $('#customer_role_id').val();
 
 	var data = JSON.stringify({ 'fname' : fname,
 								'mname' : mname,
@@ -36,8 +36,8 @@ function signup(){
 								'user_bldg_number' : bldg_number,
                                 'user_street' : street,
                                 'user_room_number' : room_number,
-								'role_id' : role_id,
-								'earned_points' : earned_points
+								'earned_points' : earned_points,
+                                'role_id' : role_id
 							});
 
 	$.ajax({
@@ -50,25 +50,30 @@ function signup(){
 			success: function(results){
 				if (results.status == 'OK'){
 
-					$('#add-user-alert').html(
-						'<div class="alert alert-success"><strong>Success ' +
+                    $("#register").show();
+
+					$('#add-customer-alert').html(
+						'<div class="alert alert-success"><strong>Successfully added ' +
 						 '!</strong>' + results.message +'</div>');
 
-					$("#add-user-alert").fadeTo(2000, 500).slideUp(500);
+					$("#add-customer-alert").fadeTo(2000, 500).slideUp(500);
 
-					$("#add-user-form").hide();
-
-					clearSignupForm();
+                    var form = document.getElementById("add-customer-form");
+					form.reset();
+                    $("#register").hide();
+					$("#login").show();
 
 				}
 
 				if(results.status == 'FAILED'){
 
-					$('#add-user-alert').html(
+                    $("#add-customer-form").show();
+
+					$('#add-customer-alert').html(
 						'<div class="alert alert-danger"><strong>Failed ' +
 						 '!</strong>' + results.message +'</div>');
 
-					$("#add-user-alert").fadeTo(2000, 500).slideUp(500);
+					$("#add-customer-alert").fadeTo(2000, 500).slideUp(500);
 
 				}
 			},
