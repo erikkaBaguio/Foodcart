@@ -91,7 +91,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     <div class="login-section" id="top-right">
                         <ul>
                             <li><a href="#" onclick="$('#Home').show(); $('#login').show();$('#customer-menu').hide(); $('#register').hide();$('#search-resto-table-body').hide();$('#search-resto-table').hide();">Login</a>  </li> |
-                            <li><a href="#" onclick="$('#add-user_form').show(); $('#login').hide();">Register</a> </li>
+                            <li><a href="#" onclick="$('#Home').show(); $('#register').show(); $('#login').hide(); $('#customer-menu').hide(); $('#search-resto-table-body').hide();$('#search-resto-table').hide();">Register</a> </li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -137,57 +137,59 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                 </div>
                 <!-- end of login form -->
+
                 <!-- register customer form -->
                 <div class="container">
+                    <div id="add-customer-alert"></div>
                     <div class="register" id="register" style="display:none">
-                        <form id="add-user-form" class="bootstrap-form-with-validation">
+                        <form id="add-customer-form" class="bootstrap-form-with-validation">
                             <div class="register-top-grid">
                                 <h3 style="color:#fff">PERSONAL INFORMATION</h3>
                                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">First Name*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="fname" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_fname" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Middle Name*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="mname" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_mname" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Last Name*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="lname" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_lname" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Password*</span></label>
-                                    <input class="form-control" type="password" name="text-input" id="user_password" required>
+                                    <input class="form-control" type="password" name="text-input" id="customer_password" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Email Address*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_email" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_email" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Telephone Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_tel_number" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_tel_number" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Mobile Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_mobile_number" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_mobile_number" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Building Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_bldg_number" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_bldg_number" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Street*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_street" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_street" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <label for="text-input"><span style="color:#fff">Room Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_room_number" required>
+                                    <input class="form-control" type="text" name="text-input" id="customer_room_number" required>
                                 </div>
                                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
+                                    <input class="form-control" type="hidden" name="text-input" id="customer_earned_points" value="0" required>
                                 </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <input class="form-control" type="hidden" name="text-input" id="role_id" value="3" required>
+                                    <input class="form-control" type="hidden" name="text-input" id="customer_role_id" value="3" required>
                                 </div>
                                 <div class="clearfix"></div><a class="news-letter" href="#"></a>
                             </div>
@@ -201,72 +203,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                         </div>
                     </div>
                 </div>
-                <!-- end of register customer form -->
-                <!-- register personnel form -->
-                <div class="container">
-                    <div class="register" id="register" style="display:none">
-                        <form id="add-user-form" class="bootstrap-form-with-validation">
-                            <div class="register-top-grid">
-                                <h3 style="color:#fff">PERSONAL INFORMATION</h3>
-                                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">First Name*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="fname" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Middle Name*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="mname" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Last Name*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="lname" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Password*</span></label>
-                                    <input class="form-control" type="password" name="text-input" id="user_password" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Email Address*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_email" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Telephone Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_tel_number" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Mobile Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_mobile_number" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Building Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_bldg_number" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Street*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_street" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <label for="text-input"><span style="color:#fff">Room Number*</span></label>
-                                    <input class="form-control" type="text" name="text-input" id="user_room_number" required>
-                                </div>
-                                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
-                                </div>
-                                <div class="wow fadeInRight" data-wow-delay="0.4s">
-                                    <input class="form-control" type="hidden" name="text-input" id="role_id" value="2" required>
-                                </div>
-                                <div class="clearfix"></div><a class="news-letter" href="#"></a>
-                            </div>
-                        </form>
-                        <div class="clearfix"></div>
-                        <div class="register-but">
-                            <form>
-                                <input type="submit" value="submit" onclick="signup();">
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- end of register form -->
             </section>
         </div>
     </div>
