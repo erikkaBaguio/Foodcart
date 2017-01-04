@@ -70,7 +70,7 @@ def authentication():
 
     pw_hash = hashlib.md5(password.encode())
 
-    spcall = SPcalls()
+    spcalls = SPcalls()
 
     login = spcalls.spcall('check_email_password', (email, pw_hash.hexdigest()))
 
