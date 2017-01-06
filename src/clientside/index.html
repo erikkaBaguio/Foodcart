@@ -123,6 +123,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                     </div>
                 </div>
                 <!-- end of login form -->
+
                 <!-- signup-form-starts -->
                 <div class="container">
                     <div class="register" id="register" style="display:none">
@@ -169,7 +170,72 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
                                     <label for="text-input"><span style="color:#fff">Room Number*</span></label>
                                     <input class="form-control" type="text" name="text-input" id="user_room_number" required>
                                 </div>
+                                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
+                                </div>
                                 <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <input class="form-control" type="hidden" name="text-input" id="role_id" value="3" required>
+                                </div>
+                                <div class="clearfix"></div><a class="news-letter" href="#"></a>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div class="register-but">
+                            <form>
+                                <input type="submit" value="submit" onclick="signup();">
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of register customer form -->
+                <!-- register personnel form -->
+                <div class="container">
+                    <div class="register" id="register" style="display:none">
+                        <form id="add-user-form" class="bootstrap-form-with-validation">
+                            <div class="register-top-grid">
+                                <h3 style="color:#fff">PERSONAL INFORMATION</h3>
+                                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">First Name*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="fname" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Middle Name*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="mname" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Last Name*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="lname" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Password*</span></label>
+                                    <input class="form-control" type="password" name="text-input" id="user_password" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Email Address*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_email" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Telephone Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_tel_number" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Mobile Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_mobile_number" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Building Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_bldg_number" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Street*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_street" required>
+                                </div>
+                                <div class="wow fadeInRight" data-wow-delay="0.4s">
+                                    <label for="text-input"><span style="color:#fff">Room Number*</span></label>
+                                    <input class="form-control" type="text" name="text-input" id="user_room_number" required>
+                                </div>
+                                    <div class="wow fadeInRight" data-wow-delay="0.4s">
                                     <input class="form-control" type="hidden" name="text-input" id="earned_points" value="0" required>
                                 </div>
                                 <div class="clearfix"></div><a class="news-letter" href="#"></a>
@@ -294,6 +360,211 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
     <!-- content-section-ends -->
     </div>
     <!-- SYSTEM ADMIN PAGE ENDS-->
+
+
+
+
+    <!-- BUSINESS PERSONNEL PAGE STARTS -->
+    <div id="personnel-page">
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="personnel-menu" style="display:none">
+            <div class="container">
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#add-food-form').show();">Add Food</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#box-personnel').show();$('#view-all-food').show();$('#add-food-form').hide();viewAllFood();">View Food</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box-personnel">
+                    <!-- add-food-form-starts -->
+                        <section class="content" id="add-food-form" style="display:none">
+                            <div class="box box-primary">
+                            <div id="add-food-alert">
+                            </div>
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="padding: 5px">Add Food</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form id="food-form" class="bootstrap-form-with-validation">
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Food Name</label>
+                                                <input class="form-control" type="text" name="text-input" id="food_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Description</label>
+                                                <textarea class="form-control" type="text" name="text-input" id="description" rows="5"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Unit Cost</label>
+                                                <input class="form-control" type="number" name="text-input" id="unit_cost" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Image</label>
+                                                <input class="form-control" type="text" name="text-input" id="image_url" required>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearFoodForm();">Clear</button>
+                                <button type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeFood();">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </div>
+                        <!-- /.box -->
+                        </section>
+                    <!-- add-food-form-ends -->
+                    <!-- view-all-food-starts -->
+                    <section class="content" id="view-all-food" style="display:none">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" style="padding: 5px">Foods</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div id="view-food-alert">
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="view-food-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </section>
+                    <!-- view-all-food-ends -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- BUSINESS PERSONNEL PAGE ENDS -->
+
+
+
+    <!-- CUSTOMER PAGE STARTS -->
+    <div id="customer-page">
+        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="customer-menu">
+		    <div class="container">
+				<div class="banner-info">
+					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
+						<h1>Network of Restaurants</h1>
+						<div class="line">
+							<h2> To Order Online</h2>
+						</div>
+					</div>
+					<div class="form-list wow fadeInRight" data-wow-delay="0.5s">
+						<!-- Search Form -->
+                        <div class="col-md-3" id="food-search-alert"></div>
+                        <div class="col-md-6" id="food-search-box">
+                            <!-- search form -->
+                            <form method="post" class="sidebar-form" onsubmit="return false">
+                                <div class="input-group">
+                                    <input id="resto-search" type="text" name="q" class="form-control" placeholder="Enter restaurant" style="width:300%">
+                                    <span class="input-group-btn">
+                                        <button name="search" id="search-btn" class="btn btn-flat" onclick="searchRestaurant();$('#search-resto-table').show();" style="background-color:#5BBD50"><i class="fa fa-search">Search</i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /.search form -->
+                        </div>
+                        <div class="col-md-3"></div> <br>
+                        <!-- End of Search Form -->
+					</div>
+
+					<!-- start search-->
+				</div>
+			</div>
+		</div>
+        <div class="content">
+            <div class="ordering-section">
+                <div class="row">
+                    <div class="col-md-12">
+                    <table class="table" id="search-resto-table" style="display:none">
+		                <thead>
+		                    <tr>
+		                        <th></th>
+		                        <th></th>
+		                        <th></th>
+		                        <th></th>
+		                    </tr>
+		                </thead>
+		                <tbody id="search-resto-table-body" style="display:none">
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="ordering-section" id="order">
+                <div class="container">
+                    <div class="ordering-section-head text-center wow bounceInRight" data-wow-delay="0.4s">
+                        <h3>Ordering food was never so easy</h3>
+                        <div class="dotted-line">
+                            <h4>Just 4 steps to follow </h4>
+                        </div>
+                    </div>
+                    <div class="ordering-section-grids">
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="one"></i><br>
+                                <i class="one-icon"></i>
+                                <p>Choose <span>Your Restaurant</span></p>
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="two"></i><br>
+                                <i class="two-icon"></i>
+                                <p>Order  <span>Your Cuisine</span></p>
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="three"></i><br>
+                                <i class="three-icon"></i>
+                                <p>Pay   <span> on delivery</span></p>
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ordering-section-grid">
+                            <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                                <i class="four"></i><br>
+                                <i class="four-icon"></i>
+                                <p>Enjoy <span>your food </span></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+<!-- CUSTOMER PAGE ENDS -->
 
 
 
