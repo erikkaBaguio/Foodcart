@@ -4,6 +4,7 @@ var timer = 0;
 
 $(document).ready(function(){
 
+	// decryptCookie();
 
 });
 
@@ -27,11 +28,11 @@ function eraseCookie(name) {
 	$('#login').show();
 	$('#top-right').show();
 
-	// var form = document.getElementById("registration-form");
-	// form.reset();
+	var form = document.getElementById("registration-form");
+	form.reset();
 
-	// var loginForm = document.getElementById("login-form");
-	// loginForm.reset();
+	var loginForm = document.getElementById("login-form");
+	loginForm.reset();
 
 	$('#login-alert').html(
 		'<div class="alert alert-success" role="alert"><strong>Success ' +
@@ -93,6 +94,7 @@ function home(){
 
 				if(results.data[0].role == 1){
 
+
 					user_role = results.data[0].role;
 
 				}
@@ -151,6 +153,8 @@ function login(){
 		success: function(results){
 			
 			if(results.status == 'OK'){
+	    		// console.log(results);
+
 				var token = results.token;
 
 				//user_tk is abbrev of user_token
@@ -159,6 +163,8 @@ function login(){
 
 				// for system admin
 				if(results.data[0].role == 1){
+
+					$('#admin-page').show();
 
 					
 					user_role = results.data[0].role;
@@ -179,9 +185,11 @@ function login(){
 					user_role = results.data[0].role;					
 				}
 
+				$('#Home').hide();
 				$('#login').hide();
 				$('#top-right').hide();
 				$('#logout').show();
+
 
 				$('#login-alert').html(
 						'<div class="alert alert-success"><strong>Welcome ' +

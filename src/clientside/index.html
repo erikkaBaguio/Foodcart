@@ -194,6 +194,108 @@ License URL: http://creativecommons.org/licenses/by/3.0/ -->
 
 
 
+<!-- SYSTEM ADMIN PAGE STARTS-->
+    <div id="admin-page" style="display:none">
+    <!-- content-section-starts -->
+        <section class="banner wow fadeInUp" data-wow-delay="0.4s" id="admin-menu">
+            <div class="container">
+                <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s"><br>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#register').show();">Add User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff">View User</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="$('#add-resto-form').show();$('#box-admin').show();">Add Restaurant</a></li>
+                    </ul>
+                    <ul>
+                        <li><i class="point"></i></li>
+                        <li class="data"><a href="#" style="color:#fff" onclick="viewAllRestaurant();$('#view-all-resto').show();$('#box-admin').show();$('#add-resto-form').hide();">View Restaurants</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-9" style="display:none;background-color:#fff" id="box-admin">
+                    <!-- add-restaurant-form-starts-->
+                    <section class="content" id="add-resto-form" style="display:none">
+                        <div class="container">
+                            <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="padding: 5px">Add Restaurant</h3>
+                                <div class="col-md-6" id="add-resto-alert"></div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <form id="restaurant-form" class="bootstrap-form-with-validation">
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Restaurant Name</label>
+                                                <input class="form-control" type="text" name="text-input" id="resto_name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Minimum Order</label>
+                                                <input class="form-control" type="number" name="text-input" id="min_order" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Delivery Fee</label>
+                                                <input class="form-control" type="number" name="text-input" id="delivery_fee" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Image</label>
+                                                <input class="form-control" type="text" name="text-input" id="image_url" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Email</label>
+                                                <input class="form-control" type="email" name="text-input" id="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Telephone No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="tel_number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Mobile No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="mobile_number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Building No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="bldg_number" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Street</label>
+                                                <input class="form-control" type="text" name="text-input" id="street" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="text-input">Room No.</label>
+                                                <input class="form-control" type="text" name="text-input" id="room_number" required>
+                                            </div>
+                                        </form>
+                                        <button type="submit" class="btn btn-danger pull-right" style="margin: 5px" onclick="clearRestaurantForm();">Clear</button>
+                                <button id="submit-button" type="submit" class="btn btn-success pull-right" style="margin: 5px" onclick="storeRestaurant();">Submit</button>
+
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                        </div>
+                    </section>
+                    <!-- add-restaurant-form-ends-->
+                </div>
+            </div>
+        </section>
+                    
+
+    <!-- content-section-ends -->
+    </div>
+    <!-- SYSTEM ADMIN PAGE ENDS-->
+
+
 
     <!-- footer-section-starts -->
     <div class="contact-section" id="contact">
