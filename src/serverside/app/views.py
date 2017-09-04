@@ -116,7 +116,7 @@ def index(token):
     for u in user:
         entry.append({'fname': u[1], 'mname': u[2], 'lname': u[3], 'email': u[10], 'role': u[8]})
 
-    return jsonify({'status': 'OK', 'message': 'Welcome user', 'data': entry})
+    return jsonify({'status': 'Ok', 'message': 'Welcome user', 'data': entry})
 
 
 
