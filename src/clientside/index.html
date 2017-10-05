@@ -141,48 +141,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h2>Delicious food from the <br> <span>Best Chefs For you.</span></h2>
 				<div class="agileits_search">
 					<form action="#" method="post">
-						<input name="Search" type="text" placeholder="Enter Your Area Name" required="">
-						<select id="agileinfo_search" name="agileinfo_search" required="">
-							<option value="">Popular Cities</option>
-							<option value="navs">New York</option>
-							<option value="quotes">Los Angeles</option>
-							<option value="videos">Chicago</option>
-							<option value="news">Phoenix</option>
-							<option value="notices">Fort Worth</option>
-							<option value="all">Other</option>
-						</select>
-						<input type="submit" value="Search">
+						<input name="Search" type="text" placeholder="Enter Restaurant" required="">
+						<input type="submit" value="Search" onclick="show_search_resto_body_section();">
 					</form>
 				</div> 
 			</div>
 		</div>
 	</div>
 	<!-- //banner -->   
-	<!-- add-products -->
-	<div class="add-products">  
-		<div class="container">
-			<div class="add-products-row">
-				<div class="w3ls-add-grids">
-					<a href="menu.html"> 
-						<h4>Get <span>20%<br>Cashback</span></h4>
-						<h5>Ordered in mobile app only </h5>
-						<h6>Order Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="w3ls-add-grids w3ls-add-grids-right">
-					<a href="menu.html"> 
-						<h4>GET Upto<span><br>40% Offer</span></h4>
-						<h5>Sunday special discount</h5>
-						<h6>Order Now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div> 
-				<div class="clearfix"> </div> 
-			</div>  	 
+	<!-- blue section -->
+	<section id="search-resto-section" style="display:none">
+		<div class="add-products">  
+			<div class="container">
+				<div class="add-products-row">
+					<section id="search-resto-body"></section>
+					<div class="clearfix"> </div> 
+				</div>  	 
+			</div>
 		</div>
-	</div>
-	<!-- //add-products --> 
+	</section>
+	<!-- //blue section --> 
 	<!-- order -->   	
-	<div class="wthree-order">  
+	<div class="wthree-order" id="wthree-order">  
 		<img src="images/i2.jpg" class="w3order-img" alt=""/>
 		<div class="container">
 			<h3 class="w3ls-title">How To Order Online Food</h3>
@@ -222,7 +202,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- //order -->    
 	<!-- deals -->
-	<div class="w3agile-deals">
+	<div class="w3agile-deals" id="w3agile-deals">
 		<div class="container">
 			<h3 class="w3ls-title">Special Services</h3>
 			<div class="dealsrow">
@@ -272,7 +252,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- //deals --> 
 	<!-- dishes -->
-	<div class="w3agile-spldishes">
+	<div class="w3agile-spldishes"  id="w3agile-spldishes">
 		<div class="container">
 			<h3 class="w3ls-title">Special Foods</h3>
 			<div class="spldishes-agileinfo">
