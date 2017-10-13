@@ -42,10 +42,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<li class="head-dpdn">
 								<i class="fa fa-phone" aria-hidden="true"></i> Call us: +01 222 33345 
 							</li> 
-							<li class="head-dpdn">
-								<a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+							<li class="head-dpdn" id="header-login">
+								<a href="login.html" onclick="show_login();"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
 							</li> 
-							<li class="head-dpdn">
+							<li class="head-dpdn" id="header-signup	">
 								<a href="signup.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Signup</a>
 							</li> 
 							<li class="head-dpdn">
@@ -136,7 +136,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<!-- //header-end --> 
 		<!-- banner-text -->
-		<div class="banner-text">	
+		<section id="banner-text">
+			<div class="banner-text">	
 			<div class="container">
 				<h2>Delicious food from the <br> <span>Best Chefs For you.</span></h2>
 				<div class="agileits_search">
@@ -146,9 +147,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</form>
 				</div> 
 			</div>
-		</div>
+			</div>	
+		</section>			
 	</div>
 	<!-- //banner -->   
+
+	<!-- login section -->
+	<!-- login-page -->
+	<section id="login-section" style="display:none">
+		<div class="login-page about">
+			<img class="login-w3img" src="images/img3.jpg" alt="">
+			<div class="container"> 
+				<h3 class="w3ls-title w3ls-title1">Login to your account</h3>  
+				<div class="login-agileinfo"> 
+					<form action="#" method="post"> 
+						<input class="agile-ltext" type="text" name="Username" placeholder="Username" required="">
+						<input class="agile-ltext" type="password" name="password" placeholder="Password" required="">
+						<div class="wthreelogin-text"> 
+							<ul> 
+								<li>
+									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i> 
+										<span> Remember me ?</span> 
+									</label> 
+								</li>
+								<li><a href="#">Forgot password?</a> </li>
+							</ul>
+							<div class="clearfix"> </div>
+						</div>   
+						<input type="submit" value="LOGIN">
+					</form>
+					<p>Don't have an Account? <a href="signup.html"> Sign Up Now!</a></p> 
+				</div>	 
+			</div>
+		</div>
+	</section>
+	<!-- //login-page --> 
 	<!-- blue section -->
 	<section id="search-resto-section" style="display:none">
 		<div class="add-products">  
@@ -472,5 +505,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.js"></script>
+    <script src="foodcart/routes.js"></script>
 </body>
 </html>
