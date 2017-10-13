@@ -1,6 +1,6 @@
 function show_login()
 {
-	$("login-section").show();
+	$("#login-section").show();
 	$("#banner-text").hide();
 }
 
